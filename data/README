@@ -1,0 +1,7 @@
+23 Sep 2015     Create by Emille Ishida
+                this directory holds data files for the MLSNeSpectra project
+
+23 Sep 2015     derivatives.dat ->  1 epoch data matrix (after filtering and derivatives)
+                                    lines are objects and collumns are features
+
+                errors.dat -> uncertainties in the values shown in derivatives. dat

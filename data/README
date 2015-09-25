@@ -1,7 +1,11 @@
 23 Sep 2015     Create by Emille Ishida
                 this directory holds data files for the MLSNeSpectra project
 
-23 Sep 2015     derivatives.dat ->  1 epoch data matrix (after filtering and derivatives)
+25 Sep 2015     derivatives_orig.dat ->  1 epoch data matrix (after filtering and derivatives)
                                     lines are objects and collumns are features
 
-                errors.dat -> uncertainties in the values shown in derivatives. dat
+                errors_orig.dat -> uncertainties in the values shown in derivatives. dat
+                
+                The derivative.dat and the errors.dat are the selection of the low noise part of the data.
+                They are created by python/create_data/select_data.py
+

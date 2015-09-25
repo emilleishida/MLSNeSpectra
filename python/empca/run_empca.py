@@ -3,9 +3,12 @@ from pylab import figure
 from matplotlib.pyplot import plot, savefig, xlabel, ylabel, scatter, axis, xlim
 from empca import empca
 
+data_dir='../../data/'
+out_dir='./plots/'
+
 # load the data and run PCA
-derivatives = loadtxt('../data/derivatives.dat')
-errors = loadtxt('../data/errors.dat')
+derivatives = loadtxt(data_dir+'derivatives.dat')
+errors = loadtxt(data_dir+'errors.dat')
 
 centered_der = derivatives-mean(derivatives,0)
 
@@ -21,6 +24,6 @@ for indexes in [[0,1],[0,2],[0,3],[0,4]]:
     xlabel('PC %d' % (indexes[0]+1))
     ylabel('PC %d' % (indexes[1]+1))
     axis('equal')
-    savefig('./scatter_plot_%d_%d.pdf' % (indexes[0]+1,indexes[1]+1))
+    savefig(out_dir+'scatter_plot_%d_%d.pdf' % (indexes[0]+1,indexes[1]+1))
 
 

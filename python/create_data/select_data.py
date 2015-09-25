@@ -4,6 +4,7 @@ from matplotlib.pyplot import plot, savefig, xlabel, ylabel, scatter, axis, xlim
 
 in_data_dir='../../data/'
 out_data_dir='../../data/'
+out_dir='./plots/'
 
 # crop the wavelength range of a strong telluric line
 wavelength_range_sel = range(300)+range(330,355,1)
@@ -17,7 +18,9 @@ derivatives = derivatives_orig.T[wavelength_range_sel].T
 errors = errors_orig.T[wavelength_range_sel].T
 
 ## this is to plot the distribution of errors and select the treshold
-#figure();plot(sort((mean(errors,1))))
+figure();plot(sort((mean(errors,1))))
+xlabel('SN');ylabel('error')
+savefig(out_dir+'errors.png')
 
 sel_sne = [i for i in range(shape(errors)[0]) if mean(errors[i]) < mean_error_treshold]
 derivatives = derivatives[sel_sne]

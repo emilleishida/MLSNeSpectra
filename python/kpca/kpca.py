@@ -5,6 +5,7 @@ from sklearn.decomposition import KernelPCA
 
 
 path1 = '../../data/derivatives.dat'
+case = 'high_SNR'
 par_gamma = 10.0
 
 # read data
@@ -22,13 +23,23 @@ kpca = KernelPCA(kernel="linear", gamma=par_gamma)
 X_kpca = kpca.fit_transform(matrix)
 
 
+for i in xrange(3):
+    for j in xrange(i + 1, 4):
+        plt.figure()
+        plt.title('gamma = ' + str(par_gamma))
+        plt.scatter(X_kpca[:,i], X_kpca[:,j])
+        plt.xlabel('kPC' + str(i + 1))
+        plt.ylabel('kPC' + str(j + 1))
+        plt.savefig('plots/kpca_plot_' + str(i + 1)+ '_' + str(j + 1) + '_gamma_' + str(par_gamma) + '_' + case + '.png')
+        
+        
 plt.figure()
-plt.title('gamma = ' + str(par_gamma))
-plt.scatter(X_kpca[:,0], X_kpca[:,1])
-plt.xlabel('kPC1')
-plt.ylabel('kPC2')
-plt.savefig('plots/kpca_plot_1_2_gamma_' + str(par_gamma) + '_high_SNR.png')
+plt.scatter(range(1, 11), kpca.lambdas_[:10]/sum(kpca.lambdas_))
+plt.xlabel('kPCA')
+plt.ylabel('variance')
+plt.savefig('plots/kpca_variance_' + str(par_gamma) + case + '.png')
 
+"""
 plt.figure()
 plt.title('gamma = ' + str(par_gamma))
 plt.scatter(X_kpca[:,0], X_kpca[:,2])
@@ -40,35 +51,31 @@ plt.figure()
 plt.title('gamma = ' + str(par_gamma))
 plt.scatter(X_kpca[:,0], X_kpca[:,3])
 plt.xlabel('kPC1')
-plt.ylabel('kPC3')
+plt.ylabel('kPC4')
 plt.savefig('plots/kpca_plot_1_4_gamma_' + str(par_gamma) + '_high_SNR.png')
 
 plt.figure()
 plt.title('gamma = ' + str(par_gamma))
 plt.scatter(X_kpca[:,1], X_kpca[:,2])
-plt.xlabel('kPC1')
+plt.xlabel('kPC2')
 plt.ylabel('kPC3')
 plt.savefig('plots/kpca_plot_2_3_gamma_' + str(par_gamma) + '_high_SNR.png')
 
 plt.figure()
 plt.title('gamma = ' + str(par_gamma))
 plt.scatter(X_kpca[:,1], X_kpca[:,3])
-plt.xlabel('kPC1')
+plt.xlabel('kPC2')
 plt.ylabel('kPC4')
 plt.savefig('plots/kpca_plot_2_4_gamma_' + str(par_gamma) + '_high_SNR.png')
 
 plt.figure()
 plt.title('gamma = ' + str(par_gamma))
 plt.scatter(X_kpca[:,2], X_kpca[:,3])
-plt.xlabel('kPC1')
-plt.ylabel('kPC3')
+plt.xlabel('kPC3')
+plt.ylabel('kPC4')
 plt.savefig('plots/kpca_plot_3_4_gamma_' + str(par_gamma) + '_high_SNR.png')
 
 
 
-plt.figure()
-plt.scatter(range(1, 11), kpca.lambdas_[:10]/sum(kpca.lambdas_))
-plt.xlabel('kPCA')
-plt.ylabel('variance')
-plt.savefig('plots/kpca_variance_' + str(par_gamma) + 'high_SNR.png')
 
+"""

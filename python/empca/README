@@ -4,9 +4,6 @@
 24 Sep 2015 -  Michele Sasdelli
                "python plot_data.py" to plot the derivatives and the errors into input_data.pdf
 
-               sklearn is needed. http://scikit-learn.org
-               "python run_pca.py" to run simple PCA on the derivatives and plot some scatter plots and the variances.
-               
 24 Sep 2015 -  Michele Sasdelli
                "python run_empca.py" it runs empca on the data.
 

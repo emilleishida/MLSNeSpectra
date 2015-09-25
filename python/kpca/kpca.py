@@ -18,7 +18,7 @@ data1 = [elem.split() for elem in lin1]
 matrix = np.array([[float(item) for item in line] for line in data1[1:]])
 
 # perform kpca
-kpca = KernelPCA(kernel="rbf", gamma=par_gamma)
+kpca = KernelPCA(kernel="linear", gamma=par_gamma)
 X_kpca = kpca.fit_transform(matrix)
 
 
@@ -64,6 +64,13 @@ plt.xlabel('kPC1')
 plt.ylabel('kPC3')
 plt.savefig('plots/kpca_plot_3_4_gamma_' + str(par_gamma) + '.png')
 
+
+
+plt.figure()
+plt.scatter(range(1, 11), kpca.lambdas_[:10]/sum(kpca.lambdas_))
+plt.xlabel('kPCA')
+plt.ylabel('variance')
+plt.show()
 
 """
 

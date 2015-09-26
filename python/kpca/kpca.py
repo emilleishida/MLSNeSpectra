@@ -22,12 +22,16 @@ matrix = np.array([[float(item) for item in line] for line in data1[1:]])
 kpca = KernelPCA(kernel="linear", gamma=par_gamma)
 X_kpca = kpca.fit_transform(matrix)
 
+data_dir='../../data/'
+SNe = np.loadtxt(data_dir+'SNe.txt',dtype=str)
 
 for i in xrange(3):
     for j in xrange(i + 1, 4):
         plt.figure()
         plt.title('gamma = ' + str(par_gamma))
         plt.scatter(X_kpca[:,i], X_kpca[:,j])
+        for k in range(np.size(SNe)):
+            plt.text(X_kpca[k,i], X_kpca[k,j],SNe[k],size=6)
         plt.xlabel('kPC' + str(i + 1))
         plt.ylabel('kPC' + str(j + 1))
         plt.savefig('plots/kpca_plot_' + str(i + 1)+ '_' + str(j + 1) + '_gamma_' + str(par_gamma) + '_' + case + '.png')

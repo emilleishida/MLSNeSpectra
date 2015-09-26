@@ -9,3 +9,5 @@
                 The derivative.dat and the errors.dat are the selection of the low noise part of the data.
                 They are created by python/create_data/select_data.py
 
+26 Sep 2015     SNe_orig.txt contain the names of derivative_orig.dat
+                SNe.txt contain the names of derivative.dat

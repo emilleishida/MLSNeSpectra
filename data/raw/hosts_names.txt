@@ -1,0 +1,170 @@
+# Supernova names
+sn1994ae            -      NGC 3370
+sn2009ag            -      ESO 492-2
+sn2006gz            -      IC 1277
+sn2002G             -      MCG+06-29-043
+snf20080522-000     -      [ATL2005] 1967
+sn2006br            -       NGC 5185
+sn2005el            -       NGC 1819
+sn2000cx            -       NGC 524 
+sn2006gt            -       2MASX J00561810-0137327
+sn2000fa            -       UGC 3770
+sn2008hv            -       NGC 2765
+sn1996X             -       NGC 5061
+sn2006ot            -       ESO 544-31
+sn2005bg            -       MCG+03-31-093
+sn2005bc            -       NGC 5698
+sn2005bo            -       NGC 4708
+sn2008ar            -       IC 3284
+sn2008ae            -       IC 577
+sn2005M             -       NGC 2930
+sn2002fb            -       NGC 759
+sn2002de            -       NGC 6104
+sn2005A             -       NGC 958
+sn2004dt            -       NGC 799
+sn2001da            -       NGC 7780
+sn1999da            -       NGC 6411
+sn2001cp            -       UGC 10738
+sn1991bg            -       NGC 4374
+sn2006ax            -       NGC 3663
+sn2006az            -       NGC 4172
+sn2003kc            -       MCG+05-23-37
+sn2005kc            -       NGC 7311
+sn2005ke            -       NGC 1371
+sn2005ki            -       NGC 3332
+sn2008Z             -       Anon J094315+3617
+sn2008Q             -       NGC 524
+sn2008R             -       NGC 1200
+sn2008A             -       NGC 634
+sn1998aq            -       NGC 3982 
+sn2007af            -       NGC 5584
+sn2007ai            -       MCG-04-38-04
+sn2007au            -       UGC 3725
+sn2007ax            -       NGC 2577
+sn2009ad            -       UGC 3236
+sn2006sr            -       UGC 14
+sn2001N             -       NGC 3327
+sn2005hj            -       Anon J012648-0114
+sn2005hk            -       UGC 272 
+sn2005hc            -       MCG+00-06-03
+sn2006et            -       NGC 232 
+sn2006kf            -       UGC 2829 
+sn1998co            -       NGC 7131
+sn2007on            -       NGC 1404
+sn2007bd            -       UGC 4455
+sn2007ba            -       UGC 9798
+sn2007bc            -       UGC 6332
+sn2007bz            -       IC 3918
+snf20080720-001       
+sn2003iv            -       MCG+02-08-14
+sn1998bu            -       NGC 3368
+sn2004S             -       MCG-05-16-21 
+sn2004gs            -       MCG+03-22-20
+sn1999cl            -       NGC 4501
+sn1999cc            -       NGC 6038
+sn1994S             -       NGC 4495 
+sn2003hu            -       Anon J191131+7753
+sn2003cg            -       NGC 3169
+sn2003ch            -       UGC 3787
+sn1997bp            -       NGC 4680
+sn2003cq            -       NGC 3978
+sn2006cq            -       IC 4239
+sn2008gl            -       UGC 881 
+sn1998dx            -       UGC 11149
+sn2005cf            -       MCG-01-39-03
+sn1998dk            -       UGC 139
+sn1998dh            -       NGC 7541
+sn2007kk            -       UGC 2828
+sn2006nz            -       Anon J005629-0113
+sn1996ai            -       NGC 5005
+sn2002cr            -       NGC 5468 
+sn2002cx            -       Anon J131349+0657
+sn2002cf            -       NGC 4786 
+sn2002cd            -       NGC 6916
+sn2002ck            -       UGC 10030 
+sn2001ex            -       UGC 3595
+sn2006os            -       UGC 2384
+sn2001ep            -       NGC 1699
+sn1999gd            -       NGC 2623
+sn2001eh            -       UGC 1162
+sn1999gp            -       MCG+06-06-49
+sn1998de            -       NGC 252
+sn2003gq            -       NGC 7407
+sn2006oa            -       Anon J212342-0050
+sn2002jy            -       NGC 477 
+sn2008bf            -       NGC 4055
+sn2004fu            -       NGC 6949
+sn2007ux            -       Anon J100919+1459
+sn1999by            -       NGC 2841
+sn2001ay            -       IC 4423
+sn2008fp            -       ESO 428-14 
+sn2000dg            -       MCG+01-01-29
+sn2000dk            -       NGC 382
+sn2000dm            -       UGC 11198 
+sn2000dn            -       IC 1468
+sn2007hj            -       NGC 7461
+sn1996bl            -       Anon J003617+1123 
+sn2007co            -       MCG+05-43-16
+sn2007ci            -       NGC 3873
+sn2007ca            -       MCG-02-34-61
+sn2007jg            -       Anon J032950+0003
+sn2007A             -       NGC 105
+sn2007F             -       UGC 8162
+sn2002fk            -       NGC 1309
+sn2007S             -       UGC 5378
+sn2001fh            -       LEDA 66592 
+sn2001fe            -       UGC 5129
+sn1994D             -       NGC 4526
+sn1999dq            -       NGC 976 
+sn2006cz            -       MCG-01-38-02
+sn2003it            -       UGC 40
+sn2003ic            -       MCG-02-02-86 
+sn2006cm            -       UGC 11723 
+sn2006cj            -       Anon J125924+2820 
+sn2005mc            -       UGC 4414 
+sn1998eg            -       MCG+01-57-14 
+sn1998ef            -       UGC 646 
+sn1999ac            -       NGC 6063 
+sn1998es            -       NGC 632
+sn2008bq            -       ESO 308-25
+snf20080522-011 
+sn2011fe            -       NGC 5457
+sn2002er            -       UGC 10743
+sn2004at            -       MCG+10-16-37
+sn2003Y             -       IC 522
+sn2003U             -       NGC 6365A 
+sn2005ku            -       Anon J225942-0000
+sn2003W             -       UGC 5234
+sn1999aa            -       NGC 2595
+sn2002bo            -       NGC 3190 
+sn2006gj            -       UGC 2650
+sn1997dt            -       NGC 7448
+sn2006gr            -       UGC 12071
+sn2004as            -       Anon J112539+2249
+sn1998V             -       NGC 6627
+sn2003du            -       UGC 9391 
+sn2005ag            -       Anon J145643+0919
+sn2005am            -       NGC 2811
+sn2002hu            -       MCG+06-06-12
+sn2006mr            -       NGC 1316 
+sn2002he            -       UGC 4322
+sn2002ha            -       NGC 6962
+sn2006S             -       UGC 7934
+sn2002aw            -       Anon J163729+4052 
+sn2006X             -       NGC 4321
+sn2006N             -       MCG+11-08-12 
+sn2004ef            -       UGC 12158 
+sn2004ey            -       UGC 11816
+sn2001bf            -       MCG+04-42-22
+sn1999ee            -       IC 5179
+sn2001br            -       UGC 11260
+sn1999ej            -       NGC 495
+sn1999ek            -       UGC 3329
+sn2006bt            -       MCG+03-41-04
+sn1995E             -       NGC 2441 
+sn2006bz            -       LEDA 44809
+sn2005na            -       UGC 3634 
+sn1998bp            -       NGC 6495
+sn2000cp            -       LEDA 57064
+sn2005eq            -       MCG-01-09-06
+sn2009D             -       MCG-03-10-52 

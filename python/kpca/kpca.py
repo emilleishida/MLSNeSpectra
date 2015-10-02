@@ -1,13 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 from sklearn.decomposition import KernelPCA
 import scipy.cluster.hierarchy as hac
 import fastcluster
 
 
-path1 = '../../data/derivatives.dat'
-case = 'high_SNR'
+path1 = '../../data/fake_data.dat'
+case = 'fake'
 par_gamma = 10.0
 
 # read data
@@ -24,24 +25,27 @@ matrix = np.array([[float(item) for item in line] for line in data1[1:]])
 kpca = KernelPCA(kernel="linear", gamma=par_gamma)
 X_kpca = kpca.fit_transform(matrix)
 
+if not os.path.isdir('plots_' + case + '/'):
+    os.makesdirs('plots_' + case + '/')
 
-for i in xrange(2,3):
-    for j in xrange(3, 4):
-        plt.figure()
-        plt.title('gamma = ' + str(par_gamma))
-        plt.scatter(X_kpca[:,i], X_kpca[:,j])
-        plt.xlabel('kPC' + str(i + 1))
-        plt.ylabel('kPC' + str(j + 1))
-        plt.savefig('plots/kpca_plot_' + str(i + 1)+ '_' + str(j + 1) + '_gamma_' + str(par_gamma) + '_' + case + '.png')
+for i in xrange(0,1):
+    for j in xrange(1, 2):
+        if i < j:
+            plt.figure()
+            plt.title('gamma = ' + str(par_gamma))
+            plt.scatter(X_kpca[:,i], X_kpca[:,j])
+            plt.xlabel('kPC' + str(i + 1))
+            plt.ylabel('kPC' + str(j + 1))
+            plt.savefig('plots_' + case + '/kpca_plot_' + str(i + 1)+ '_' + str(j + 1) + '_gamma_' + str(par_gamma) + '_' + case + '.png')
         
         
 plt.figure()
 plt.scatter(range(1, 11), kpca.lambdas_[:10]/sum(kpca.lambdas_))
 plt.xlabel('kPCA')
 plt.ylabel('variance')
-plt.savefig('plots/kpca_variance_' + str(par_gamma) + case + '.png')
+plt.savefig('plots_' + case + '/kpca_variance_' + str(par_gamma) + case + '.png')
 
-
+"""
 # clustering
 from sklearn import mixture
 cv_types = ['spherical', 'tied', 'diag','full']
@@ -124,7 +128,7 @@ splot2.set_ylim( yborder[1], yborder[0] )
 plt.subplots_adjust(hspace=.4, bottom=.1, top=0.9)
 
 plt.show()
-
+"""
 
 
 

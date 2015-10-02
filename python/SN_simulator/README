@@ -1,0 +1,14 @@
+
+25 Sep 2015 -  Michele Sasdelli
+               
+               sn_simulator.py has some code to simulate derivatives of spectra of SNe.
+               At the beginning just:
+
+               import sn_simulator
+               
+               
+               sn_simulator.simulated_der( ... ) returns the derivative for a given set of PCs coefficients and epoch.
+               sn_simulator.random_generator() returns a "synthetic" SN picked at random from a distribution similar to the original.
+
+
+               

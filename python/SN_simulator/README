@@ -11,4 +11,15 @@
                sn_simulator.random_generator() returns a "synthetic" SN picked at random from a distribution similar to the original.
 
 
+03 Oct 2015 - Emille Ishida
+
+              run.py  applies user choices to the sn simulator and generate the corresponding simulated data in ../../data/
+              there are 3 original extreme objects which are chosen as a starting point:
+              max projection in PC1, min projection in PC1 and minimum projection in PC2
+
+              user choices must be inputed in the begining of the file. To run from the command line do:
+              python run.py 
+    
+
+
                

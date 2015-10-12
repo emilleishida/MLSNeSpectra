@@ -2,14 +2,17 @@ from numpy import loadtxt, shape, mean, sort, savetxt
 from pylab import figure
 from matplotlib.pyplot import plot, savefig, xlabel, ylabel, scatter, axis, xlim, fill_between
 
-in_data_dir='../../data/'
-out_data_dir='../../data/'
+#in_data_dir='../../data/'
+#out_data_dir='../../data/'
+in_data_dir='../../data_all_epochs/'
+out_data_dir='../../data_all_epochs/'
 out_dir='./plots/'
 
 # crop the wavelength range of a strong telluric line
 wavelength_range_sel = range(300)+range(330,355,1)
 # maximum error treshold
-mean_error_treshold = 0.0011
+#mean_error_treshold = 0.0011
+mean_error_treshold = 0.006728
 
 derivatives_orig = loadtxt(in_data_dir+'derivatives_orig.dat')
 errors_orig = loadtxt(in_data_dir+'errors_orig.dat')

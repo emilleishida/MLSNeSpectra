@@ -22,7 +22,7 @@ reload(sys.modules['SOMPY'])
 
 
 sm = SOM.SOM('sm', Data, mapsize = [msz0, msz1],norm_method = 'var',initmethod='pca')
-sm.train(n_job = 2, shared_memory = 'no',verbose='final')
+sm.train(n_job = 1, shared_memory = 'no',verbose='final')
 
 sm.view_map(text_size=7)
 plt.show()

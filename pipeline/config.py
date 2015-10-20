@@ -1,4 +1,2 @@
-#!/usr/bin/env python
-
-DATA		= '../../empca_trained_coeff/coefficients.dat'
-N_CLUSTERS	= 3
+from config_reduction import *
+from config_clustering import *

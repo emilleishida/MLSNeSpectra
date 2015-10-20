@@ -4,29 +4,30 @@ from time import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-from sklearn import metrics
 from sklearn.cluster import KMeans
-from sklearn.datasets import load_digits
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import scale
+from sklearn.cluster import MeanShift,estimate_bandwidth
 
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument( '-nd'      , '--no_diag'       , dest='use_diag'    , default=True, action='store_false'            , help='do not plot diagonal'   )
-parser.add_argument( '-nf'      , '--no_fit'       , dest='fit_all'     , default=True, action='store_false'            , help='do not fit in all dimensions simultanniously'   )
-parser.add_argument( '-fi'      , '--fit_ind'       , dest='fit_ind'     , default=False, action='store_true'            , help='fit in each 2 dimensions per time'   )
+parser.add_argument( '-nd'	, '--no_diag'	, dest='use_diag'	, default=True		, action='store_false'	, help='do not plot diagonal' )
+parser.add_argument( '-nf'	, '--no_fit'	, dest='fit_all'	, default=True		, action='store_false'	, help='do not fit in all dimensions simultanniously' )
+parser.add_argument( '-fi'	, '--fit_ind'	, dest='fit_ind'	, default=False		, action='store_true'	, help='fit in each 2 dimensions per time' )
+parser.add_argument( '-c'	, '--custering'	, dest='clustering'	, default='MeanShift'	, 			  help='change the clustering method ( possibilities:[MeanShift (default), KMeans] )' )
 use_diag	= parser.parse_args().use_diag
 fit_all		= parser.parse_args().fit_all
 fit_ind		= parser.parse_args().fit_ind
+clustering	= parser.parse_args().clustering
 
 
 from config import *
 
 
-def do_km(dat,n_clusters=N_CLUSTERS,n_init=10):
-	kmeans = KMeans( n_clusters=n_clusters, n_init=n_init)
-	kmeans.fit(dat)
-	return kmeans
+def do_km(dat,n_init=10):
+	if clustering=='MeanShift'	: clusters = MeanShift(bandwidth=estimate_bandwidth(dat,quantile=.25))
+	elif clustering=='KMeans'	: clusters = KMeans( n_clusters=N_CLUSTERS, n_init=n_init)
+	else: print('<< ',clustering,' >> is an invalid clustering method!');exit()
+	clusters.fit(dat)
+	return clusters
 
 def ind(i):
 	if use_diag: return i
@@ -73,4 +74,4 @@ for i in range(Nplt):
 for j in range(Nplt):	plts[Nplt-1][j].set_xlabel('$PC_'+str(j+1)+'$')
 for i in range(Nplt):	plts[i][0].set_ylabel('$PC_'+str(ind(i+1))+'$')
 plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15)
-plt.savefig('plot.pdf')
+plt.savefig('clustering_'+clustering+'.pdf')

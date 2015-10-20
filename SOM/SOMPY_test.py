@@ -10,8 +10,8 @@ import SOMPY as SOM
 Data = np.loadtxt("../empca_trained_coeff/coefficients.dat")
 print 'Data size: ', Data.shape
 
-msz0 = 35
-msz1 = 35
+msz0 = 50
+msz1 = 50
 
 #This is a random data set, but in general it is assumed that you have your own data set as a numpy ndarray 
 

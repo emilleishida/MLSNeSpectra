@@ -1,4 +1,5 @@
-DATA			= '../../MLSNeSpectra/empca_trained_coeff/coefficients.dat'
+import numpy as np
+CL_DATA			= np.loadtxt('../../MLSNeSpectra/empca_trained_coeff/coefficients.dat').T
 N_CLUSTERS		= 3
 #############################
 '''
@@ -6,8 +7,12 @@ N_CLUSTERS		= 3
 possibilities:
 
 -MeanShift
+	params=[p1,p2,p3]
+	-p1: 
+	-p2: 
 -KMeans
 
 '''
 #############################
 CLUSTERING_METHOD	= 'MeanShift'
+CLUSTERING_PARS		= []

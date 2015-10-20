@@ -74,4 +74,4 @@ for i in range(Nplt):
 for j in range(Nplt):	plts[Nplt-1][j].set_xlabel('$PC_'+str(j+1)+'$')
 for i in range(Nplt):	plts[i][0].set_ylabel('$PC_'+str(ind(i+1))+'$')
 plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15)
-plt.savefig('clustering_'+clustering+'.pdf')
+plt.savefig('plots/clustering_'+clustering+'.pdf')

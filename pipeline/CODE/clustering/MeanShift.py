@@ -21,9 +21,9 @@ from config import *
 
 
 def do_km(dat,n_init=10):
-	if clustering=='MeanShift'	: clusters = MeanShift(bandwidth=estimate_bandwidth(dat,quantile=.25))
-	elif clustering=='KMeans'	: clusters = KMeans( n_clusters=N_CLUSTERS, n_init=n_init)
-	else: print('<< ',clustering,' >> is an invalid clustering method!');exit()
+	if CLUSTERING_METHOD=='MeanShift'	: clusters = MeanShift(bandwidth=estimate_bandwidth(dat,quantile=.25))
+	elif CLUSTERING_METHOD=='KMeans'	: clusters = KMeans( n_clusters=N_CLUSTERS, n_init=n_init)
+	else: print('<< ',CLUSTERING_METHOD,' >> is an invalid clustering method!');exit()
 	clusters.fit(dat)
 	return clusters
 
@@ -72,4 +72,4 @@ for i in range(Nplt):
 for j in range(Nplt):	plts[Nplt-1][j].set_xlabel('$PC_'+str(j+1)+'$')
 for i in range(Nplt):	plts[i][0].set_ylabel('$PC_'+str(ind(i+1))+'$')
 plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15)
-plt.savefig('plots/clustering_'+clustering+'.pdf')
+plt.savefig('plots/clustering_'+CLUSTERING_METHOD+'.pdf')

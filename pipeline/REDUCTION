@@ -1,4 +1,4 @@
 #!/usr/bin/env python
 
-from CODE.reduction.Main import *
+from CODE.Main import *
 exit()

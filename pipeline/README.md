@@ -1,6 +1,7 @@
 # Pipeline for the use of data reduction and clustering
 Pipeline to use all methods of data reduction and clustering.
 So far we have implemented:
+
 	* For data reduction:
 		* PCA
 	* For clustering

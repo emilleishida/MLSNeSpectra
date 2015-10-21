@@ -2,14 +2,14 @@
 Pipeline to use all methods of data reduction and clustering.
 So far we have implemented:
 
-	* For data reduction:
-		* PCA
-	* For clustering
-		* MeanShift
-		* KMeans
-		* AffinityPropagation
-		* AgglomerativeClustering
-		* DBSCAN
+* For data reduction:
+	* PCA
+* For clustering
+	* MeanShift
+	* KMeans
+	* AffinityPropagation
+	* AgglomerativeClustering
+	* DBSCAN
 
 ## Basic use
 To run the whole pipeline execute:

@@ -11,5 +11,7 @@ KMeans_dict=dict([
 ])
 
 AgglomerativeClustering_dict=dict([
-	[ 'n_clusters'	, 4	],
+	[ 'n_clusters'	, 6		],
+	[ 'affinity'	, '"euclidean"'	],
+	[ 'linkage'	, '"ward"'	],
 ])

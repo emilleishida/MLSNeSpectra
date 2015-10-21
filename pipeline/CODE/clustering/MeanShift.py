@@ -5,10 +5,8 @@ def clustering(data, params):
 
     # parse arguments
 
-    if len(params) == 0:
-        quantile = .25
-    else:
-        quantile = params[0]
+    for item in params:
+	exec(item+'='+str(params[item]))
 
     # apply Mean Shift to reduced data
 

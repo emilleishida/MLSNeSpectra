@@ -6,10 +6,8 @@ def clustering(data, params):
 
     # parse parameters
 
-    if len(params) == 0:
-        n_clusters = 4
-    else:
-        n_clusters = params[0]
+    for item in params:
+	exec(item+'='+str(params[item]))
 
     # apply Agglomerative Clustering to reduced data
 

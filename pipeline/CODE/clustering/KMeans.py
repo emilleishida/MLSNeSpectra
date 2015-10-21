@@ -10,7 +10,7 @@ def clustering(data, params):
 
     # apply KMeans to reduced data
 
-    clusters = KMeans(n_clusters=n_clusters, init='k-means++', tol=tol)
+    clusters = KMeans(n_clusters=n_clusters, init=init, tol=tol)
     clusters.fit(data)
 
     return [clusters.cluster_centers_.T, clusters.labels_]

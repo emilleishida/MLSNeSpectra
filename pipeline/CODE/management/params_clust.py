@@ -7,7 +7,9 @@ MeanShift_dict=dict([
 ])
 
 KMeans_dict=dict([
-	[ 'n_clusters'	, 4	],
+	[ 'n_clusters'	, 2		],
+	[ 'init'	, '"k-means++"'	],
+	[ 'tol'		, 1e-4		],
 ])
 
 AgglomerativeClustering_dict=dict([

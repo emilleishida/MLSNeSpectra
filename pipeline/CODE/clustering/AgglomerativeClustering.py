@@ -6,14 +6,14 @@ def clustering(data, params):
 
     # parse parameters
 
-    if len(params) == 0:
-        n_clusters = 4
-    else:
-        n_clusters = params[0]
+    n_clusters = params.n_clusters
+    affinity = params.affinity
+    linkage = params.linkage
 
     # apply Agglomerative Clustering to reduced data
 
-    clusters = AgglomerativeClustering(n_clusters=n_clusters)
+    clusters = AgglomerativeClustering(n_clusters=n_clusters,
+                                       affinity=affinity, linkage=linkage)
     clusters.fit(data)
 
     # Agglomerative Clustering does not give centers of clusters

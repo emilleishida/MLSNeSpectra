@@ -5,14 +5,13 @@ def clustering(data, params):
 
     # parse arguments
 
-    if len(params) == 0:
-        quantile = .25
-    else:
-        quantile = params[0]
+    quantile = params.quantile
+    cluster_all = params.cluster_all
 
     # apply Mean Shift to reduced data
 
-    clusters = MeanShift(bandwidth=estimate_bandwidth(data, quantile=quantile))
+    bandwidth = estimate_bandwidth(data, quantile=quantile)
+    clusters = MeanShift(bandwidth, cluster_all=cluster_all)
     clusters.fit(data)
 
     return [clusters.cluster_centers_.T, clusters.labels_]

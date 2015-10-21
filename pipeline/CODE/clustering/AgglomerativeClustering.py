@@ -1,4 +1,5 @@
 from sklearn.cluster import AgglomerativeClustering
+from numpy import mean, array
 
 
 def clustering(data, params):
@@ -15,6 +16,13 @@ def clustering(data, params):
     model = AgglomerativeClustering(n_clusters=n_clusters)
     model.fit(data)
 
-    # Agglomerative Clustering does not give centers of clusters ...
+    # Agglomerative Clustering does not give centers of clusters
+    # so lets try the mean of each cluster
 
-    return [None, model.labels_]
+    centers = []
+    for i in range(n_clusters):
+        mask = (model.labels_ == i)
+        centers.append(mean(data[mask], axis=0))
+    centers = array(centers)
+
+    return [centers, model.labels_]

@@ -1,24 +1,24 @@
 # Pipeline for the use of data reduction and clustering
-*The outputs of reduction methods are placed in red_data/
-*The outputs of clustering methods are placed in plots/
+The outputs of reduction methods are placed in red_data/
+The outputs of clustering methods are placed in plots/
 
-*To run the whole pipeline execute:
+##To run the whole pipeline execute:
 
 	./ALL
 
-*To just the reduction part execute:
+##To just the reduction part execute:
 
 	./REDUCTION
 
-*To just the clustering execute:
+##To just the clustering execute:
 
 	./CLUSTERING
 
-*All cases are configured by:
+##All cases are configured by:
 
 	config.py
 
 
-*If you want to add your code to the pipeline, put it in the one of the following dirs:
+##If you want to add your code to the pipeline, put it in the one of the following dirs:
 	EXTERNAL_CODES/clustering
 	EXTERNAL_CODES/reduction

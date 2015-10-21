@@ -51,7 +51,11 @@ for iten in index:
         sm.view_map(which_dim=i,text_size=7)
         plt.savefig( os.path.join( folder,"variable_"+str(i) ) )
 
+<<<<<<< HEAD
     plt.close("all")    
+=======
+    plt.close("all")
+>>>>>>> Trindade_dev
         
         
 

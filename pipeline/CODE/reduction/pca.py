@@ -19,6 +19,6 @@ def reduction(data, params):
 
     REDUCTION_METHOD = 'pca'
     fname = './data/' + REDUCTION_METHOD + '_ncomp' + str(n_components) +'.dat'
-    savetxt(X.T, fname)
+    savetxt(fname, X.T)
 
     return fname

@@ -26,13 +26,15 @@ def plot_clustering(cl_func,data,CLUSTERING_OUT_NAME='clustering.png'):
 	if fit_all:	clust_all	= cl_func(data.T)
 	Nplt=Ndat-1
 	if use_diag: Nplt+=1
-	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True)
+	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(16,12))
 	colors	= 'r'
 	for i in range(Nplt):
 		for j in range(Nplt):
 			PLT	= plts[i][j]
 			plt.setp( PLT.get_xticklabels(), rotation=45)
 			plt.setp( PLT.get_yticklabels(), rotation=45)
+#			PLT.locator_params('x',nbins=4)
+#			PLT.locator_params('y',nbins=4)
 			if j>i: PLT.axis('off')
 			else:
 				dat	= np.array([data[j],data[ind(i)]])
@@ -46,5 +48,5 @@ def plot_clustering(cl_func,data,CLUSTERING_OUT_NAME='clustering.png'):
 						PLT.scatter(centers[0],centers[1],color='c',label='cluster centers',marker='x',linewidths=1)
 	for j in range(Nplt):	plts[Nplt-1][j].set_xlabel('$PC_'+str(j+1)+'$')
 	for i in range(Nplt):	plts[i][0].set_ylabel('$PC_'+str(ind(i+1))+'$')
-	plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15)
+	plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15,hspace=0,wspace=0)
 	plt.savefig('plots/'+CLUSTERING_OUT_NAME)

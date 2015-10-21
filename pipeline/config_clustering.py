@@ -21,5 +21,5 @@ CLUSTERING_PARS		= [.05]
 CLUSTERING_METHOD	= 'KMeans'
 CLUSTERING_PARS		= []
 
-CLUSTERING_METHOD	= 'AgglomerativeClustering'
+#CLUSTERING_METHOD	= 'AgglomerativeClustering'
 CLUSTERING_PARS		= []

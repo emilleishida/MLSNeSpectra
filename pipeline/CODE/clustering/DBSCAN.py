@@ -1,21 +1,22 @@
-from sklearn.cluster import AgglomerativeClustering
 from numpy import mean, array
+from sklearn.cluster import DBSCAN
 
 
 def clustering(data, params):
-
+    
     # parse parameters
 
     for item in params:
 	exec(item+'='+str(params[item]))
 
-    # apply Agglomerative Clustering to reduced data
+    # apply DBSCAN to reduced data
 
-    clusters = AgglomerativeClustering(n_clusters=n_clusters,
-                                       affinity=affinity, linkage=linkage)
-    clusters.fit(data)
+    clusters = DBSCAN(eps=eps, min_samples=min_samples, metric=metric,
+                      algorithm=algorithm, leaf_size=leaf_size).fit(data)
+    labels = clusters.labels_
+    n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
 
-    # Agglomerative Clustering does not give centers of clusters
+    # DBSCAN does not give centers of clusters
     # so lets try the mean of each cluster
 
     cluster_centers = []
@@ -25,3 +26,4 @@ def clustering(data, params):
     cluster_centers = array(cluster_centers)
 
     return [cluster_centers.T, clusters.labels_]
+    

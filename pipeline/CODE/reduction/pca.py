@@ -1,4 +1,5 @@
 from sklearn.decomposition.pca import PCA
+from numpy import savetxt
 
 
 def reduction(data, params):
@@ -13,5 +14,10 @@ def reduction(data, params):
     pca = PCA(n_components=n_components)
     pca.fit(data)
     X = pca.transform(data)
-    
-    return X
+
+    # save output
+
+    fname = './data/' + REDUCTION_METHOD + '_ncomp' + str(n_components) +'.dat'
+    savetxt(X.T, fname)
+
+    return fname

@@ -14,8 +14,8 @@ possibilities:
 CLUSTERING_METHOD	= 'MeanShift'
 
 CLUSTERING_METHOD	= 'KMeans'
-CL_n_clusters=10
+#CL_n_clusters=3
 
-#CLUSTERING_METHOD	= 'AgglomerativeClustering'
+CLUSTERING_METHOD	= 'AgglomerativeClustering'
 
-#CLUSTERING_DATA	= '???'
+#CLUSTERING_DATA		= '../empca_trained_coeff/coefficients.dat'

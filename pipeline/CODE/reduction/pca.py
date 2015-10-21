@@ -14,4 +14,4 @@ def reduction(data, params):
     pca.fit(data)
     X = pca.transform(data)
 
-    return X.T
+    return X

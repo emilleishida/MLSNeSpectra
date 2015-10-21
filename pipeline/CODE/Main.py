@@ -26,7 +26,6 @@ def reduc():
 exec('from management.params_clust import '+CLUSTERING_METHOD+'_dict as dict_clust')
 update_dict(dict_clust,'CL_')
 
-print(dict_clust)
 exec('from clustering.'+CLUSTERING_METHOD+' import clustering')
 def cl_func(data): return clustering(data,dict_clust)
 

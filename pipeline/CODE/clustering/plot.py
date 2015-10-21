@@ -38,7 +38,7 @@ def plot_clustering(cl_func,data,CLUSTERING_OUT_NAME='clustering.png'):
 				dat	= np.array([data[j],data[ind(i)]])
 				if fit_all	: colors = clust_all[1].astype(np.float)
 				elif fit_ind	: colors = clust_ind[ind(i)][j][1].astype(np.float)
-				PLT.scatter(dat[0],dat[1],c=colors,marker='o',label='data',lw=0)
+				PLT.scatter(dat[0],dat[1],c=colors,marker='o',label='data',lw=0,s=5)
 				if i!=j or (use_diag==False):
 					if fit_all: PLT.scatter(clust_all[0][j],clust_all[0][ind(i)],c='m',label='cluster centers',marker='x')
 					if fit_ind:

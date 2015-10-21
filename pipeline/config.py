@@ -41,10 +41,9 @@ CLUSTERING METHOD
 '''
 #############################
 CLUSTERING_METHOD	= 'MeanShift'
-
 CLUSTERING_METHOD	= 'KMeans'
 #CL_n_clusters=3
-
 CLUSTERING_METHOD	= 'AgglomerativeClustering'
 
+CLUSTERING_OUTPUT_EXT	= '.png'
 #CLUSTERING_DATA		= '../empca_trained_coeff/coefficients.dat'

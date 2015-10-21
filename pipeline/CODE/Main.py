@@ -30,7 +30,7 @@ exec('from clustering.'+CLUSTERING_METHOD+' import clustering')
 def cl_func(data): return clustering(data,dict_clust)
 
 
-CLUSTERING_OUT_NAME=clust_name(CLUSTERING_METHOD,dict_clust)
+CLUSTERING_OUT_NAME=clust_name(CLUSTERING_METHOD,dict_clust,CLUSTERING_OUTPUT_EXT)
 from clustering.plot import plot_clustering
 def plot():
 	try:

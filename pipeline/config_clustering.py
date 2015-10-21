@@ -16,10 +16,9 @@ possibilities:
 '''
 #############################
 CLUSTERING_METHOD	= 'MeanShift'
-CLUSTERING_PARS		= [.05]
 
 CLUSTERING_METHOD	= 'KMeans'
-CLUSTERING_PARS		= []
+CL_n_clusters=10
+
 
 #CLUSTERING_METHOD	= 'AgglomerativeClustering'
-CLUSTERING_PARS		= []

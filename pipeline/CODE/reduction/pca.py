@@ -1,19 +1,22 @@
 from sklearn.decomposition.pca import PCA
+from numpy import savetxt
 
 
 def reduction(data, params):
 
     # parse parameters
 
-    if len(params) == 0:
-        n_components = 6
-    else:
-        n_components = params[0]
+    n_components = params.n_components
 
     # apply PCA
 
     pca = PCA(n_components=n_components)
     pca.fit(data)
     X = pca.transform(data)
-    
-    return X
+
+    # save output
+
+    fname = './data/' + REDUCTION_METHOD + '_ncomp' + str(n_components) +'.dat'
+    savetxt(X.T, fname)
+
+    return fname

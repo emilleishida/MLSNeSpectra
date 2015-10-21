@@ -1,14 +1,41 @@
-from numpy import loadtxt, mean
+import os
+import tarfile
+from numpy import loadtxt, mean,ones
 from pylab import figure
 from matplotlib.pyplot import plot, savefig, xlabel, ylabel, scatter, axis, xlim
 from empca import empca
+import sys
 
 data_dir='../../data/'
 out_dir='./plots/'
 
+url_tar = "https://www.dropbox.com/s/q22paf70tyulvka/derivatives.dat.tgz?dl=0"
+url_empca = "https://raw.githubusercontent.com/sbailey/empca/master/empca.py"
+
+
 # load the data and run PCA
-derivatives = loadtxt(data_dir+'derivatives.dat')
-errors = loadtxt(data_dir+'errors.dat')
+
+if "derivatives.dat" not in os.listdir("./"):
+	
+	os.system( "wget %s"%url_tar )
+	
+	os.system( "tar -xzf derivatives.dat.tgz*")
+	os.system( "rm derivatives.dat.tgz?dl=0" )
+
+if "empca.py" not in os.listdir("./"):
+	
+	os.system(  "wget %s"%url_empca )
+	
+	
+
+
+
+derivatives = loadtxt('derivatives.dat')
+
+
+errors = ones(derivatives.shape)
+
+
 
 centered_der = derivatives-mean(derivatives,0)
 

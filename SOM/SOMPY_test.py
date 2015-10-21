@@ -36,7 +36,7 @@ for iten in index:
 
     Data = np.loadtxt(os.path.join(path,str(iten), "derivatives.dat"  ) )
 
-    n = Data.shape[1]
+    n = eData.shape[1]
     print 'Data size: ', Data.shape
      
 
@@ -51,7 +51,7 @@ for iten in index:
         sm.view_map(which_dim=i,text_size=7)
         plt.savefig( os.path.join( folder,"variable_"+str(i) ) )
 
-    plt.close("all")
+    plt.close("all")    
         
         
 

@@ -1,8 +1,8 @@
-DATA			= '../../empca_trained_coeff/coefficients.dat'
-N_CLUSTERS		= 3
+import numpy as np
+ORG_DATA			= np.loadtxt('../data/derivatives.dat')
 #############################
 '''
-#### CLUSTERING_METHOD	 ####
+#### REDUCTION_METHOD	 ####
 possibilities:
 
 -MeanShift
@@ -10,4 +10,5 @@ possibilities:
 
 '''
 #############################
-CLUSTERING_METHOD	= 'MeanShift'
+REDUCTION_METHOD	= 'pca'
+REDUCTION_PARS		= []

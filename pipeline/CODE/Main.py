@@ -1,18 +1,17 @@
 from __future__ import print_function
 from config import *
+print('Main')
 
 #############################
 #### REDUCTION PART	 ####
 #############################
-
-# from reduction import ???
-
+exec('from reduction.'+REDUCTION_METHOD+' import reduction')
+def reduc(): np.savetxt('temp.dat',reduction(ORG_DATA,REDUCTION_PARS))
 
 #############################
 #### CLUSTERING PART	 ####
 #############################
-print('Main')
-from clustering.MeanShift import func
+exec('from clustering.'+CLUSTERING_METHOD+' import clustering')
+def cl_func(data): return clustering(data,CLUSTERING_PARS)
 from clustering.plot import plot_clustering
-def cl_func(data): return func(data,CLUSTERING_PARS)
 def plot():	plot_clustering(cl_func,CL_DATA,CLUSTERING_METHOD)

@@ -9,11 +9,11 @@ print('Main')
 exec('from management.params_red import '+REDUCTION_METHOD+'_dict as dict_red')
 update_dict(dict_red,'RED_')
 
-from management.red_data_name import red_data_name
+from management.name_files import red_data_name,clust_name
 RED_DATA_NAME=red_data_name(REDUCTION_METHOD,dict_red)
 
 exec('from reduction.'+REDUCTION_METHOD+' import reduction')
-def reduc(): np.savetxt(RED_DATA_NAME,reduction(ORG_DATA,dict_red))
+def reduc(): np.savetxt(RED_DATA_NAME,reduction(np.loadtxt(ORG_DATA).T,dict_red))
 
 #############################
 #### CLUSTERING PART	 ####
@@ -29,5 +29,6 @@ try:
 except NameError: CL_DATA=np.loadtxt(RED_DATA_NAME)
 else		: CL_DATA=np.loadtxt(CLUSTERING_DATA)
 
+CLUSTERING_OUT_NAME=clust_name(CLUSTERING_METHOD,dict_clust)
 from clustering.plot import plot_clustering
-def plot():	plot_clustering(cl_func,CL_DATA,CLUSTERING_METHOD)
+def plot():	plot_clustering(cl_func,CL_DATA,CLUSTERING_OUT_NAME)

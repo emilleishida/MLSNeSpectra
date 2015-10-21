@@ -1,5 +1,4 @@
-import numpy as np
-ORG_DATA			= np.loadtxt('../data/derivatives.dat')
+ORG_DATA			= '../data/derivatives.dat'
 #############################
 '''
 #### REDUCTION_METHOD	 ####
@@ -11,4 +10,3 @@ possibilities:
 '''
 #############################
 REDUCTION_METHOD	= 'pca'
-REDUCTION_PARS		= []

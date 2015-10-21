@@ -22,5 +22,6 @@ All cases are configured by:
 
 ## Adding your code
 If you want to add your code to the pipeline, put it in the one of the following dirs and we will format it for you:
+
 	EXTERNAL_CODES/clustering
 	EXTERNAL_CODES/reduction

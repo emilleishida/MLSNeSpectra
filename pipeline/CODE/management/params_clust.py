@@ -5,10 +5,10 @@ MeanShift_dict=dict([
 ])
 
 KMeans_dict=dict([
-	[ 'n_clusters'	, 4	      ],
-        [ 'tol'         , 1e-4        ],
-        [ 'init'        , "'kmeans++'"],
-        [ 'n_jobs'      , 1           ],
+	[ 'n_clusters'	, 4	       ],
+        [ 'tol'         , 1e-4         ],
+        [ 'init'        , "'k-means++'"],
+        [ 'n_jobs'      , 1            ],
 ])
 
 AgglomerativeClustering_dict=dict([

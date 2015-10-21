@@ -13,16 +13,16 @@ def clustering(data, params):
 
     # apply Agglomerative Clustering to reduced data
 
-    model = AgglomerativeClustering(n_clusters=n_clusters)
-    model.fit(data)
+    clusters = AgglomerativeClustering(n_clusters=n_clusters)
+    clusters.fit(data)
 
     # Agglomerative Clustering does not give centers of clusters
     # so lets try the mean of each cluster
 
-    centers = []
+    cluster_centers = []
     for i in range(n_clusters):
-        mask = (model.labels_ == i)
-        centers.append(mean(data[mask], axis=0))
-    centers = array(centers)
+        mask = (clusters.labels_ == i)
+        cluster_centers.append(mean(data[mask], axis=0))
+    cluster_centers = array(cluster_centers)
 
-    return [centers, model.labels_]
+    return [cluster_centers.T, clusters.labels_]

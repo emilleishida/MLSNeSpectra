@@ -3,6 +3,11 @@ pca_dict=dict([
 	[ 'n_components'	, 6	],
 ])
 
+kpca_dict=dict([
+	[ 'n_components'	, 6	],
+	[ 'kernel'	        , 'linear'	],
+])
+
 empca_dict=dict([
 	[ 'errors_file'	        , None	],
 	[ 'n_components'	, 6			],

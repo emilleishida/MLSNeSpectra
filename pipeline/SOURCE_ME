@@ -1,0 +1,2 @@
+CURRENT=`pwd`
+export PATH=$PATH:./:$CURRENT'/'

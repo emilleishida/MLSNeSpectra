@@ -52,6 +52,7 @@ Remeber, all cases are configured by:
 
 ## Outputs
 The outputs of reduction methods are placed in **red_data/**.
+
 The outputs of clustering methods are placed in **plots/**
 
 ## Adding your code

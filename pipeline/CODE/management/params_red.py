@@ -4,7 +4,7 @@ pca_dict=dict([
 ])
 
 empca_dict=dict([
-	[ 'data_errors_file'	, '../data/errors.dat'	],
+	[ 'errors_file'	        , None	],
 	[ 'n_components'	, 6			],
         [ 'smooth'	        , 0			],
 	[ 'n_iter'	        , 50			],

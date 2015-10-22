@@ -79,14 +79,18 @@ This uses the DBSCAN method and the possible extra keys are
 ## Clustering output extension
 	Extension of output plots produced by pylab, should be a string.
 
-## Clustering input data
+## Using Externa data
+If you want to use external data with reductions, clusters and labels you just have to add the keys below.
+If they are not set, the default will come from the pipeline.
+
+### Clustering input data
 Add this ONLY if you want to use a external data source for the clustering,
 if you want to use the data from the pipeline leave it commented.
 Be aware that this data will also go into the plotting.
 
 	REDUCED_DATA_EXTERNAL		= 'path/reduced_data.dat'
 
-## Ploting clusters input data
+### Ploting clusters input data
 Add this ONLY if you want to use a external data source of the clusters for the plotting,
 if you want to use the data from the pipeline leave it commented.
 

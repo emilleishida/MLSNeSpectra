@@ -12,6 +12,13 @@ So far we have implemented:
 	* AgglomerativeClustering
 	* DBSCAN
 
+## Requirements
+To run fully this pipeline, you will need:
+
+	numpy
+	matplotlib
+	sklearn
+
 ## Basic use
 The idea of the code is to get the function of the pipeline and 
 run the code in a outside dir. You should first prepare your environment with these simple steps.

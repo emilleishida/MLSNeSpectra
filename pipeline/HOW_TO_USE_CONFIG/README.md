@@ -24,7 +24,7 @@ This uses the empca method and the possible extra keys are
 	RED_smooth = int (default=0)	
 	RED_n_iter	        = int (default=50)	
 
-# Clustering Method
+## Clustering Method
 The key **CLUSTERING_METHOD** should be a string with the method name.
 For each method you can add extra keys already defined by the method
 with the original key name plus the prefix 'CL_'.

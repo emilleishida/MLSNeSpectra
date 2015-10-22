@@ -42,16 +42,17 @@ def cluster():
 	np.savetxt(CLUSTERS_DATA_NAME,clusters)
 	np.savetxt(CLUSTERS_LABEL_NAME,labels)
 	
-try:
-	CLUSTERS_DATA_EXTERNAL
-except NameError: CL_DATA=np.loadtxt(CLUSTERS_DATA_NAME)
-else		: CL_DATA=np.loadtxt(CLUSTERS_DATA_EXTERNAL)
-try:
-	LABELS_DATA_EXTERNAL
-except NameError: LAB_DATA=np.loadtxt(CLUSTERS_LABEL_NAME)
-else		: LAB_DATA=np.loadtxt(LABELS_DATA_EXTERNAL)
 
 def plot():
+	try:
+		CLUSTERS_DATA_EXTERNAL
+	except NameError: CL_DATA=np.loadtxt(CLUSTERS_DATA_NAME)
+	else		: CL_DATA=np.loadtxt(CLUSTERS_DATA_EXTERNAL)
+	try:
+		LABELS_DATA_EXTERNAL
+	except NameError: LAB_DATA=np.loadtxt(CLUSTERS_LABEL_NAME)
+	else		: LAB_DATA=np.loadtxt(LABELS_DATA_EXTERNAL)
+
 	from ploting.plot import plot_data
 	PLOT_NAME=plot_name(REDUCTION_METHOD,CLUSTERING_METHOD,dict_red,dict_clust,PLOT_EXT)
 	os.system('mkdir -p plots')

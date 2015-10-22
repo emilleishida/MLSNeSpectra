@@ -1,10 +1,7 @@
 from __future__ import print_function
 
-import matplotlib
-matplotlib.use('Agg')
 
 import numpy as np
-import matplotlib.pyplot as plt
 from config import REDUCTION_METHOD, CLUSTERING_METHOD 
 
 import argparse
@@ -12,40 +9,71 @@ parser = argparse.ArgumentParser()
 parser.add_argument( '-nd'	, '--no_diag'	, dest='use_diag'	, default=True		, action='store_false'	, help='do not plot diagonal' )
 parser.add_argument( '-nf'	, '--no_fit'	, dest='fit_all'	, default=True		, action='store_false'	, help='do not fit in all dimensions simultanniously' )
 parser.add_argument( '-nc'	, '--no_colors'	, dest='do_colors'	, default=True		, action='store_false'	, help='do not use colors' )
-use_diag	= parser.parse_args().use_diag
-fit_all		= parser.parse_args().fit_all
-do_colors	= parser.parse_args().do_colors
+parser.add_argument( '-nl'	, '--no_label'	, dest='do_label'	, default=True		, action='store_false'	, help='do not plot label' )
+parser.add_argument( '-w'	, '--window'	, dest='in_window'	, default=False		, action='store_true'	, help='keep plot in interactive window, this option will not save the output automaticaly' )
+parser.add_argument( '-pp'	, '--plot_pars'	, dest='plot_pars'	, default=''		, help='plot specified pars, takes a string as input (ex: "1 2")' )
+parser.add_argument( '-hs'	, '--horiz_space', dest='hspace'	, default=0		, help='set horizontal spacing between the plots' )
+parser.add_argument( '-vs'	, '--vert_space', dest='vspace'		, default=0		, help='set vertical spacing between the plots' )
+for item in ['use_diag','fit_all','do_colors','do_label','in_window','plot_pars','hspace','vspace']:
+	exec(item+'=parser.parse_args().'+item)
+plot_pars= [int(v) for v in plot_pars.split()]
+hspace	= float(hspace)
+vspace	= float(vspace)
 
+
+import matplotlib
+if in_window==False: matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 def ind(i):
 	if use_diag: return i
 	else:	return i+1
-def crop(data,i,j):
-	return np.array([data[j],data[ind(i)]])
+def TAM(vec):
+	if use_diag	: return len(vec)
+	else		: return len(vec)-1
+def crop(data,i,j,plt_inds):
+	iplt,jplt=plt_inds[ind(i)],plt_inds[j]
+	return np.array([data[jplt],data[iplt]])
+def add_labels(plts,Nplt,plt_inds):
+	if Nplt>1:	plts[0][Nplt-1].text(.1,.1,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=plts[0][Nplt-1].transAxes)
+	else:		plts.		text(.8,.85,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=plts.transAxes)
 def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	print('plot')
-	Ndat=len(red_data)
-	Nplt=Ndat-1
-	if use_diag: Nplt+=1
-	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(16,12))
+
 	colors	= 'r'
 	if do_colors and fit_all: colors = label_data.astype(np.float)
+
+	Nplt=TAM(red_data)
+	plt_inds=range(Nplt)
+
+	if plot_pars!='':
+		for v in plot_pars:
+			if v>Nplt: print('**ERROR** - there is no PC_'+str(v));exit()
+		plt_inds=[v-1 for v in plot_pars]
+		Nplt=TAM(plot_pars)
+
+	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(16,12))
 	for i in range(Nplt):
 		for j in range(Nplt):
-			PLT	= plts[i][j]
-			plt.setp( PLT.get_xticklabels(), rotation=45)
-			plt.setp( PLT.get_yticklabels(), rotation=45)
+			PLT=plt
+			if Nplt>1:PLT= plts[i][j]
+			plt.setp( plt.gca().get_xticklabels(), rotation=45)
+			plt.setp( plt.gca().get_yticklabels(), rotation=45)
 #			PLT.locator_params('x',nbins=4)
 #			PLT.locator_params('y',nbins=4)
-			dat	= crop(red_data,i,j)
-			cl_dat	= crop(cl_data,i,j)
-
+			dat	= crop(red_data,i,j,plt_inds)
+			cl_dat	= crop(cl_data,i,j,plt_inds)
 			if j>i: PLT.axis('off')
 			else:
 				PLT.scatter(dat[0],dat[1],c=colors,marker='o',label='data',lw=0,s=8)
 				if fit_all: PLT.scatter(cl_dat[0],cl_dat[1],c='m',label='cluster centers',marker='x')
-	for j in range(Nplt):	plts[Nplt-1][j].set_xlabel('$PC_'+str(j+1)+'$')
-	for i in range(Nplt):	plts[i][0].set_ylabel('$PC_'+str(ind(i+1))+'$')
-	plts[0][Nplt-1].text(0,0,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20})
-	plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15,hspace=0,wspace=0)
-	plt.savefig(out_name)
+	if do_label: add_labels(plts,Nplt,plt_inds)
+	for i in range(Nplt):	
+		PLTX,PLTY=plts,plts
+		if Nplt>1: PLTX,PLTY=plts[ Nplt-1 ][ i ],plts[ i      ][ 0 ]
+		PLTX.set_xlabel('$PC_'+ str(plt_inds[i]+1)	+'$')
+		PLTY.set_ylabel('$PC_'+ str(plt_inds[ind(i)]+1)	+'$')
+
+	plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15,hspace=hspace,wspace=vspace)
+	if in_window	: plt.show(block=True)
+	else		: plt.savefig(out_name)

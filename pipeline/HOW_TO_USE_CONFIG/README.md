@@ -24,7 +24,7 @@ This uses the empca method and the possible extra keys are
 	RED_smooth = int (default=0)	
 	RED_n_iter	        = int (default=50)	
 
-# Clustering Method
+## Clustering Method
 The key **CLUSTERING_METHOD** should be a string with the method name.
 For each method you can add extra keys already defined by the method
 with the original key name plus the prefix 'CL_'.
@@ -101,3 +101,6 @@ to the reduced data. The default color scheme is according to each parent cluste
 
 	LABELS_DATA_EXTERNAL		= 'path/external_labels.dat'
 
+## Advanced plotting
+If you want other options, there are a few available using keys in the terminal when executing the **PLOT** command.
+Check the main README for more information.

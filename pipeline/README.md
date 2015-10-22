@@ -97,7 +97,7 @@ Here are the plossibilities:
 	-nf	(or --no_fit	) : do not fit in all dimensions simultanniously
 	-nc	(or --no_colors	) : do not use colors
 	-nl	(or --no_label	) : do not plot label
-	-w	(or --window	) : keep plot in interactive window, this option will not save the output automaticaly
+	-w	(or --window	) : keep plot in interactive window, this will not save the output automaticaly
 	-pp	(or --plot_pars	) : plot specified pars, takes a string as input (ex: "1 2")
 	-hs	(or --horiz_space) : set horizontal spacing between the plots
 	-vs	(or --vert_space) : set vertical spacing between the plots

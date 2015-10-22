@@ -84,3 +84,25 @@ put them in
 	share_plots/
 
 Please mind the name of your plots so you don't overwrite other peoples results.
+
+## Advanced plotting
+The default plotting results in a figure (.png) with all the PCs colored according to the clusters.
+If you want to change the extension of the figure or the color arrangement,
+change the parameters in the config file (see HOW_TO_USE_CONFIG README).
+
+If you want other options, there are a few available using keys in the terminal when executing the **PLOT** command.
+Here are the plossibilities:
+
+	-nd	(or --no_diag	) : do not plot diagonal
+	-nf	(or --no_fit	) : do not fit in all dimensions simultanniously
+	-nc	(or --no_colors	) : do not use colors
+	-nl	(or --no_label	) : do not plot label
+	-w	(or --window	) : keep plot in interactive window, this option will not save the output automaticaly
+	-pp	(or --plot_pars	) : plot specified pars, takes a string as input (ex: "1 2")
+	-hs	(or --horiz_space) : set horizontal spacing between the plots
+	-vs	(or --vert_space) : set vertical spacing between the plots
+
+You can also see them by executing
+
+	PLOT -h
+

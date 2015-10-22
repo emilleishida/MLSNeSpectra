@@ -7,7 +7,10 @@ def clustering(data, params):
     # parse parameters
 
     for item in params:
-	exec(item+'='+str(params[item]))
+        if isinstance(params[item], str):
+            exec(item+'='+'"'+params[item]+'"')
+        else:
+            exec(item+'='+str(params[item]))
 
     # apply Agglomerative Clustering to reduced data
 

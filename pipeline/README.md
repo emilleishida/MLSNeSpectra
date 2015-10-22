@@ -18,6 +18,7 @@ run the code in a outside dir. You should first prepare your environment with th
 ### Prepare environment
 It is very easy to prepare your environment to run the pipeline.
 It can be done in 2 steps:
+
 Get the nice functions we prepared. In the pipeline dir, do the command:
 
 	source SOURCE_ME
@@ -32,6 +33,7 @@ Now you are ready to run the pipeline functions!
 
 ### Pipeline function
 Inside your own working dir with the config.py file you can use any of these functions:
+
 To run the whole pipeline execute:
 
 	ALL

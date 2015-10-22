@@ -63,11 +63,11 @@ Below are the possibilities:
 
 ### DBSCAN
 
-	CL_eps		= **[to be completed]** (default=0.5	)
-	CL_min_samples	= **[to be completed]** (default=5	)
+	CL_eps		= **[to be completed]** (default=0.5)
+	CL_min_samples	= **[to be completed]** (default=5)
 	CL_metric	= **[to be completed]** (default='euclidean')
 	CL_algorithm	= **[to be completed]** (default='auto')
-	CL_leaf_size	= **[to be completed]** (default=30	)
+	CL_leaf_size	= **[to be completed]** (default=30)
 
 
 

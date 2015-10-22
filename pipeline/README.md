@@ -63,7 +63,7 @@ If you want to add your code to the pipeline, put it in the one of the following
 
 ## Sharing plots
 If you want to share plots done with (or without) the pipeline,
-put the in
+put them in
 
 	share_plots/
 

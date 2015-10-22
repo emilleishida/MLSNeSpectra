@@ -28,5 +28,5 @@ def clustering(data, params):
         cluster_centers.append(mean(data[mask], axis=0))
     cluster_centers = array(cluster_centers)
 
-    return [cluster_centers.T, clusters.labels_]
+    return [cluster_centers, clusters.labels_]
     

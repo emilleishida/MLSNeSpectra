@@ -17,4 +17,4 @@ def clustering(data, params):
     clusters = MeanShift(bandwidth, cluster_all=cluster_all)
     clusters.fit(data)
 
-    return [clusters.cluster_centers_.T, clusters.labels_]
+    return [clusters.cluster_centers_, clusters.labels_]

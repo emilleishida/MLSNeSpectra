@@ -50,7 +50,7 @@ CLUSTERING_METHOD	= 'MeanShift'
 CLUSTERING OUTPUT EXTENSIONS
 	extension of output plots produced by pylab
 '''
-CLUSTERING_OUTPUT_EXT	= '.png'
+PLOT_EXT	= '.png'
 
 #####################################################################################
 '''
@@ -58,4 +58,6 @@ CLUSTERING INPUT DATA
 	add this ONLY if you want to use a external data source for the clustering,
 	if you want to use the data from the pipeline leave it commented
 '''
-#CLUSTERING_DATA		= '../empca_trained_coeff/coefficients.dat'
+#REDUCED_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
+#CLUSTERS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
+#LABELS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'

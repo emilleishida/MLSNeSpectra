@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+print "PLOTING"
+from Main import plot
+plot()
+exit()

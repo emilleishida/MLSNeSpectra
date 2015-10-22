@@ -20,7 +20,7 @@ RED_DATA_NAME=red_data_name(REDUCTION_METHOD,dict_red)
 exec('from reduction.'+REDUCTION_METHOD+' import reduction')
 def reduc():
 	os.system('mkdir -p red_data')
-	np.savetxt(RED_DATA_NAME,reduction(np.loadtxt(ORG_DATA).T,dict_red))
+	np.savetxt(RED_DATA_NAME,reduction(np.loadtxt(ORG_DATA),dict_red))
 
 #############################
 #### CLUSTERING PART	 ####

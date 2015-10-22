@@ -468,7 +468,7 @@ def reduction(data, params):
     # read errors file name
         
     # data_errors_file = '../data/errors.dat'
-    errors = loadtxt(data_errors_file)
+    errors = loadtxt(errors_file)
 
     # apply EMPCA
 

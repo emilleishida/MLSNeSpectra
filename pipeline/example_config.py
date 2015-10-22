@@ -17,6 +17,11 @@ REDUCTION METHOD
 		if REDUCTION_METHOD is 'pca', the parameter
 		n_components must be declared as 
 			RED_n_components= ...
+		if REDUCTION_METHOD is 'empca', the parameter
+		error_file can be declared must be declared as 
+			RED_errors_file ...
+                in order to run with weights=1/errors^2, default is None, so
+                empca run without weights
 '''
 REDUCTION_METHOD	= 'pca'
 

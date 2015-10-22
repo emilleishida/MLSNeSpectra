@@ -34,40 +34,40 @@ Below are the possibilities:
 ### MeanShift
 
 	CL_quantile = float (default=.25)
-	CL_cluster_all = **[to be completed]** (default=True)
+	CL_cluster_all = [**to be completed**] (default=True)
 
 
 ### KMeans
 
-	CL_n_clusters = **[to be completed]** (default=4)
-	CL_tol = **[to be completed]** (default=1e-4)
-	CL_init = **[to be completed]** (default='k-means++')
-	CL_n_jobs = **[to be completed]** (default=1)
+	CL_n_clusters = [**to be completed**] (default=4)
+	CL_tol = [**to be completed**] (default=1e-4)
+	CL_init = [**to be completed**] (default='k-means++')
+	CL_n_jobs = [**to be completed**] (default=1)
 
 
 ### AgglomerativeClustering
 
-	CL_n_clusters = **[to be completed]** (default=6)
-	CL_affinity = **[to be completed]** (default='euclidean')
-	CL_linkage = **[to be completed]** (default='ward')
+	CL_n_clusters = [**to be completed**] (default=6)
+	CL_affinity = [**to be completed**] (default='euclidean')
+	CL_linkage = [**to be completed**] (default='ward')
 
 
 ### AffinityPropagation
 
-	CL_preference = **[to be completed]** (default=None)
-	CL_convergence_iter = **[to be completed]** (default=15)
-	CL_max_iter = **[to be completed]** (default=200)
-	CL_damping = **[to be completed]** (default=0.5)
-	CL_affinity = **[to be completed]** (default='euclidean')
+	CL_preference = [**to be completed**] (default=None)
+	CL_convergence_iter = [**to be completed**] (default=15)
+	CL_max_iter = [**to be completed**] (default=200)
+	CL_damping = [**to be completed**] (default=0.5)
+	CL_affinity = [**to be completed**] (default='euclidean')
 
 
 ### DBSCAN
 
-	CL_eps		= **[to be completed]** (default=0.5)
-	CL_min_samples	= **[to be completed]** (default=5)
-	CL_metric	= **[to be completed]** (default='euclidean')
-	CL_algorithm	= **[to be completed]** (default='auto')
-	CL_leaf_size	= **[to be completed]** (default=30)
+	CL_eps		= [**to be completed**] (default=0.5)
+	CL_min_samples	= [**to be completed**] (default=5)
+	CL_metric	= [**to be completed**] (default='euclidean')
+	CL_algorithm	= [**to be completed**] (default='auto')
+	CL_leaf_size	= [**to be completed**] (default=30)
 
 
 

@@ -60,3 +60,11 @@ If you want to add your code to the pipeline, put it in the one of the following
 
 	EXTERNAL_CODES/clustering/
 	EXTERNAL_CODES/reduction/
+
+## Sharing plots
+If you want to share plots done with (or without) the pipeline,
+put the in
+
+	share_plots/
+
+Please mind the name of your plots so you don't overwrite other peoples results.

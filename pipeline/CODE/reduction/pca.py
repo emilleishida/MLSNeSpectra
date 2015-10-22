@@ -10,6 +10,7 @@ def reduction(data, params):
 
     # apply PCA
 
+    data = data.T
     pca = PCA(n_components=n_components)
     pca.fit(data)
     X = pca.transform(data)

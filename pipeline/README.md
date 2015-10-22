@@ -18,10 +18,11 @@ run the code in a outside dir. You should first prepare your environment with th
 ### Prepare environment
 It is very easy to prepare your environment to run the pipeline.
 It can be done in 2 steps:
-* Get the nice functions we prepared. In the pipeline dir, do the command:
+Get the nice functions we prepared. In the pipeline dir, do the command:
 
 	source SOURCE_ME
-* Create your own dir (preferably outside the pipeline dir) to run the code and copy the config.py file there:
+
+Create your own dir (preferably outside the pipeline dir) to run the code and copy the config.py file there:
 
 	mkdir your_dir
 	cd your_dir
@@ -31,15 +32,15 @@ Now you are ready to run the pipeline functions!
 
 ### Pipeline function
 Inside your own working dir with the config.py file you can use any of these functions:
-* To run the whole pipeline execute:
+To run the whole pipeline execute:
 
 	ALL
 
-* To just the reduction part execute:
+To just the reduction part execute:
 
 	REDUCTION
 
-* To just the clustering execute:
+To just the clustering execute:
 
 	CLUSTERING
 

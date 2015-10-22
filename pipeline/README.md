@@ -54,6 +54,10 @@ To just the clustering execute:
 
 	CLUSTERING
 
+To just the ploting execute:
+
+	PLOT
+
 Remeber, all cases are configured by:
 
 	config.py
@@ -61,7 +65,9 @@ Remeber, all cases are configured by:
 ## Outputs
 The outputs of reduction methods are placed in **red_data/**.
 
-The outputs of clustering methods are placed in **plots/**
+The outputs of clustering methods are placed in **cl_data/**
+
+The outputs of plotting are placed in **plots/**
 
 ## Adding your code
 If you want to add your code to the pipeline, put it in the one of the following dirs inside the pipeline and we will format it for you:

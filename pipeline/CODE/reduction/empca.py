@@ -267,7 +267,6 @@ def empca(data, weights=None, niter=25, nvec=5, smooth=0, randseed=1,
 
     # - Basic dimensions
     nobs, nvar = data.shape
-    print data.shape, weights.shape
     assert data.shape == weights.shape
 
     # - degrees of freedom for reduced chi2
@@ -461,11 +460,14 @@ def reduction(data, params):
     # parse arguments
 
     for item in params:
-        exec(item+'='+str(params[item]))
+        if isinstance(params[item], str):
+            exec(item+'='+'"'+params[item]+'"')
+        else:
+            exec(item+'='+str(params[item]))
 
     # read errors file name
         
-    data_errors_file = '../data/errors.dat'
+    # data_errors_file = '../data/errors.dat'
     errors = loadtxt(data_errors_file)
 
     # apply EMPCA
@@ -473,7 +475,7 @@ def reduction(data, params):
     centered_der = data - mean(data, 0)
     # m = empca(centered_der, 1./(errors)**2, nvec=5, smooth=0, niter=50)
     m = empca(centered_der, 1./(errors)**2, nvec=n_components, smooth=smooth,
-              niter=n_iter)
+              niter=n_iter, silent=True)
     X = m.coeff
 
     return X

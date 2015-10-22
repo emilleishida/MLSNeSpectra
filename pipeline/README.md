@@ -4,6 +4,7 @@ So far we have implemented:
 
 * For data reduction:
 	* PCA
+	* empca
 * For clustering
 	* MeanShift
 	* KMeans

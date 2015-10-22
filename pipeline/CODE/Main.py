@@ -1,8 +1,10 @@
 from __future__ import print_function
+import os
+import sys
+sys.path.append(os.path.abspath(''))
 from config import *
 from management.update_dict import update_dict
 import numpy as np
-import os
 print('Main')
 
 #############################
@@ -37,4 +39,5 @@ def plot():
 		CLUSTERING_DATA
 	except NameError: CL_DATA=np.loadtxt(RED_DATA_NAME).T
 	else		: CL_DATA=np.loadtxt(CLUSTERING_DATA).T
+	os.system('mkdir -p plots')
 	plot_clustering(cl_func,CL_DATA,CLUSTERING_OUT_NAME)

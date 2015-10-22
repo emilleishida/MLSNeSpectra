@@ -468,13 +468,17 @@ def reduction(data, params):
     # read errors file name
         
     # data_errors_file = '../data/errors.dat'
-    errors = loadtxt(errors_file)
+    if errors_file == None:
+        weights = None
+    else:
+        errors = loadtxt(errors_file)
+        weights = 1./(errors)**2
 
     # apply EMPCA
 
     centered_der = data - mean(data, 0)
     # m = empca(centered_der, 1./(errors)**2, nvec=5, smooth=0, niter=50)
-    m = empca(centered_der, 1./(errors)**2, nvec=n_components, smooth=smooth,
+    m = empca(centered_der, weights, nvec=n_components, smooth=smooth,
               niter=n_iter, silent=True)
     X = m.coeff
 

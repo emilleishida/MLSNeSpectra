@@ -5,4 +5,4 @@ rm -rf */*/*.pyc
 
 # add current path to executables
 CURRENT=`pwd`
-export PATH=$PATH:./:$CURRENT'/'
+export PATH=$PATH:./:$CURRENT'/CODE/'

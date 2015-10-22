@@ -8,8 +8,7 @@ import sys
 data_dir='../../data_all_types/'
 out_dir='./plots/'
 
-nvec=23
-#nvec=12
+nvec=25
 niter=100
 
 url_empca = "https://raw.githubusercontent.com/sbailey/empca/master/empca.py"
@@ -25,11 +24,9 @@ if "empca.py" not in os.listdir("./"):
 from empca import empca	
 	
 
-#derivatives = loadtxt(os.path.join(data_dir,'derivatives.dat') )
-derivatives = loadtxt(os.path.join(data_dir,'derivatives_not_res.dat') )
+derivatives = loadtxt(os.path.join(data_dir,'derivatives.dat') )
 
 
-#errors = loadtxt(os.path.join(data_dir,'errors.dat') )
 
 errors = ones(derivatives.shape)
 
@@ -51,7 +48,7 @@ for i in labels:
     if i ==0:
         colors_vec.append('w')
 
-for indexes in [[0,i] for i in range(nvec)]:
+for indexes in [[0,i] for i in range(25)]:
     figure()
     scatter(X[:, indexes[0]], X[:, indexes[1]], c=colors_vec, marker='.',linewidth=.1)
     xlabel('PC %d' % (indexes[0]+1))
@@ -61,6 +58,4 @@ for indexes in [[0,i] for i in range(nvec)]:
 
 figure();plot(var(X,0),'o')
 savefig(out_dir+'variances.png')
-
-savetxt('output_coeff.dat', X)
 

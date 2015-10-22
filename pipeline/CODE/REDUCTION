@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 print "REDUCTION"
-from CODE.Main import reduc
+from Main import reduc
 reduc()
 exit()

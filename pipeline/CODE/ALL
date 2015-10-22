@@ -9,9 +9,9 @@ except NameError: pass
 else		: print "CLUSTERING_DATA is defined, please check what you realy want to do!"; exit()
 
 print "REDUCTION"
-from CODE.Main import reduc
+from Main import reduc
 reduc()
 print "CLUSTERING"
-from CODE.Main import plot
+from Main import plot
 plot()
 exit()

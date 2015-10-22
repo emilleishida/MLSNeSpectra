@@ -39,25 +39,25 @@ Below are the possibilities:
 
 ### KMeans
 
-	CL_n_clusters = **[to be completed]** (default=4	)
-	CL_tol = **[to be completed]** (default=1e-4	)
+	CL_n_clusters = **[to be completed]** (default=4)
+	CL_tol = **[to be completed]** (default=1e-4)
 	CL_init = **[to be completed]** (default='k-means++')
-	CL_n_jobs = **[to be completed]** (default=1	)
+	CL_n_jobs = **[to be completed]** (default=1)
 
 
 ### AgglomerativeClustering
 
-	CL_n_clusters = **[to be completed]** (default=6	)
+	CL_n_clusters = **[to be completed]** (default=6)
 	CL_affinity = **[to be completed]** (default='euclidean')
 	CL_linkage = **[to be completed]** (default='ward')
 
 
 ### AffinityPropagation
 
-	CL_preference = **[to be completed]** (default=None	)
-	CL_convergence_iter = **[to be completed]** (default=15	)
-	CL_max_iter = **[to be completed]** (default=200	)
-	CL_damping = **[to be completed]** (default=0.5	)
+	CL_preference = **[to be completed]** (default=None)
+	CL_convergence_iter = **[to be completed]** (default=15)
+	CL_max_iter = **[to be completed]** (default=200)
+	CL_damping = **[to be completed]** (default=0.5)
 	CL_affinity = **[to be completed]** (default='euclidean')
 
 

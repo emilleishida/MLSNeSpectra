@@ -101,3 +101,6 @@ to the reduced data. The default color scheme is according to each parent cluste
 
 	LABELS_DATA_EXTERNAL		= 'path/external_labels.dat'
 
+## Advanced plotting
+If you want other options, there are a few available using keys in the terminal when executing the **PLOT** command.
+Check the main README for more information.

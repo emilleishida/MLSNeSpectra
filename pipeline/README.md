@@ -18,10 +18,10 @@ run the code in a outside dir. You should first prepare your environment with th
 ### Prepare environment
 It is very easy to prepare your environment to run the pipeline.
 It can be done in 2 steps:
-1. Get the nice functions we prepared. In the pipeline dir, do the command:
+* Get the nice functions we prepared. In the pipeline dir, do the command:
 
 	source SOURCE_ME
-2. Create your own dir (preferably outside the pipeline dir) to run the code and copy the config.py file there:
+* Create your own dir (preferably outside the pipeline dir) to run the code and copy the config.py file there:
 
 	mkdir your_dir
 	cd your_dir

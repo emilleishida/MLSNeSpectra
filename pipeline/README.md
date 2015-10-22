@@ -12,6 +12,13 @@ So far we have implemented:
 	* AgglomerativeClustering
 	* DBSCAN
 
+## Requirements
+To run fully this pipeline, you will need:
+
+	numpy
+	matplotlib
+	sklearn
+
 ## Basic use
 The idea of the code is to get the function of the pipeline and 
 run the code in a outside dir. You should first prepare your environment with these simple steps.
@@ -47,14 +54,22 @@ To just the clustering execute:
 
 	CLUSTERING
 
+To just the ploting execute:
+
+	PLOT
+
 Remeber, all cases are configured by:
 
 	config.py
 
 ## Outputs
 The outputs of reduction methods are placed in **red_data/**.
+They will be input for clustering and plotting unless stated otherwise.
 
-The outputs of clustering methods are placed in **plots/**
+The outputs of clustering methods are placed in **cl_data/**.
+They will be input for plotting unless stated otherwise.
+
+The outputs of plotting are placed in **plots/**.
 
 ## Adding your code
 If you want to add your code to the pipeline, put it in the one of the following dirs inside the pipeline and we will format it for you:

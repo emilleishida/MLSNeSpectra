@@ -12,6 +12,9 @@ print "REDUCTION"
 from Main import reduc
 reduc()
 print "CLUSTERING"
+from Main import cluster
+print "CLUSTERING"
+cluster()
 from Main import plot
 plot()
 exit()

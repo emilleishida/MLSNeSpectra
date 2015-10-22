@@ -16,4 +16,4 @@ def clustering(data, params):
     clusters = KMeans(n_clusters=n_clusters, init=init, tol=tol)
     clusters.fit(data)
 
-    return [clusters.cluster_centers_.T, clusters.labels_]
+    return [clusters.cluster_centers_, clusters.labels_]

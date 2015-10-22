@@ -18,4 +18,4 @@ def clustering(data, params):
     labels = AP.labels_
 
     n_clusters = len(cluster_centers_indices)
-    return [cluster_centers.T, labels]
+    return [cluster_centers, labels]

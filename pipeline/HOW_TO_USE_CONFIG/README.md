@@ -81,6 +81,19 @@ This uses the DBSCAN method and the possible extra keys are
 
 ## Clustering input data
 Add this ONLY if you want to use a external data source for the clustering,
-if you want to use the data from the pipeline leave it commented
+if you want to use the data from the pipeline leave it commented.
+Be aware that this data will also go into the plotting.
 
-	CLUSTERING_DATA		= 'path/rediced_data.dat'
+	REDUCED_DATA_EXTERNAL		= 'path/reduced_data.dat'
+
+## Ploting clusters input data
+Add this ONLY if you want to use a external data source of the clusters for the plotting,
+if you want to use the data from the pipeline leave it commented.
+
+	CLUSTERS_DATA_EXTERNAL		= 'path/external_clusters.dat'
+
+You can also add an external file with different label to set different colors
+to the reduced data. The default color scheme is according to each parent cluster.
+
+	LABELS_DATA_EXTERNAL		= 'path/external_labels.dat'
+

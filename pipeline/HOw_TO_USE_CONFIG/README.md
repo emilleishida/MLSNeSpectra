@@ -32,12 +32,14 @@ with the original key name plus the prefix 'CL_'.
 Below are the possibilities:
 
 ### MeanShift
+This uses the MeanShift method and the possible extra keys are
 
 	CL_quantile = float (default=.25)
 	CL_cluster_all = [ **to be completed** ] (default=True)
 
 
 ### KMeans
+This uses the KMeans method and the possible extra keys are
 
 	CL_n_clusters = [ **to be completed** ] (default=4)
 	CL_tol = [ **to be completed** ] (default=1e-4)
@@ -46,6 +48,7 @@ Below are the possibilities:
 
 
 ### AgglomerativeClustering
+This uses the AgglomerativeClustering method and the possible extra keys are
 
 	CL_n_clusters = [ **to be completed** ] (default=6)
 	CL_affinity = [ **to be completed** ] (default='euclidean')
@@ -53,6 +56,7 @@ Below are the possibilities:
 
 
 ### AffinityPropagation
+This uses the AffinityPropagation method and the possible extra keys are
 
 	CL_preference = [ **to be completed** ] (default=None)
 	CL_convergence_iter = [ **to be completed** ] (default=15)
@@ -62,6 +66,7 @@ Below are the possibilities:
 
 
 ### DBSCAN
+This uses the DBSCAN method and the possible extra keys are
 
 	CL_eps		= [ **to be completed** ] (default=0.5)
 	CL_min_samples	= [ **to be completed** ] (default=5)

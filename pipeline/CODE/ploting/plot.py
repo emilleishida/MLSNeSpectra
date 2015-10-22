@@ -1,10 +1,7 @@
 from __future__ import print_function
 
-import matplotlib
-matplotlib.use('Agg')
 
 import numpy as np
-import matplotlib.pyplot as plt
 from config import REDUCTION_METHOD, CLUSTERING_METHOD 
 
 import argparse
@@ -12,10 +9,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument( '-nd'	, '--no_diag'	, dest='use_diag'	, default=True		, action='store_false'	, help='do not plot diagonal' )
 parser.add_argument( '-nf'	, '--no_fit'	, dest='fit_all'	, default=True		, action='store_false'	, help='do not fit in all dimensions simultanniously' )
 parser.add_argument( '-nc'	, '--no_colors'	, dest='do_colors'	, default=True		, action='store_false'	, help='do not use colors' )
+parser.add_argument( '-w'	, '--window'	, dest='in_window'	, default=False		, action='store_true'	, help='keep plot in interactive window' )
 use_diag	= parser.parse_args().use_diag
 fit_all		= parser.parse_args().fit_all
 do_colors	= parser.parse_args().do_colors
+in_window	= parser.parse_args().in_window
 
+import matplotlib
+if in_window==False: matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 def ind(i):
 	if use_diag: return i
@@ -48,4 +50,5 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	for i in range(Nplt):	plts[i][0].set_ylabel('$PC_'+str(ind(i+1))+'$')
 	plts[0][Nplt-1].text(0,0,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20})
 	plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15,hspace=0,wspace=0)
-	plt.savefig(out_name)
+	if in_window	: plt.show(block=True)
+	else		: plt.savefig(out_name)

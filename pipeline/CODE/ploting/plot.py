@@ -38,8 +38,6 @@ def add_labels(plts,Nplt,plt_inds):
 	if Nplt>1:	plts[0][Nplt-1].text(.1,.1,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=plts[0][Nplt-1].transAxes)
 	else:		plts.		text(.8,.85,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=plts.transAxes)
 def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
-	print('plot')
-
 	colors	= 'r'
 	if do_colors and fit_all: colors = label_data.astype(np.float)
 
@@ -52,7 +50,6 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 		plt_inds=[v-1 for v in plot_pars]
 		Nplt=TAM(plot_pars)
 
-	print(Nplt)
 	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(16,12))
 	for i in range(Nplt):
 		for j in range(Nplt):

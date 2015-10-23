@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-print "REDUCTION"
+print "** REDUCTION **"
 from Main import reduc
 reduc()
+print '\t[ok]\n'
 exit()

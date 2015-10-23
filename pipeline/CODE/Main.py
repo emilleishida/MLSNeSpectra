@@ -8,8 +8,6 @@ from config import *
 from management.update_dict import update_dict
 from management.name_files import red_data_name,clust_name,plot_name
 
-print('Main')
-
 #############################
 #### REDUCTION PART	 ####
 #############################

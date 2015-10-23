@@ -15,9 +15,12 @@ else		: print "CLUSTERS_DATA_EXTERNAL is defined, please check what you realy wa
 from Main import reduc,cluster,plot
 print "** REDUCTION **"
 reduc()
+print '\t[ok]\n'
 print "** CLUSTERING **"
 cluster()
+print '\t[ok]\n'
 print "** PLOTING **"
 plot()
+print '\t[ok]\n'
 
 exit()

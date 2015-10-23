@@ -107,8 +107,10 @@ def cluster():
 #### QUALITY CHECK PART	 ####
 #############################
 def check_quality(METHOD):
+	exec('from management.params_quality import '+METHOD+'_dict as dict_qual')
+	update_dict(dict_qual,METHOD)
 	exec ('from quality.'+METHOD+' import quality')
-	q=quality(READ(RED_DATA),READ(CL_DATA),READ(LAB_DATA))
+	q=quality(READ(RED_DATA),READ(CL_DATA),READ(LAB_DATA),dict_qual)
 	return q
 def do_quality():
 	try:

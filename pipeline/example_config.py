@@ -4,7 +4,7 @@ Original data:
 	Used for the reduction,
 	not needed if doing clusreing only
 '''
-ORG_DATA			= '../MLSNeSpectra/empca_trained_coeff/coefficients.dat'
+ORG_DATA			= '../../../Dropbox/shared/coin_br/test_data/fake_2clust_2pcacomp.dat'
 
 #####################################################################################
 '''
@@ -57,8 +57,11 @@ PLOT_EXT	= '.png'
 QUALITY TEST METHODS
 	put one or more (as a vector) quality checks for clustering. possibilities are:
 		-silhouette_index
+		-Dunn_index
+		-DavisBouldin_index
+
 '''
-QUALITY_METHODS=['silhouette_index']
+QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']
 
 #####################################################################################
 '''

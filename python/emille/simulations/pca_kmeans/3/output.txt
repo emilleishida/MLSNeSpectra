@@ -1,0 +1,9 @@
+emille@emille-700Z3C-700Z5C:~/Dropbox2/Dropbox/COIN/MLSNeSpectra/simulations/3$ python kmeans.py 
+('For n_clusters =', 2, 'The average silhouette_score is :', 0.30722604725417124)
+('For n_clusters =', 3, 'The average silhouette_score is :', 0.28117672246325365)
+('For n_clusters =', 4, 'The average silhouette_score is :', 0.25896951986464589)
+('For n_clusters =', 5, 'The average silhouette_score is :', 0.23320535922521682)
+('For n_clusters =', 6, 'The average silhouette_score is :', 0.22054796601882509)
+('For n_clusters =', 7, 'The average silhouette_score is :', 0.22235630496465617)
+('For n_clusters =', 8, 'The average silhouette_score is :', 0.21560377272554149)
+

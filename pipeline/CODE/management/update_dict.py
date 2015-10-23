@@ -2,7 +2,7 @@ from __future__ import print_function
 from config import *
 
 def update_dict(DICT,prefix):
-	print('\t* checking for',prefix,'updates **')
+	print('\t* checking for',prefix,'updates *')
 	updates=False
 	for item0 in DICT:
 		item=prefix+'_'+item0

@@ -4,7 +4,7 @@ Original data:
 	Used for the reduction,
 	not needed if doing clusreing only
 '''
-ORG_DATA			= '../data/derivatives.dat'
+ORG_DATA			= '../MLSNeSpectra/empca_trained_coeff/coefficients.dat'
 
 #####################################################################################
 '''

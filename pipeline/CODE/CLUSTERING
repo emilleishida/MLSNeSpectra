@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-print "** CLUSTERING **"
 from Main import cluster
+print "** CLUSTERING **\n"
 cluster()
 print '\t[ok]\n'
 exit()

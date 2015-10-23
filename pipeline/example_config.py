@@ -54,6 +54,14 @@ PLOT_EXT	= '.png'
 
 #####################################################################################
 '''
+QUALITY TEST METHODS
+	put one or more (as a vector) quality checks for clustering. possibilities are:
+		-...
+'''
+QUALITY_METHODS=['']
+
+#####################################################################################
+'''
 CLUSTERING INPUT DATA
 	add this ONLY if you want to use a external data source for the clustering,
 	if you want to use the data from the pipeline leave it commented.

@@ -12,12 +12,15 @@ try:
 except NameError: pass
 else		: print "CLUSTERS_DATA_EXTERNAL is defined, please check what you realy want to do!"; exit()
 
-from Main import reduc,cluster,plot
+from Main import reduc,cluster,do_quality,plot
 print "** REDUCTION **"
 reduc()
 print '\t[ok]\n'
 print "** CLUSTERING **"
 cluster()
+print '\t[ok]\n'
+print "** QUALITY CHECK **"
+do_quality()
 print '\t[ok]\n'
 print "** PLOTING **"
 plot()

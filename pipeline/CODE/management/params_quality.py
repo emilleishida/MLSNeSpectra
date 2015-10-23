@@ -10,3 +10,7 @@ DavisBouldin_index_dict=dict([
 Dunn_index_dict=dict([
 	[ 'metric'	, 'euclidean'	],
 ])
+
+Dunn_vrc_dict=dict([
+	[ 'metric'	, 'euclidean'	],
+])

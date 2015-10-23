@@ -4,17 +4,20 @@ import sys
 sys.path.append(os.path.abspath(''))
 from config import *
 try:
-	CLUSTERING_DATA
+	REDUCED_DATA_EXTERNAL
 except NameError: pass
-else		: print "CLUSTERING_DATA is defined, please check what you realy want to do!"; exit()
+else		: print "REDUCED_DATA_EXTERNAL is defined, please check what you realy want to do!"; exit()
+try:
+	CLUSTERS_DATA_EXTERNAL
+except NameError: pass
+else		: print "CLUSTERS_DATA_EXTERNAL is defined, please check what you realy want to do!"; exit()
 
-print "REDUCTION"
-from Main import reduc
+from Main import reduc,cluster,plot
+print "** REDUCTION **"
 reduc()
-print "CLUSTERING"
-from Main import cluster
-print "CLUSTERING"
+print "** CLUSTERING **"
 cluster()
-from Main import plot
+print "** PLOTING **"
 plot()
+
 exit()

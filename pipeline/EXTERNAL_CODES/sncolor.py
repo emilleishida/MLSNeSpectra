@@ -2,14 +2,14 @@ from numpy import loadtxt, mean, genfromtxt
 from matplotlib.pyplot import plot, savefig, xlabel, ylabel, scatter, axis, xlim
 from sklearn import manifold
 
-def load_colors(sne_list,type='Wang',fname='aj427309t4_mrt.txt'):
+def load_colors(sne_list,type='Wang'):
 
     import urllib
     import numpy
     
     # path1 = 'https://iopscience.iop.org/1538-3881/143/5/126/suppdata/aj427309t4_mrt.txt'
     # op1 = urllib.urlopen(path1, 'r')
-    op1=open(fname,'r')
+    op1=open('aj427309t4_mrt.txt','r')
     lin1 = op1.readlines()
     op1.close()
     #data1 = [elem[17:].split() for elem in lin1[51:]]

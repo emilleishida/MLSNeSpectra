@@ -15,7 +15,7 @@ def quality(X, cluster_centers, cluster_labels, params):
         # numbers of clusters and samples
     
         n_clusters = len(np.unique(cluster_labels))
-        n_samples = len(X.shape[0])
+        n_samples = X.shape[0]
 
         # over-all between-cluster variance
 
@@ -24,22 +24,23 @@ def quality(X, cluster_centers, cluster_labels, params):
                                                     metric=metric))
         nelements = [np.sum((cluster_labels == i)) for i in
                      range(cluster_centers.shape[0])]
-        var_B = np.sum(nelements*dcm2)
+        var_B = np.sum(nelements * squared_dist)
 
         # over-all within-cluster variance
 
         sum = 0.0
         for i in range(n_clusters):
-            mask = (labels == i)
+            mask = (cluster_labels == i)
             elements = X[mask]
             squared_dist = np.square(pairwise_distances(elements,
-                                                        cluster_centers[i]),
-                                     metric=metric)
+                                                        cluster_centers[i],
+                                                        metric=metric))
             sum += np.sum(squared_dist)
         var_W = sum
 
         # normalization factor
 
         factor = (n_samples - n_clusters) / (n_clusters - 1)
+        print n_samples, n_clusters, factor, var_B, var_W
 
         return factor * var_B / var_W

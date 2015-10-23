@@ -29,11 +29,11 @@ def quality(X, cluster_centers, cluster_labels, params):
         # S[i][j] = d(ci,cj)/max(dX)
 
         np.fill_diagonal(dist_centers, np.inf)  # guarantee Sii bigger enough
-        S = dist_centers / max(dX)
+        S = dist_centers / np.amax(dX)
 
         # return min of S
 
-        return min(S)
+        return np.amin(S)
     
 
 def _intra_cluster_distance(distances_row, labels, i):

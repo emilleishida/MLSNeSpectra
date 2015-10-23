@@ -11,12 +11,12 @@ parser.add_argument( '-nf'	, '--no_fit'	, dest='fit_all'	, default=True		, actio
 parser.add_argument( '-nc'	, '--no_colors'	, dest='do_colors'	, default=True		, action='store_false'	, help='do not use colors' )
 parser.add_argument( '-nl'	, '--no_label'	, dest='do_label'	, default=True		, action='store_false'	, help='do not plot label' )
 parser.add_argument( '-w'	, '--window'	, dest='in_window'	, default=False		, action='store_true'	, help='keep plot in interactive window, this option will not save the output automaticaly' )
-parser.add_argument( '-pp'	, '--plot_pars'	, dest='plot_pars'	, default=''		, help='plot specified pars, takes a string as input (ex: "1 2")' )
+parser.add_argument( '-pp'	, '--plot_pars'	, dest='plot_pars'	, default='ALL'		, help='plot specified pars, takes a string as input (ex: "1 2")' )
 parser.add_argument( '-hs'	, '--horiz_space', dest='hspace'	, default=0		, help='set horizontal spacing between the plots' )
 parser.add_argument( '-vs'	, '--vert_space', dest='vspace'		, default=0		, help='set vertical spacing between the plots' )
 for item in ['use_diag','fit_all','do_colors','do_label','in_window','plot_pars','hspace','vspace']:
 	exec(item+'=parser.parse_args().'+item)
-plot_pars= [int(v) for v in plot_pars.split()]
+if plot_pars!='ALL': plot_pars= [int(v) for v in plot_pars.split()]
 hspace	= float(hspace)
 vspace	= float(vspace)
 
@@ -46,12 +46,13 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	Nplt=TAM(red_data)
 	plt_inds=range(Nplt)
 
-	if plot_pars!='':
+	if plot_pars!='ALL':
 		for v in plot_pars:
 			if v>Nplt: print('**ERROR** - there is no PC_'+str(v));exit()
 		plt_inds=[v-1 for v in plot_pars]
 		Nplt=TAM(plot_pars)
 
+	print(Nplt)
 	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(16,12))
 	for i in range(Nplt):
 		for j in range(Nplt):

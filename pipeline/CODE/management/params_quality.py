@@ -6,3 +6,7 @@ silhouette_index_dict=dict([
 DavisBouldin_index_dict=dict([
 	[ 'metric'	, 'euclidean'	],
 ])
+
+Dunn_index_dict=dict([
+	[ 'metric'	, 'euclidean'	],
+])

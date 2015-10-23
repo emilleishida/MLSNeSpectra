@@ -41,6 +41,5 @@ def quality(X, cluster_centers, cluster_labels, params):
         # normalization factor
 
         factor = (n_samples - n_clusters) / (n_clusters - 1)
-        print n_samples, n_clusters, factor, var_B, var_W
 
         return factor * var_B / var_W

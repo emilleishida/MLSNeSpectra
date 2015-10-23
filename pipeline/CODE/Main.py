@@ -33,7 +33,7 @@ def cluster():
 	try:
 		REDUCED_DATA_EXTERNAL
 	except NameError: RED_DATA=np.loadtxt(RED_DATA_NAME)
-	else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL)
+	else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL);print('\t- using external reduced data')
 	exec('from clustering.'+CLUSTERING_METHOD+' import clustering')
 	os.system('mkdir -p cl_data')
 	clusters,labels= clustering(RED_DATA,dict_clust)
@@ -46,15 +46,15 @@ def plot():
 	try:
 		REDUCED_DATA_EXTERNAL
 	except NameError: RED_DATA=np.loadtxt(RED_DATA_NAME)
-	else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL);RED_USED='EXT'
+	else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL);RED_USED='EXT';print('\t- using external reduced data')
 	try:
 		CLUSTERS_DATA_EXTERNAL
 	except NameError: CL_DATA=np.loadtxt(CLUSTERS_DATA_NAME)
-	else		: CL_DATA=np.loadtxt(CLUSTERS_DATA_EXTERNAL);CL_USED='EXT'
+	else		: CL_DATA=np.loadtxt(CLUSTERS_DATA_EXTERNAL);CL_USED='EXT';print('\t- using external clusters')
 	try:
 		LABELS_DATA_EXTERNAL
 	except NameError: LAB_DATA=np.loadtxt(CLUSTERS_LABEL_NAME)
-	else		: LAB_DATA=np.loadtxt(LABELS_DATA_EXTERNAL)
+	else		: LAB_DATA=np.loadtxt(LABELS_DATA_EXTERNAL);print('\t- using external labels')
 
 	from ploting.plot import plot_data
 	PLOT_NAME=plot_name(RED_USED,CL_USED,dict_red,dict_clust,PLOT_EXT)

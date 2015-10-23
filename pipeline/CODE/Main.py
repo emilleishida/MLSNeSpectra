@@ -25,11 +25,11 @@ def READ(NAME):
 #### CREATE FILE NAMES	 ####
 #############################
 exec('from management.params_red import '+REDUCTION_METHOD+'_dict as dict_red')
-update_dict(dict_red,'RED_')
+update_dict(dict_red,REDUCTION_METHOD)
 RED_DATA_NAME=red_data_name(REDUCTION_METHOD,dict_red)
 
 exec('from management.params_clust import '+CLUSTERING_METHOD+'_dict as dict_clust')
-update_dict(dict_clust,'CL_')
+update_dict(dict_clust,CLUSTERING_METHOD)
 CLUSTERS_DATA_NAME = clust_name(CLUSTERING_METHOD,dict_clust)
 CLUSTERS_LABEL_NAME= clust_name(CLUSTERING_METHOD+'_label',dict_clust)
 

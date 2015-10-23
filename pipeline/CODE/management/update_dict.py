@@ -5,7 +5,7 @@ def update_dict(DICT,prefix):
 	print('\t* checking for',prefix,'updates **')
 	updates=False
 	for item0 in DICT:
-		item=prefix+item0
+		item=prefix+'_'+item0
 		try:
 			exec(item)
 		except NameError:

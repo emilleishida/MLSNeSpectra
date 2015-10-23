@@ -14,10 +14,10 @@ deepLearningSN <- function() {
 
 
 
-  TRAIN1     = "../data_all_types/derivatives.dat"
+  #TRAIN1     = "../data_all_types/derivatives.dat"
   TRAIN     = "../data_all_types/derivatives.csv"
-  dat<-read.table(TRAIN1,header=F,sep='')
-  write.csv(dat,TRAIN)
+  #dat<-read.table(TRAIN1,header=F,sep='')
+  #write.csv(dat,TRAIN, row.names = FALSE, col.names = FALSE)
 
   train.hex <- h2o.importFile(h2oServer, path = TRAIN, header = F, sep = ',', destination_frame="train.hex")
   
@@ -27,7 +27,7 @@ deepLearningSN <- function() {
                              training_frame = train.hex,      #training filename
                              activation = "Tanh",             #activation function
                              autoencoder=T, 
-                             hidden = c(100,50,6), 
+                             hidden = c(100,30,2), 
                              epochs=100,
                              ignore_const_cols = F)
   

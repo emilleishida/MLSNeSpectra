@@ -8,55 +8,92 @@ from config import *
 from management.update_dict import update_dict
 from management.name_files import red_data_name,clust_name,plot_name
 
+def ERROR(message):
+	out='### **ERROR** - '+message+' ####'
+	line='\n'
+	for x in out: line+='#'
+	line+='\n'
+	print(line+out+line)
+	exit()
+def READ(NAME):
+	if os.path.isfile(NAME): return np.loadtxt(NAME)
+	else: ERROR('file '+NAME+' does not exist!')
+
+
+#############################
+#### UPDATE DICTS AND	 ####
+#### CREATE FILE NAMES	 ####
+#############################
+exec('from management.params_red import '+REDUCTION_METHOD+'_dict as dict_red')
+update_dict(dict_red,REDUCTION_METHOD)
+RED_DATA_NAME=red_data_name(REDUCTION_METHOD,dict_red)
+
+exec('from management.params_clust import '+CLUSTERING_METHOD+'_dict as dict_clust')
+update_dict(dict_clust,CLUSTERING_METHOD)
+CLUSTERS_DATA_NAME = clust_name(CLUSTERING_METHOD,dict_clust)
+CLUSTERS_LABEL_NAME= clust_name(CLUSTERING_METHOD+'_label',dict_clust)
+
+#############################
+#### CHECK FOR EXT FILES ####
+#############################
+try:
+	REDUCED_DATA_EXTERNAL
+except NameError: RED_DATA,RED_TYPE=RED_DATA_NAME,REDUCTION_METHOD
+else		: RED_DATA,RED_TYPE=REDUCED_DATA_EXTERNAL,'EXT';print('\t- using external reduced data')
+
+try:
+	CLUSTERS_DATA_EXTERNAL
+except NameError: CL_DATA,CL_TYPE=CLUSTERS_DATA_NAME,CLUSTERING_METHOD
+else		: CL_DATA,CL_TYPE=CLUSTERS_DATA_EXTERNAL,'EXT';print('\t- using external clusters')
+
+try:
+	LABELS_DATA_EXTERNAL
+except NameError: LAB_DATA=CLUSTERS_LABEL_NAME
+else		: LAB_DATA=LABELS_DATA_EXTERNAL;print('\t- using external labels')
+	
 #############################
 #### REDUCTION PART	 ####
 #############################
-exec('from management.params_red import '+REDUCTION_METHOD+'_dict as dict_red')
-update_dict(dict_red,'RED_')
-RED_DATA_NAME=red_data_name(REDUCTION_METHOD,dict_red)
-
 def reduc():
 	exec('from reduction.'+REDUCTION_METHOD+' import reduction')
 	os.system('mkdir -p red_data')
-	np.savetxt(RED_DATA_NAME,reduction(np.loadtxt(ORG_DATA),dict_red))
+	try:
+		ORG_DATA
+	except NameError: ERROR('ORG_DATA key missing!')
+	else:	np.savetxt(RED_DATA_NAME,reduction(READ(ORG_DATA),dict_red))
 
 #############################
 #### CLUSTERING PART	 ####
 #############################
-exec('from management.params_clust import '+CLUSTERING_METHOD+'_dict as dict_clust')
-update_dict(dict_clust,'CL_')
-CLUSTERS_DATA_NAME = clust_name(CLUSTERING_METHOD,dict_clust)
-CLUSTERS_LABEL_NAME= clust_name(CLUSTERING_METHOD+'_label',dict_clust)
-
-
 def cluster():
-	try:
-		REDUCED_DATA_EXTERNAL
-	except NameError: RED_DATA=np.loadtxt(RED_DATA_NAME)
-	else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL);print('\t- using external reduced data')
 	exec('from clustering.'+CLUSTERING_METHOD+' import clustering')
 	os.system('mkdir -p cl_data')
-	clusters,labels= clustering(RED_DATA,dict_clust)
+	clusters,labels= clustering(READ(RED_DATA),dict_clust)
 	np.savetxt(CLUSTERS_DATA_NAME,clusters)
 	np.savetxt(CLUSTERS_LABEL_NAME,labels)
 	
+#############################
+#### QUALITY CHECK PART	 ####
+#############################
+def check_quality(METHOD):
+	exec ('from quality.'+METHOD+' import quality')
+	q=quality(READ(RED_DATA),READ(CL_DATA),READ(LAB_DATA))
+	return q
+def do_quality():
+	try:
+		QUALITY_METHODS
+	except NameError: ERROR('QUALITY_METHODS key missing!')
+	else:
+		used=False
+		for METHOD in QUALITY_METHODS:
+			if METHOD!='':	print('\tquality from',METHOD,':',check_quality(METHOD));used=True
+		if used==False: print('\t<no quality checks>')
 
+#############################
+#### PLOTTIING PART	 ####
+#############################
 def plot():
-	RED_USED,CL_USED=REDUCTION_METHOD,CLUSTERING_METHOD
-	try:
-		REDUCED_DATA_EXTERNAL
-	except NameError: RED_DATA=np.loadtxt(RED_DATA_NAME)
-	else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL);RED_USED='EXT';print('\t- using external reduced data')
-	try:
-		CLUSTERS_DATA_EXTERNAL
-	except NameError: CL_DATA=np.loadtxt(CLUSTERS_DATA_NAME)
-	else		: CL_DATA=np.loadtxt(CLUSTERS_DATA_EXTERNAL);CL_USED='EXT';print('\t- using external clusters')
-	try:
-		LABELS_DATA_EXTERNAL
-	except NameError: LAB_DATA=np.loadtxt(CLUSTERS_LABEL_NAME)
-	else		: LAB_DATA=np.loadtxt(LABELS_DATA_EXTERNAL);print('\t- using external labels')
-
 	from ploting.plot import plot_data
-	PLOT_NAME=plot_name(RED_USED,CL_USED,dict_red,dict_clust,PLOT_EXT)
+	PLOT_NAME=plot_name(RED_TYPE,CL_TYPE,dict_red,dict_clust,PLOT_EXT)
 	os.system('mkdir -p plots')
-	plot_data(RED_DATA.T,CL_DATA.T,LAB_DATA,PLOT_NAME)
+	plot_data(READ(RED_DATA).T,READ(CL_DATA).T,LAB_DATA,PLOT_NAME)

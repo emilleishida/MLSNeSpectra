@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+print "** QUALITY CHECK **"
+from Main import do_quality
+do_quality()
+print '\t[ok]\n'
+exit()

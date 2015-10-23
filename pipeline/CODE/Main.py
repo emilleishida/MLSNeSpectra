@@ -77,7 +77,7 @@ def cluster():
 #############################
 def check_quality(METHOD):
 	exec ('from quality.'+METHOD+' import quality')
-	q=qual(READ(RED_DATA),LAB_DATA)
+	q=quality(READ(RED_DATA),READ(CL_DATA),READ(LAB_DATA))
 	return q
 def do_quality():
 	try:
@@ -86,7 +86,7 @@ def do_quality():
 	else:
 		used=False
 		for METHOD in QUALITY_METHODS:
-			if METHOD!='':	print('\t quality from',METHOD,':',check_quality(METHOD));used=True
+			if METHOD!='':	print('\tquality from',METHOD,':',check_quality(METHOD));used=True
 		if used==False: print('\t<no quality checks>')
 
 #############################

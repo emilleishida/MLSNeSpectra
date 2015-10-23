@@ -56,9 +56,9 @@ PLOT_EXT	= '.png'
 '''
 QUALITY TEST METHODS
 	put one or more (as a vector) quality checks for clustering. possibilities are:
-		-...
+		-silhouette_index
 '''
-QUALITY_METHODS=['']
+QUALITY_METHODS=['silhouette_index']
 
 #####################################################################################
 '''

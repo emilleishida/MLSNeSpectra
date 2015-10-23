@@ -30,12 +30,12 @@ update_dict(dict_clust,'CL_')
 CLUSTERS_DATA_NAME = clust_name(CLUSTERING_METHOD,dict_clust)
 CLUSTERS_LABEL_NAME= clust_name(CLUSTERING_METHOD+'_label',dict_clust)
 
-try:
-	REDUCED_DATA_EXTERNAL
-except NameError: RED_DATA=np.loadtxt(RED_DATA_NAME)
-else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL);REDUCTION_METHOD='EXT'
 
 def cluster():
+	try:
+		REDUCED_DATA_EXTERNAL
+	except NameError: RED_DATA=np.loadtxt(RED_DATA_NAME)
+	else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL)
 	exec('from clustering.'+CLUSTERING_METHOD+' import clustering')
 	os.system('mkdir -p cl_data')
 	clusters,labels= clustering(RED_DATA,dict_clust)
@@ -45,6 +45,10 @@ def cluster():
 
 def plot():
 	RED_USED,CL_USED=REDUCTION_METHOD,CLUSTERING_METHOD
+	try:
+		REDUCED_DATA_EXTERNAL
+	except NameError: RED_DATA=np.loadtxt(RED_DATA_NAME)
+	else		: RED_DATA=np.loadtxt(REDUCED_DATA_EXTERNAL);RED_USED='EXT'
 	try:
 		CLUSTERS_DATA_EXTERNAL
 	except NameError: CL_DATA=np.loadtxt(CLUSTERS_DATA_NAME)

@@ -42,7 +42,7 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	if do_colors and fit_all: colors = label_data.astype(np.float)
 
 	Nplt=TAM(red_data)
-	plt_inds=range(Nplt)
+	plt_inds=range(Nplt+1)
 
 	if plot_pars!='ALL':
 		for v in plot_pars:

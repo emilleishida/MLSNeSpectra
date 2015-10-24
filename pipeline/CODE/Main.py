@@ -79,7 +79,7 @@ def reduc():
 	except NameError: ERROR('ORG_DATA key missing!')
 	else:	
 		np.savetxt(RED_DATA_NAME,reduction(READ(ORG_DATA),dict_red))
-		print_info(REDUCTION_METHOD,dict_red,'### REDUCTION USED ###',REDUCTION_INFO)
+		print_info(REDUCTION_METHOD,dict_red,'### REDUCTION USED ###',ORG_DATA,REDUCTION_INFO)
 
 #############################
 #### CLUSTERING PART	 ####
@@ -99,7 +99,7 @@ def cluster():
 	except NameError: RED_PROP=open(REDUCTION_INFO,'r').read()
 	else		: RED_PROP='### REDUCTION USED ###\nfrom external data = '+REDUCED_DATA_EXTERNAL
 	prt(CLUSTER_INFO,RED_PROP,'w')
-	print_info(CLUSTERING_METHOD,dict_clust,'### CLUSTERING USED ###',CLUSTER_INFO,'a')
+	print_info(CLUSTERING_METHOD,dict_clust,'### CLUSTERING USED ###',RED_DATA,CLUSTER_INFO,'a')
 	prt(CLUSTER_INFO,'\n\t-outputs:','a')
 	prt(CLUSTER_INFO,'n_clusters = '+str(clusters.shape[0]),'a')
 	
@@ -125,7 +125,7 @@ def do_quality():
 		prt(QUALITY_INFO,CL_PROP,'w')
 		prt(QUALITY_INFO,'### QUALITIES USED ###','a')
 		for METHOD in QUALITY_METHODS:
-			print_info(METHOD,dict_clust,'',QUALITY_INFO,'a')
+			print_info(METHOD,dict_clust,'',CL_DATA,QUALITY_INFO,'a')
 		prt(QUALITY_INFO,'\n\t-outputs:','a')
 		for METHOD in QUALITY_METHODS:
 			if METHOD!='':

@@ -16,6 +16,7 @@ So far we have implemented:
 	* silhouette_index
 	* Dunn_index
 	* DavisBouldin_index
+	* vrc
 
 ## Requirements
 To run fully this pipeline, you will need:

@@ -72,14 +72,32 @@ This uses the DBSCAN method and the possible extra keys are
 
 ## Quality test methods
 The key	**QUALITY_METHODS** should be a vector of strings of quality method checks for clustering.
-The methods impemented are:
-* silhouette_index
-* Dunn_index
-* DavisBouldin_index
-
 An example of this key, could be:
 
-	QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']
+	QUALITY_METHODS=['method1','method2','method3']
+
+Below are the possibilities:
+
+### silhouette
+
+	silhouette_metric	= [**to be completed**] (default='euclidean')
+
+
+### DavisBouldin
+
+	DavisBouldin_metric	= [**to be completed**] (default='euclidean')
+
+
+### Dunn
+
+	Dunn_metric	= [**to be completed**] (default='euclidean')
+
+
+### vrc
+
+	vrc_metric	= [**to be completed**] (default='euclidean')
+
+
 
 ## Clustering output extension
 Extension of output plots produced by pylab, should be a string.

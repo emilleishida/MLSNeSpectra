@@ -59,9 +59,10 @@ QUALITY TEST METHODS
 		-silhouette_index
 		-Dunn_index
 		-DavisBouldin_index
+		-vrc
 
 '''
-QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']
+QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index','vrc']
 
 #####################################################################################
 '''

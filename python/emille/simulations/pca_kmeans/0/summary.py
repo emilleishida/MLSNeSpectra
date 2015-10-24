@@ -2,6 +2,7 @@
 ngroups = 11
 ncomp = 3
 
+"""
 for k in xrange(2, ngroups):
     op3 = open(str(k) + '_groups/config.py', 'r')
     lin3 = op3.readlines()
@@ -22,6 +23,8 @@ for k in xrange(2, ngroups):
             op4.write('\n')
     op4.close()    
             
+"""
+
 
 results = {}
 results['silhouette'] = []

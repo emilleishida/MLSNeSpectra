@@ -82,7 +82,7 @@ An example of this key, could be:
 	QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']
 
 ## Clustering output extension
-	Extension of output plots produced by pylab, should be a string.
+Extension of output plots produced by pylab, should be a string.
 
 ## Using Externa data
 If you want to use external data with reductions, clusters and labels you just have to add the keys below.

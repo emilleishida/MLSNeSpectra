@@ -23,11 +23,11 @@ deepLearningSN <- function() {
   
   
   ## Construct deep learning model
-  dlmodel <- h2o.deeplearning(x=1:148,                        #specify range of columns
+  dlmodel <- h2o.deeplearning(x=1:296,  #148,                        #specify range of columns
                              training_frame = train.hex,      #training filename
                              activation = "Tanh",             #activation function
                              autoencoder=T, 
-                             hidden = c(100,30,2), 
+                             hidden = c(100,30,10), 
                              epochs=100,
                              ignore_const_cols = F)
   

@@ -1,16 +1,21 @@
 # Pipeline for the use of data reduction and clustering
 Pipeline to use all methods of data reduction and clustering.
+Some cluster quality methods were also implemented.
 So far we have implemented:
 
 * For data reduction:
 	* PCA
 	* empca
-* For clustering
+* For clustering:
 	* MeanShift
 	* KMeans
 	* AffinityPropagation
 	* AgglomerativeClustering
 	* DBSCAN
+* For cluster quality testing:
+	* silhouette_index
+	* Dunn_index
+	* DavisBouldin_index
 
 ## Requirements
 To run fully this pipeline, you will need:
@@ -46,15 +51,19 @@ To run the whole pipeline execute:
 
 	ALL
 
-To just the reduction part execute:
+To run just the reduction part execute:
 
 	REDUCTION
 
-To just the clustering execute:
+To run just the clustering execute:
 
 	CLUSTERING
 
-To just the ploting execute:
+To run just the clustering quality execute:
+
+	QUALITY
+
+To run just the ploting execute:
 
 	PLOT
 
@@ -70,6 +79,8 @@ The outputs of clustering methods are placed in **cl_data/**.
 They will be input for plotting unless stated otherwise.
 
 The outputs of plotting are placed in **plots/**.
+
+All modules also print the information used and resulting in **info/**.
 
 ## Adding your code
 If you want to add your code to the pipeline, put it in the one of the following dirs inside the pipeline and we will format it for you:

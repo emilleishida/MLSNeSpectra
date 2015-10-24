@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-print "** PLOTING **"
 from Main import plot
+print "** PLOTING **\n"
 plot()
 print '\t[ok]\n'
 exit()

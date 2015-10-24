@@ -4,7 +4,7 @@ Original data:
 	Used for the reduction,
 	not needed if doing clusreing only
 '''
-ORG_DATA			= '../data/derivatives.dat'
+ORG_DATA			= '../../../Dropbox/shared/coin_br/test_data/fake_2clust_2pcacomp.dat'
 
 #####################################################################################
 '''
@@ -12,14 +12,14 @@ REDUCTION METHOD
 	possibilities:
 		-pca
 	The aditional parameters must be added with the same name
-	as in the original function plus the prefix 'RED_'.
+	as in the original function plus the prefix REDUCTION_METHOD'_'.
 	Example:
 		if REDUCTION_METHOD is 'pca', the parameter
 		n_components must be declared as 
-			RED_n_components= ...
+			pca_n_components= ...
 		if REDUCTION_METHOD is 'empca', the parameter
 		error_file can be declared as 
-			RED_errors_file= ...
+			empca_errors_file= ...
                 in order to run with weights=1/errors^2. Its default value is
                 None, so empca runs without weights
 '''
@@ -36,11 +36,11 @@ CLUSTERING METHOD
 		-DBSCAN
 
 	The aditional parameters must be added with the same name
-	as in the original function plus the prefix 'CL_'
+	as in the original function plus the prefix CLUSTERING_METHOD'_'
 	Example:
 		if CLUSTERING_METHOD is 'MeanShift', the parameter 
 		quantile must be declared as 
-			CL_quantile= ...
+			MeanShift_quantile= ...
 
 '''
 CLUSTERING_METHOD	= 'MeanShift'
@@ -51,6 +51,17 @@ CLUSTERING OUTPUT EXTENSIONS
 	extension of output plots produced by pylab
 '''
 PLOT_EXT	= '.png'
+
+#####################################################################################
+'''
+QUALITY TEST METHODS
+	put one or more (as a vector) quality checks for clustering. possibilities are:
+		-silhouette_index
+		-Dunn_index
+		-DavisBouldin_index
+
+'''
+QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']
 
 #####################################################################################
 '''

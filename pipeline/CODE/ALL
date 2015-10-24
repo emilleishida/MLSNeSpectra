@@ -1,25 +1,15 @@
 #!/usr/bin/env python
-import os
-import sys
-sys.path.append(os.path.abspath(''))
-from config import *
-try:
-	REDUCED_DATA_EXTERNAL
-except NameError: pass
-else		: print "REDUCED_DATA_EXTERNAL is defined, please check what you realy want to do!"; exit()
-try:
-	CLUSTERS_DATA_EXTERNAL
-except NameError: pass
-else		: print "CLUSTERS_DATA_EXTERNAL is defined, please check what you realy want to do!"; exit()
-
-from Main import reduc,cluster,plot
-print "** REDUCTION **"
+from Main import reduc,cluster,do_quality,plot
+print "** REDUCTION **\n"
 reduc()
 print '\t[ok]\n'
-print "** CLUSTERING **"
+print "** CLUSTERING **\n"
 cluster()
 print '\t[ok]\n'
-print "** PLOTING **"
+print "** QUALITY CHECK **\n"
+do_quality()
+print '\t[ok]\n'
+print "** PLOTING **\n"
 plot()
 print '\t[ok]\n'
 

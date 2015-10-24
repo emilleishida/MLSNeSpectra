@@ -5,11 +5,16 @@ from numpy import (array, unravel_index, nditer, linalg, random, subtract,
 from collections import defaultdict
 from warnings import warn
 
+"""
+Source: https://github.com/JustGlowing/minisom
+
+"""
 
 """
     Minimalistic implementation of the Self Organizing Maps (SOM).
 
     Giuseppe Vettigli 2013.
+    
 """
 
 

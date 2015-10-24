@@ -77,8 +77,9 @@ The methods impemented are:
 * Dunn_index
 * DavisBouldin_index
 
-'''
-QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']
+An example of this key, could be:
+
+	QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']
 
 ## Clustering output extension
 	Extension of output plots produced by pylab, should be a string.

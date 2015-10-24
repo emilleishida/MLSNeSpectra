@@ -130,7 +130,7 @@ def do_quality():
 		for METHOD in QUALITY_METHODS:
 			if METHOD!='':
 				q=check_quality(METHOD)
-				print('\tquality from',METHOD,':',q)
+				print('\tquality from',METHOD,':',q,'\n')
 				prt(QUALITY_INFO,'quality from '+METHOD+' = '+str(q),'a')
 				used=True
 		if used==False:

@@ -7,74 +7,78 @@ Used for the reduction, not needed if doing clusreing only
 ## Reduction Method
 The key **REDUCTION_METHOD** should be a string with the method name.
 For each method you can add extra keys already defined by the method
-with the original key name plus the prefix 'RED_'.
+with the original key name plus the prefix REDUCTION_METHOD'_'.
 
 Below are the possibilities:
 
 ### pca
 This uses the pca method and the possible extra keys are
 
-	RED_n_components = int (default=6)
+	pca_n_components = int (default=6)
 
 ### empca
 This uses the empca method and the possible extra keys are
 
-	RED_data_errors_file = **[to be completed]** (default=None)
-	RED_n_components = int (default=6)	
-	RED_smooth = int (default=0)	
-	RED_n_iter	        = int (default=50)	
+	empca_data_errors_file = **[to be completed]** (default=None)
+	empca_n_components = int (default=6)	
+	empca_smooth = int (default=0)	
+	empca_n_iter	        = int (default=50)	
 
 ## Clustering Method
 The key **CLUSTERING_METHOD** should be a string with the method name.
 For each method you can add extra keys already defined by the method
-with the original key name plus the prefix 'CL_'.
+with the original key name plus the prefix CLUSTERING_METHOD'_'.
 
 Below are the possibilities:
 
 ### MeanShift
 This uses the MeanShift method and the possible extra keys are
 
-	CL_quantile = float (default=.25)
-	CL_cluster_all = [ **to be completed** ] (default=True)
-
+	MeanShift_quantile = float (default=.25)
+	MeanShift_cluster_all = [ **to be completed** ] (default=True)
 
 ### KMeans
 This uses the KMeans method and the possible extra keys are
 
-	CL_n_clusters = [ **to be completed** ] (default=4)
-	CL_tol = [ **to be completed** ] (default=1e-4)
-	CL_init = [ **to be completed** ] (default='k-means++')
-	CL_n_jobs = [ **to be completed** ] (default=1)
-
+	KMeans_n_clusters = [ **to be completed** ] (default=4)
+	KMeans_tol = [ **to be completed** ] (default=1e-4)
+	KMeans_init = [ **to be completed** ] (default='k-means++')
+	KMeans_n_jobs = [ **to be completed** ] (default=1)
 
 ### AgglomerativeClustering
 This uses the AgglomerativeClustering method and the possible extra keys are
 
-	CL_n_clusters = [ **to be completed** ] (default=6)
-	CL_affinity = [ **to be completed** ] (default='euclidean')
-	CL_linkage = [ **to be completed** ] (default='ward')
-
+	AgglomerativeClustering_n_clusters = [ **to be completed** ] (default=6)
+	AgglomerativeClustering_affinity = [ **to be completed** ] (default='euclidean')
+	AgglomerativeClustering_linkage = [ **to be completed** ] (default='ward')
 
 ### AffinityPropagation
 This uses the AffinityPropagation method and the possible extra keys are
 
-	CL_preference = [ **to be completed** ] (default=None)
-	CL_convergence_iter = [ **to be completed** ] (default=15)
-	CL_max_iter = [ **to be completed** ] (default=200)
-	CL_damping = [ **to be completed** ] (default=0.5)
-	CL_affinity = [ **to be completed** ] (default='euclidean')
-
+	AffinityPropagation_preference = [ **to be completed** ] (default=None)
+	AffinityPropagation_convergence_iter = [ **to be completed** ] (default=15)
+	AffinityPropagation_max_iter = [ **to be completed** ] (default=200)
+	AffinityPropagation_damping = [ **to be completed** ] (default=0.5)
+	AffinityPropagation_affinity = [ **to be completed** ] (default='euclidean')
 
 ### DBSCAN
 This uses the DBSCAN method and the possible extra keys are
 
-	CL_eps		= [ **to be completed** ] (default=0.5)
-	CL_min_samples	= [ **to be completed** ] (default=5)
-	CL_metric	= [ **to be completed** ] (default='euclidean')
-	CL_algorithm	= [ **to be completed** ] (default='auto')
-	CL_leaf_size	= [ **to be completed** ] (default=30)
+	DBSCAN_eps		= [ **to be completed** ] (default=0.5)
+	DBSCAN_min_samples	= [ **to be completed** ] (default=5)
+	DBSCAN_metric	= [ **to be completed** ] (default='euclidean')
+	DBSCAN_algorithm	= [ **to be completed** ] (default='auto')
+	DBSCAN_leaf_size	= [ **to be completed** ] (default=30)
 
+## Quality test methods
+The key	**QUALITY_METHODS** should be a vector of strings of quality method checks for clustering.
+The methods impemented are:
+	* silhouette_index
+	* Dunn_index
+	* DavisBouldin_index
 
+'''
+QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']
 
 ## Clustering output extension
 	Extension of output plots produced by pylab, should be a string.

@@ -1,6 +1,6 @@
 import os
 import tarfile
-from numpy import loadtxt, mean,ones, var
+from numpy import loadtxt, mean,ones, var, savetxt
 from pylab import figure
 from matplotlib.pyplot import plot, savefig, xlabel, ylabel, scatter, axis, xlim
 import sys

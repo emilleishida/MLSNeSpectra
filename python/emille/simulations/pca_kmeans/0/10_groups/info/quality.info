@@ -1,0 +1,45 @@
+### REDUCTION USED ###
+METHOD = pca
+n_components = 3
+
+### CLUSTERING USED ###
+METHOD = KMeans
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 10
+
+	-outputs:
+n_clusters = 10
+
+### QUALITIES USED ###
+
+METHOD = silhouette_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 10
+
+METHOD = Dunn_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 10
+
+METHOD = DavisBouldin_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 10
+
+METHOD = vrc
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 10
+
+	-outputs:
+quality from silhouette_index = 0.298516711148
+quality from Dunn_index = 0.693910961246
+quality from DavisBouldin_index = 1.87253323589
+quality from vrc = 6361.7571024

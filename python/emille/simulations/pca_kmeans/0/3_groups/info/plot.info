@@ -1,0 +1,14 @@
+### REDUCTION USED ###
+METHOD = pca
+n_components = 3
+
+### CLUSTERING USED ###
+METHOD = KMeans
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 3
+
+	-outputs:
+n_clusters = 3
+

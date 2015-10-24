@@ -73,9 +73,9 @@ This uses the DBSCAN method and the possible extra keys are
 ## Quality test methods
 The key	**QUALITY_METHODS** should be a vector of strings of quality method checks for clustering.
 The methods impemented are:
-	* silhouette_index
-	* Dunn_index
-	* DavisBouldin_index
+* silhouette_index
+* Dunn_index
+* DavisBouldin_index
 
 '''
 QUALITY_METHODS=['silhouette_index','Dunn_index','DavisBouldin_index']

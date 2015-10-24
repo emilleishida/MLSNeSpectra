@@ -27,7 +27,7 @@ deepLearningSN <- function() {
                              training_frame = train.hex,      #training filename
                              activation = "Tanh",             #activation function
                              autoencoder=T, 
-                             hidden = c(100,30,8), 
+                             hidden = c(100,20,3), 
                              epochs=100,
                              ignore_const_cols = F)
   

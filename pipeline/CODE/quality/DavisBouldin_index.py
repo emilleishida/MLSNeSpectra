@@ -16,30 +16,38 @@ def quality(X, cluster_centers, cluster_labels, params):
     
         n_clusters = len(np.unique(cluster_labels))
 
-        # intra-cluster mean distance
+        # check n_clusters > 1
+        
+        if n_clusters <= 1:
+                #raise ValueError('Number of clusters should be > 1 for computing Davis Bouldin index')
+                print('\tERROR: Number of clusters should be > 1 for computing Davis Bouldin index')
+                return np.nan
+        else:
 
-        distances = pairwise_distances(X, metric=metric)
-        dX = np.array([_intra_cluster_distance(distances[i], cluster_labels, i)
-                       for i in range(n_clusters)])
+                # intra-cluster mean distance
 
-        # distance between cluster centers
+                distances = pairwise_distances(X, metric=metric)
+                dX = np.array([_intra_cluster_distance(distances[i],
+                               cluster_labels, i) for i in range(n_clusters)])
 
-        dist_centers = pairwise_distances(cluster_centers, metric=metric)
-
-        # S[i][j] = (dX[i] + dX[j])/d(ci,cj)
-
-        np.fill_diagonal(dist_centers, -1.0)  # guarantee Sii < 0
-        S = np.add.outer(dX, dX) / dist_centers
-
-        # sum max of every line
-
-        sum = 0.0
-        for i in range(n_clusters):
-                sum += max(S[i])
-
-        # normalize by # of clusters
-
-        return sum / n_clusters
+                # distance between cluster centers
+                
+                dist_centers = pairwise_distances(cluster_centers, metric=metric)
+                
+                # S[i][j] = (dX[i] + dX[j])/d(ci,cj)
+                
+                np.fill_diagonal(dist_centers, -1.0)  # guarantee Sii < 0
+                S = np.add.outer(dX, dX) / dist_centers
+                
+                # sum max of every line
+                
+                sum = 0.0
+                for i in range(n_clusters):
+                        sum += max(S[i])
+                        
+                # normalize by # of clusters
+                
+                return sum / n_clusters
     
 
 def _intra_cluster_distance(distances_row, labels, i):

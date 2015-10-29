@@ -46,6 +46,7 @@ REDUCTION_INFO	= info_dir + 'reduction' 	+ info_sufix
 CLUSTER_INFO	= info_dir + 'clustering'	+ info_sufix
 QUALITY_INFO	= info_dir + 'quality'		+ info_sufix
 PLOT_INFO	= info_dir + 'plot'		+ info_sufix
+PLOTSPEC_INFO	= info_dir + 'plot_spec'	+ info_sufix
 #############################
 #### CHECK FOR EXT FILES ####
 #############################
@@ -124,8 +125,9 @@ def do_quality():
 		else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
 		prt(QUALITY_INFO,CL_PROP,'w')
 		prt(QUALITY_INFO,'### QUALITIES USED ###','a')
+		prt(QUALITY_INFO,'INPUT_DATA = '+CL_DATA,'a')
 		for METHOD in QUALITY_METHODS:
-			print_info(METHOD,dict_clust,'',CL_DATA,QUALITY_INFO,'a')
+			print_info(METHOD,dict_clust,'','',QUALITY_INFO,'a')
 		prt(QUALITY_INFO,'\n\t-outputs:','a')
 		for METHOD in QUALITY_METHODS:
 			if METHOD!='':
@@ -150,3 +152,13 @@ def plot():
 	except NameError: CL_PROP=open(CLUSTER_INFO,'r').read()
 	else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
 	prt(PLOT_INFO,CL_PROP,'w')
+def plot_spec():
+	from ploting.plot_specs import plot_spectra
+	PLOT_NAME=plot_name(RED_TYPE,CL_TYPE,dict_red,dict_clust,'_specs'+PLOT_SPEC_EXT)
+	os.system('mkdir -p plots')
+	plot_spectra(READ(ORG_DATA),READ(LAB_DATA),PLOT_NAME)
+	try:
+		CLUSTERS_DATA_EXTERNAL
+	except NameError: CL_PROP=open(CLUSTER_INFO,'r').read()
+	else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
+	prt(PLOTSPEC_INFO,CL_PROP,'w')

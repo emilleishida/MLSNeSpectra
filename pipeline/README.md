@@ -68,6 +68,10 @@ To run just the ploting execute:
 
 	PLOT
 
+To run just the ploting of the spectra by gorups execute:
+
+	PLOT_SPECS
+
 Remeber, all cases are configured by:
 
 	config.py
@@ -97,8 +101,8 @@ put them in
 
 Please mind the name of your plots so you don't overwrite other peoples results.
 
-## Advanced plotting
-The default plotting results in a figure (.png) with all the PCs colored according to the clusters.
+## Advanced plotting of results
+The default plot of the results are in a figure (.png) with all the PCs colored according to the clusters.
 If you want to change the extension of the figure or the color arrangement,
 change the parameters in the config file (see HOW_TO_USE_CONFIG README).
 
@@ -118,3 +122,20 @@ You can also see them by executing
 
 	PLOT -h
 
+
+## Advanced plotting of spectra
+A plot of the orginial spectra by groups is also produced in a figure (.pdf).
+The main figure shows the mean value of the spectra of each cluster found.
+
+If you add the key -a , it will also produce a individual plot for each cluster with all the spectra and the mean value.
+In the default option of extension (.pdf), all plots are grouped in a single file with multiple pages.
+In other cases a extra file for each cluster will be created.
+
+The parameters for plotting the spectra are:
+
+	-w	(or --window	) : keep plot in interactive window, this will not save the output automaticaly
+	-a	(or --all_spec	) : plot all spectra
+
+You can also see them by executing
+
+	PLOT_SPECS -h

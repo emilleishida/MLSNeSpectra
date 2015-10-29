@@ -48,9 +48,10 @@ CLUSTERING_METHOD	= 'MeanShift'
 #####################################################################################
 '''
 CLUSTERING OUTPUT EXTENSIONS
-	extension of output plots produced by pylab
+	extension of plots of result and spectra produced by pylab
 '''
 PLOT_EXT	= '.png'
+PLOT_SPEC_EXT	= '.pdf'
 
 #####################################################################################
 '''

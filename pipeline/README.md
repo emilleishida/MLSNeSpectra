@@ -134,7 +134,7 @@ In other cases a extra file for each cluster will be created.
 The parameters for plotting the spectra are:
 
 	-w	(or --window	) : keep plot in interactive window, this will not save the output automaticaly
-	-a	(or --all_spec	) : plot all spectr
+	-a	(or --all_spec	) : plot all spectra
 
 You can also see them by executing
 

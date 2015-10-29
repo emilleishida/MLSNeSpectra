@@ -124,8 +124,9 @@ def do_quality():
 		else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
 		prt(QUALITY_INFO,CL_PROP,'w')
 		prt(QUALITY_INFO,'### QUALITIES USED ###','a')
+		prt(QUALITY_INFO,'INPUT_DATA = '+CL_DATA,'a')
 		for METHOD in QUALITY_METHODS:
-			print_info(METHOD,dict_clust,'',CL_DATA,QUALITY_INFO,'a')
+			print_info(METHOD,dict_clust,'','',QUALITY_INFO,'a')
 		prt(QUALITY_INFO,'\n\t-outputs:','a')
 		for METHOD in QUALITY_METHODS:
 			if METHOD!='':

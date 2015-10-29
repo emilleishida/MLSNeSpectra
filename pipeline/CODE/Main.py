@@ -64,6 +64,10 @@ try:
 	LABELS_DATA_EXTERNAL
 except NameError: LAB_DATA=CLUSTERS_LABEL_NAME
 else		: LAB_DATA=LABELS_DATA_EXTERNAL;print('\t- using external labels')
+try:
+	SPECTRAL_DATA_EXTERNAL
+except NameError: SPEC_DATA=ORG_DATA
+else		: SPEC_DATA=SPECTRAL_DATA_EXTERNAL;print('\t- using external spectral for plotting')
 	
 #############################
 #### REDUCTION PART	 ####
@@ -156,7 +160,7 @@ def plot_spec():
 	from ploting.plot_specs import plot_spectra
 	PLOT_NAME=plot_name(RED_TYPE,CL_TYPE,dict_red,dict_clust,'_specs'+PLOT_SPEC_EXT)
 	os.system('mkdir -p plots')
-	plot_spectra(READ(ORG_DATA),READ(LAB_DATA),PLOT_NAME)
+	plot_spectra(READ(SPEC_DATA),READ(LAB_DATA),PLOT_NAME)
 	try:
 		CLUSTERS_DATA_EXTERNAL
 	except NameError: CL_PROP=open(CLUSTER_INFO,'r').read()

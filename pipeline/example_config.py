@@ -84,3 +84,4 @@ PLOTTING INPUT DATA
 '''
 #CLUSTERS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
 #LABELS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
+#SPECTRAL_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'

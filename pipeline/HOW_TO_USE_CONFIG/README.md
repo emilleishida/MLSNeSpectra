@@ -113,7 +113,7 @@ Be aware that this data will also go into the plotting.
 
 	REDUCED_DATA_EXTERNAL		= 'path/reduced_data.dat'
 
-### External data for ploting
+### External data for ploting results
 Add this ONLY if you want to use a external data source of the clusters for the plotting,
 if you want to use the data from the pipeline leave it commented.
 
@@ -123,6 +123,12 @@ You can also add an external file with different label to set different colors
 to the reduced data. The default color scheme is according to each parent cluster.
 
 	LABELS_DATA_EXTERNAL		= 'path/external_labels.dat'
+
+### External data for ploting spectra
+Add this ONLY if you want to use a external data source of the sprectra for the plotting,
+if you want to use the data from the pipeline leave it commented.
+
+	SPECTRAL_DATA_EXTERNAL		= 'path/external_spectra.dat'
 
 ## Advanced plotting
 If you want other options, there are a few available using keys in the terminal when executing the **PLOT** and **PLOT_SPECS** commands.

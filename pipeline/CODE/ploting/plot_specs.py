@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 def plot_spectra(spec_data,label_data,out_name='plots/specs.pdf'):
+	if len(spec_data)!=len(label_data): print("**ERROR** : len(spec_data) =/= len(labels) \n\t probably the data for the plotting is masked but the data input for clustering is not\n");exit()
 	do_pdf=False
 	if out_name[len(out_name)-3:]=='pdf': do_pdf=True
 

@@ -8,6 +8,17 @@ ORG_DATA			= '../../../Dropbox/shared/coin_br/test_data/fake_2clust_2pcacomp.dat
 
 #####################################################################################
 '''
+Mask of data:
+	Used for the masking of the reducted data.
+	This way the PCs can be computed with the whole data sample,
+	but only the unmasked data will be analysed.
+	This mask will also be used in plotting the spectra.
+	If you want to use the data from the pipeline leave it commented.
+'''
+#MASK_DATA		= '../../../Dropbox/shared/coin_br/test_data/fake_2clust_2pca_mask.dat'
+
+#####################################################################################
+'''
 REDUCTION METHOD
 	possibilities:
 		-pca
@@ -84,3 +95,4 @@ PLOTTING INPUT DATA
 '''
 #CLUSTERS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
 #LABELS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
+#SPECTRAL_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'

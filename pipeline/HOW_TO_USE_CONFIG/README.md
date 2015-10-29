@@ -4,6 +4,15 @@ Used for the reduction, not needed if doing clusreing only
 
 	ORG_DATA	= 'path/data.dat'
 
+## Data Mask
+Used for the masking of the reducted data.
+This way the PCs can be computed with the whole data sample,
+but only the unmasked data will be analysed.
+This mask will also be used in plotting the spectra.
+If you want to use the data from the pipeline leave it commented.
+
+	MASK_DATA	= 'path/mask.dat'
+
 ## Reduction Method
 The key **REDUCTION_METHOD** should be a string with the method name.
 For each method you can add extra keys already defined by the method

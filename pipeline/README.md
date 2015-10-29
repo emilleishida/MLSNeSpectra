@@ -138,4 +138,4 @@ The parameters for plotting the spectra are:
 
 You can also see them by executing
 
-	PLOT -h
+	PLOT_SPECS -h

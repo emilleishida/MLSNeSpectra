@@ -45,7 +45,7 @@ MeanShift_quantile=    ...
 
 '''    
 CLUSTERING_METHOD    =    'KMeans'    
-KMeans_n_clusters    =    8
+KMeans_n_clusters    =    7
 KMeans_max_iter = 1000
 
 #####################################################################################    

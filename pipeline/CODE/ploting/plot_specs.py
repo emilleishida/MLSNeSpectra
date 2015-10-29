@@ -23,6 +23,7 @@ def plot_spectra(spec_data,label_data,out_name='plots/specs.pdf'):
 	if out_name[len(out_name)-3:]=='pdf': do_pdf=True
 
 	if do_pdf: pdf	= PdfPages(out_name)
+	ymin,ymax	= np.amin(spec_data) , np.amax(spec_data)
 	xvec		= range(len(spec_data[0]))
 	data_split	= [spec_data[label_data==n] for n in set(label_data)] 
 	colors		= ['r', 'g', 'b', 'y','c', 'm','k','.8']
@@ -31,6 +32,7 @@ def plot_spectra(spec_data,label_data,out_name='plots/specs.pdf'):
 
 	plt.figure(figsize=(16,12))
 	plt.xlim(min(xvec),max(xvec))
+	plt.ylim(ymin,ymax)
 	ind=0
 	for data in data_split:
 		ind+=1
@@ -51,6 +53,7 @@ def plot_spectra(spec_data,label_data,out_name='plots/specs.pdf'):
 			plt.figure(figsize=(16,12))
 			plt.title('Group '+str(ind))
 			plt.xlim(min(xvec),max(xvec))
+			plt.ylim(ymin,ymax)
 			for dat in data: plt.plot(xvec,dat,color=colors[ind-1],lw=.5)
 			mdata=np.mean(data,axis=0)
 			plt.plot(xvec,mdata,color='.0',lw=3)

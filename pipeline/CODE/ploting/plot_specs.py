@@ -27,8 +27,8 @@ def plot_spectra(spec_data,label_data,out_name='plots/specs.pdf'):
 	ymin,ymax	= np.amin(spec_data) , np.amax(spec_data)
 	xvec		= range(len(spec_data[0]))
 	data_split	= [spec_data[label_data==n] for n in set(label_data)] 
-	colors		= ['r', 'g', 'b', 'y','c', 'm','k','.8']
 
+	colors		= ['r', 'g', 'b', 'y','c', 'm','k','.8']
 	for n in range(len(set(label_data))/8): colors+=colors
 
 	plt.figure(figsize=(16,12))

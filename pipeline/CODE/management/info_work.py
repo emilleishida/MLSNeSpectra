@@ -12,7 +12,7 @@ def print_info(Method,DICT,HEAD,INPUT_DATA,OUT_NAME,typ='w'):
 	f=open(OUT_NAME,typ)
 	f.close()
 	prt(OUT_NAME,HEAD)
-	prt(OUT_NAME,'INPUT_DATA'+sep+INPUT_DATA)
+	if INPUT_DATA!='': prt(OUT_NAME,'INPUT_DATA'+sep+INPUT_DATA)
 	prt(OUT_NAME,'METHOD'+sep+Method)
 	for item in DICT:
 		prt(OUT_NAME,item+sep+str(DICT[item]))

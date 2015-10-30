@@ -16,8 +16,10 @@ def ERROR(message):
 	line+='\n'
 	print(line+out+line)
 	exit()
-def READ(NAME):
-	if os.path.isfile(NAME): return np.loadtxt(NAME)
+def READ(NAME,MASK=''):
+	if os.path.isfile(NAME):
+		if MASK==''	: return np.loadtxt(NAME)
+		else		: return np.loadtxt(NAME)[np.loadtxt(MASK)==1]
 	else: ERROR('file '+NAME+' does not exist!')
 
 print('''
@@ -46,9 +48,14 @@ REDUCTION_INFO	= info_dir + 'reduction' 	+ info_sufix
 CLUSTER_INFO	= info_dir + 'clustering'	+ info_sufix
 QUALITY_INFO	= info_dir + 'quality'		+ info_sufix
 PLOT_INFO	= info_dir + 'plot'		+ info_sufix
+PLOTSPEC_INFO	= info_dir + 'plot_spec'	+ info_sufix
 #############################
 #### CHECK FOR EXT FILES ####
 #############################
+try:
+	MASK_DATA
+except NameError: MASK=''
+else		: MASK=MASK_DATA
 try:
 	REDUCED_DATA_EXTERNAL
 except NameError: RED_DATA,RED_TYPE=RED_DATA_NAME,REDUCTION_METHOD
@@ -63,6 +70,10 @@ try:
 	LABELS_DATA_EXTERNAL
 except NameError: LAB_DATA=CLUSTERS_LABEL_NAME
 else		: LAB_DATA=LABELS_DATA_EXTERNAL;print('\t- using external labels')
+try:
+	SPECTRAL_DATA_EXTERNAL
+except NameError: SPEC_DATA=ORG_DATA
+else		: SPEC_DATA=SPECTRAL_DATA_EXTERNAL;print('\t- using external spectral for plotting')
 	
 #############################
 #### REDUCTION PART	 ####
@@ -91,7 +102,7 @@ def cluster():
 	else		: print ("CLUSTERS_DATA_EXTERNAL is defined, please check what you realy want to do!"); exit()
 	exec('from clustering.'+CLUSTERING_METHOD+' import clustering')
 	os.system('mkdir -p cl_data')
-	clusters,labels= clustering(READ(RED_DATA),dict_clust)
+	clusters,labels= clustering(READ(RED_DATA,MASK),dict_clust)
 	np.savetxt(CLUSTERS_DATA_NAME,clusters)
 	np.savetxt(CLUSTERS_LABEL_NAME,labels)
 	try:
@@ -124,8 +135,9 @@ def do_quality():
 		else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
 		prt(QUALITY_INFO,CL_PROP,'w')
 		prt(QUALITY_INFO,'### QUALITIES USED ###','a')
+		prt(QUALITY_INFO,'INPUT_DATA = '+CL_DATA,'a')
 		for METHOD in QUALITY_METHODS:
-			print_info(METHOD,dict_clust,'',CL_DATA,QUALITY_INFO,'a')
+			print_info(METHOD,dict_clust,'','',QUALITY_INFO,'a')
 		prt(QUALITY_INFO,'\n\t-outputs:','a')
 		for METHOD in QUALITY_METHODS:
 			if METHOD!='':
@@ -144,9 +156,19 @@ def plot():
 	from ploting.plot import plot_data
 	PLOT_NAME=plot_name(RED_TYPE,CL_TYPE,dict_red,dict_clust,PLOT_EXT)
 	os.system('mkdir -p plots')
-	plot_data(READ(RED_DATA).T,READ(CL_DATA).T,READ(LAB_DATA),PLOT_NAME)
+	plot_data(READ(RED_DATA,MASK).T,READ(CL_DATA).T,READ(LAB_DATA),PLOT_NAME)
 	try:
 		CLUSTERS_DATA_EXTERNAL
 	except NameError: CL_PROP=open(CLUSTER_INFO,'r').read()
 	else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
 	prt(PLOT_INFO,CL_PROP,'w')
+def plot_spec():
+	from ploting.plot_specs import plot_spectra
+	PLOT_NAME=plot_name(RED_TYPE,CL_TYPE,dict_red,dict_clust,'_specs'+PLOT_SPEC_EXT)
+	os.system('mkdir -p plots')
+	plot_spectra(READ(SPEC_DATA,MASK),READ(LAB_DATA),PLOT_NAME)
+	try:
+		CLUSTERS_DATA_EXTERNAL
+	except NameError: CL_PROP=open(CLUSTER_INFO,'r').read()
+	else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
+	prt(PLOTSPEC_INFO,CL_PROP,'w')

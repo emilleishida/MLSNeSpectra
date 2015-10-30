@@ -16,24 +16,32 @@ def quality(X, cluster_centers, cluster_labels, params):
     
         n_clusters = len(np.unique(cluster_labels))
 
-        # intra-cluster mean distance
+        # check n_clusters > 1
+        
+        if n_clusters <= 1:
+                # raise ValueError('Number of clusters should be > 1 for computing Dunn index')
+                print('\tERROR: Number of clusters should be > 1 for computing Dunn index')
+                return np.nan
+        else:
 
-        distances = pairwise_distances(X, metric=metric)
-        dX = np.array([_intra_cluster_distance(distances[i], cluster_labels, i)
-                       for i in range(n_clusters)])
+                # intra-cluster mean distance
 
-        # distance between cluster centers
+                distances = pairwise_distances(X, metric=metric)
+                dX = np.array([_intra_cluster_distance(distances[i],
+                               cluster_labels, i) for i in range(n_clusters)])
 
-        dist_centers = pairwise_distances(cluster_centers, metric=metric)
+                # distance between cluster centers
 
-        # S[i][j] = d(ci,cj)/max(dX)
+                dist_centers = pairwise_distances(cluster_centers, metric=metric)
 
-        np.fill_diagonal(dist_centers, np.inf)  # guarantee Sii bigger enough
-        S = dist_centers / np.amax(dX)
+                # S[i][j] = d(ci,cj)/max(dX)
 
-        # return min of S
+                np.fill_diagonal(dist_centers, np.inf)  # guarantee Sii bigger enough
+                S = dist_centers / np.amax(dX)
 
-        return np.amin(S)
+                # return min of S
+
+                return np.amin(S)
     
 
 def _intra_cluster_distance(distances_row, labels, i):

@@ -21,22 +21,20 @@ for item in dir(config_comparisson):
 		BASE_CONF += item+'='+str(temp)+'\n'
 
 Qmat=[]
-import Main
 for VAL,ind in zip(VAR_VALS,range(1,1+len(VAR_VALS))):
 	CASE_LINE="******************* CASE "+str(ind)+" *******************************************"
 	BORD_LINE=''
 	for x in CASE_LINE: BORD_LINE+='*'
-	print (BORD_LINE)
-	print (CASE_LINE)
-	print (BORD_LINE)
 	if isinstance(VAL, str): VAL='"'+str(VAL)+'"'
+	case,case_red='.case'+str(ind),''
 
+	os.system('rm -rf config.pyc')
 	fconf=open('config.py','w')
 	print(BASE_CONF+VAR_PAR+'='+VAL,file=fconf)
 	fconf.close()
+	import Main
 
-	case,case_red='.case'+str(ind),''
-	os.system('rm -rf config.pyc')
+	print (BORD_LINE);print (CASE_LINE);print (BORD_LINE)
 	reload(Main)
 	from Main import reduc,cluster,do_quality,plot,plot_spec
 	if VAR_TYPE=='REDUCTION':

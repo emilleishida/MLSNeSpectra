@@ -1,0 +1,38 @@
+### REDUCTION USED ###
+INPUT_DATA = /home/vinicius/MLSNeSpectra/python/SN_simulator/simulated_data/0/derivatives.dat
+METHOD = pca
+n_components = 4
+
+### CLUSTERING USED ###
+INPUT_DATA = red_data/reduced_data_pca.dat
+METHOD = MeanShift
+quantile = 0.5
+cluster_all = True
+
+	-outputs:
+n_clusters = 1
+
+### QUALITIES USED ###
+INPUT_DATA = cl_data/clustering_MeanShift.dat
+
+METHOD = silhouette_index
+quantile = 0.5
+cluster_all = True
+
+METHOD = Dunn_index
+quantile = 0.5
+cluster_all = True
+
+METHOD = DavisBouldin_index
+quantile = 0.5
+cluster_all = True
+
+METHOD = vrc
+quantile = 0.5
+cluster_all = True
+
+	-outputs:
+quality from silhouette_index = nan
+quality from Dunn_index = nan
+quality from DavisBouldin_index = nan
+quality from vrc = nan

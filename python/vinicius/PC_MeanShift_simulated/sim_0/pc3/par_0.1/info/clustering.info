@@ -1,0 +1,13 @@
+### REDUCTION USED ###
+INPUT_DATA = /home/vinicius/MLSNeSpectra/python/SN_simulator/simulated_data/0/derivatives.dat
+METHOD = pca
+n_components = 3
+
+### CLUSTERING USED ###
+INPUT_DATA = red_data/reduced_data_pca.dat
+METHOD = MeanShift
+quantile = 0.1
+cluster_all = True
+
+	-outputs:
+n_clusters = 5

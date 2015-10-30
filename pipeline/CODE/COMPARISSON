@@ -25,12 +25,14 @@ for VAL,ind in zip(VAR_VALS,range(1,1+len(VAR_VALS))):
 	CASE_LINE="******************* CASE "+str(ind)+" *******************************************"
 	BORD_LINE=''
 	for x in CASE_LINE: BORD_LINE+='*'
-	if isinstance(VAL, str): VAL='"'+str(VAL)+'"'
+	if isinstance(VAL, str)	: VAL='"'+str(VAL)+'"'
+	else 			: VAL=str(VAL)
 	case,case_red='.case'+str(ind),''
 
 	os.system('rm -rf config.pyc')
 	fconf=open('config.py','w')
 	print(BASE_CONF+VAR_PAR+'='+VAL,file=fconf)
+	print(BASE_CONF+VAR_PAR+'='+VAL)
 	fconf.close()
 	import Main
 
@@ -46,15 +48,15 @@ for VAL,ind in zip(VAR_VALS,range(1,1+len(VAR_VALS))):
 	else: print('\t**ERROR** - VAR_TYPE is neither REDUCTION nor CLUSTERING');exit()
 
 	print ("\t** CLUSTERING **\n")
-	cluster(case_red,case)
+	Qvec=[len(set(cluster(case_red,case)[1]))]
 	print ('\t\t[ok]\n')
 
 	print ("\t** QUALITY CHECK **\n")
-	Qmat.append(do_quality(case_red,case))
+	Qmat.append(Qvec+do_quality(case_red,case))
 	print ('\t\t[ok]\n')
 
 fqual=open('quality_comparisson.dat','w')
-print('#',end='',file=fqual)
+print('#\tn_clust',end='',file=fqual)
 for qtest in QUALITY_METHODS:	print('\t',qtest,end='',file=fqual)
 print('',file=fqual)
 for Qvec in Qmat:

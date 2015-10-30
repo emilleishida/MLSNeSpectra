@@ -8,7 +8,10 @@ import config
 reload(config)
 from config import *
 
+import management.update_dict
+reload(management.update_dict)
 from management.update_dict import update_dict
+
 from management.name_files import create_name,plot_name
 from management.info_work import prt,print_info,read_info
 
@@ -115,6 +118,7 @@ def cluster(case_in='',case_out=''):
 	print_info(CLUSTERING_METHOD,dict_clust,'### CLUSTERING USED ###',RED_DATA,CLUSTER_INFO+case_out,'a')
 	prt(CLUSTER_INFO+case_out,'\n\t-outputs:','a')
 	prt(CLUSTER_INFO+case_out,'n_clusters = '+str(clusters.shape[0]),'a')
+	return clusters,labels
 	
 #############################
 #### QUALITY CHECK PART	 ####
@@ -149,7 +153,7 @@ def do_quality(case_red='',case=''):
 				prt(QUALITY_INFO+case,'quality from '+METHOD+' = '+str(q),'a')
 				used=True
 				Qvec.append(q)
-		if used: return np.array(Qvec)
+		if used: return Qvec
 		else:
 			print('\t<no quality checks>')
 			prt(QUALITY_INFO+case,'\t<no quality checks>')

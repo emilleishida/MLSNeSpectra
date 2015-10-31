@@ -1,0 +1,43 @@
+### REDUCTION USED ###
+INPUT_DATA = /temp/hcamacho/Projects/coin2015/MLSNeSpectra/python/hugo/PC_AgglomerativeClustering/sim2/../../../SN_simulator/simulated_data/2/derivatives.dat
+METHOD = pca
+n_components = 2
+
+### CLUSTERING USED ###
+INPUT_DATA = red_data/reduced_data_pca.dat
+METHOD = AgglomerativeClustering
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+	-outputs:
+n_clusters = 6
+
+### QUALITIES USED ###
+INPUT_DATA = cl_data/clustering_AgglomerativeClustering.dat
+
+METHOD = silhouette_index
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+METHOD = Dunn_index
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+METHOD = DavisBouldin_index
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+METHOD = vrc
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+	-outputs:
+quality from silhouette_index = 0.354848574987
+quality from Dunn_index = 1.21494852099
+quality from DavisBouldin_index = 1.21272617187
+quality from vrc = 5386.54532869

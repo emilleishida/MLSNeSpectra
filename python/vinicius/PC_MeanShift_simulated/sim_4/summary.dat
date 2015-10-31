@@ -1,0 +1,39 @@
+PCS 	 groups 	 quantile  	 silhouette 	 dunn 	 davis 	 vrc 
+2 	 6		0.1 	 0.298400372269 	 0.588471048863 	 2.12824970159 	 2123.82533019
+2 	 1		0.2 	 nan 	 nan 	 nan 	 nan
+2 	 1		0.3 	 nan 	 nan 	 nan 	 nan
+2 	 1		0.4 	 nan 	 nan 	 nan 	 nan
+2 	 1		0.5 	 nan 	 nan 	 nan 	 nan
+2 	 1		0.6 	 nan 	 nan 	 nan 	 nan
+2 	 1		0.7 	 nan 	 nan 	 nan 	 nan
+2 	 1		0.8 	 nan 	 nan 	 nan 	 nan
+2 	 1		0.9 	 nan 	 nan 	 nan 	 nan
+2 	 1		1.0 	 nan 	 nan 	 nan 	 nan
+3 	 7		0.1 	 0.312216090978 	 0.708434348777 	 1.84496409413 	 2938.77727312
+3 	 2		0.2 	 0.302394280425 	 0.95186071561 	 1.98910861987 	 827.667288788
+3 	 1		0.3 	 nan 	 nan 	 nan 	 nan
+3 	 1		0.4 	 nan 	 nan 	 nan 	 nan
+3 	 1		0.5 	 nan 	 nan 	 nan 	 nan
+3 	 1		0.6 	 nan 	 nan 	 nan 	 nan
+3 	 1		0.7 	 nan 	 nan 	 nan 	 nan
+3 	 1		0.8 	 nan 	 nan 	 nan 	 nan
+3 	 1		0.9 	 nan 	 nan 	 nan 	 nan
+3 	 1		1.0 	 nan 	 nan 	 nan 	 nan
+4 	 4		0.1 	 0.324550623043 	 1.04948619285 	 1.66904247058 	 1817.0414724
+4 	 1		0.2 	 nan 	 nan 	 nan 	 nan
+4 	 1		0.3 	 nan 	 nan 	 nan 	 nan
+4 	 1		0.4 	 nan 	 nan 	 nan 	 nan
+4 	 1		0.5 	 nan 	 nan 	 nan 	 nan
+4 	 1		0.6 	 nan 	 nan 	 nan 	 nan
+4 	 1		0.7 	 nan 	 nan 	 nan 	 nan
+4 	 1		0.8 	 nan 	 nan 	 nan 	 nan
+4 	 1		0.9 	 nan 	 nan 	 nan 	 nan
+4 	 1		1.0 	 nan 	 nan 	 nan 	 nan
+
+
+*** Final results ****
+
+Silhouette 	0.324550623043 	 4PC_0.1q4g
+Dunn 	1.04948619285 	 4PC_0.1q4g
+Davis  	1.66904247058 	 4PC_0.1q4g
+vrc 	827.667288788 	 3PC_0.2q2g

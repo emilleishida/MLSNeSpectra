@@ -1,0 +1,11 @@
+### REDUCTION USED ###
+from external data = /home/vinicius/MLSNeSpectra/R/out_DeepLearning/out_120,100,90,50,30,20,2,20,30,50,90,100,120_dl.dat
+### CLUSTERING USED ###
+INPUT_DATA = /home/vinicius/MLSNeSpectra/R/out_DeepLearning/out_120,100,90,50,30,20,2,20,30,50,90,100,120_dl.dat
+METHOD = MeanShift
+quantile = 0.06
+cluster_all = True
+
+	-outputs:
+n_clusters = 14
+

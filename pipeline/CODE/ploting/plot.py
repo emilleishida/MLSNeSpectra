@@ -22,8 +22,11 @@ vspace	= float(vspace)
 
 
 import matplotlib
-if in_window==False: matplotlib.use('Agg')
+#if in_window==False: matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+color_base	= ['r', 'g', 'b', 'y','c', 'm','k','.8']
+for n in range(5): color_base+=color_base
 
 def ind(i):
 	if use_diag: return i
@@ -34,12 +37,28 @@ def TAM(vec):
 def crop(data,i,j,plt_inds):
 	iplt,jplt=plt_inds[ind(i)],plt_inds[j]
 	return np.array([data[jplt],data[iplt]])
-def add_labels(plts,Nplt,plt_inds):
-	if Nplt>1:	plts[0][Nplt-1].text(.1,.1,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=plts[0][Nplt-1].transAxes)
-	else:		plts.		text(.8,.85,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=plts.transAxes)
+def add_labels(plts,Nplt,ls,lc):
+	PLT,xl,yl = plts, .8, .85
+	if Nplt>1:	PLT,xl,yl = plts[0][Nplt-1], .1,.4
+	G_space='\n-----------------------------'
+	for g in ls: G_space+='\n'
+	Ng=len(ls)
+
+	fig	= plt.gcf()
+	t	= PLT.transAxes
+	text	= PLT.text(xl,yl,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD+G_space,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=PLT.transAxes)
+	text.draw(fig.canvas.get_renderer())
+	ex = text.get_window_extent()
+	t	= matplotlib.transforms.offset_copy(text._transform, y=ex.height*((Ng-1.)/(Ng+5.)), units='dots')
+	for s,c in zip(ls,lc):
+		text = PLT.text(xl,yl," "+s+" ",color=c, transform=t)
+	        text.draw(fig.canvas.get_renderer())
+	        ex = text.get_window_extent()
+	        t = matplotlib.transforms.offset_copy(text._transform, y=-ex.height, units='dots')
 def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	colors	= 'r'
-	if do_colors and fit_all: colors = label_data.astype(np.float)
+	if do_colors and fit_all: colors = [color_base[int(i)] for i in label_data.astype(np.float)]
+	group_text=['Group '+str(int(i)+1) for i in set(label_data)]
 
 	Nplt=TAM(red_data)
 	plt_inds=range(Nplt+1)
@@ -63,9 +82,11 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 			cl_dat	= crop(cl_data,i,j,plt_inds)
 			if j>i: PLT.axis('off')
 			else:
-				PLT.scatter(dat[0],dat[1],c=colors,marker='o',label='data',lw=0,s=8)
-				if fit_all: PLT.scatter(cl_dat[0],cl_dat[1],c='m',label='cluster centers',marker='x')
-	if do_label: add_labels(plts,Nplt,plt_inds)
+				PLT.scatter(dat[0],dat[1],c=colors,edgecolor=colors,marker='o',label='data',lw=0,s=8)
+				if fit_all:
+					PLT.scatter(cl_dat[0],cl_dat[1],c='.0',linewidth='2',marker='x',label='cluster centers')
+					PLT.scatter(cl_dat[0],cl_dat[1],c='.5',linewidth='.7',marker='x',s=10)
+	if do_label:	add_labels(plts,Nplt,group_text,color_base[:len(group_text)])
 	for i in range(Nplt):	
 		PLTX,PLTY=plts,plts
 		if Nplt>1: PLTX,PLTY=plts[ Nplt-1 ][ i ],plts[ i      ][ 0 ]

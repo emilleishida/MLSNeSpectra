@@ -4,8 +4,14 @@ import os
 import sys
 sys.path.append(os.path.abspath(''))
 
+import config
+reload(config)
 from config import *
+
+import management.update_dict
+reload(management.update_dict)
 from management.update_dict import update_dict
+
 from management.name_files import create_name,plot_name
 from management.info_work import prt,print_info,read_info
 
@@ -27,7 +33,6 @@ print('''
 ########## BEGINNING HMV PIPELINE ##############
 ################################################
 ''')
-
 #############################
 #### UPDATE DICTS AND	 ####
 #### CREATE FILE NAMES	 ####
@@ -78,7 +83,7 @@ else		: SPEC_DATA=SPECTRAL_DATA_EXTERNAL;print('\t- using external spectral for 
 #############################
 #### REDUCTION PART	 ####
 #############################
-def reduc():
+def reduc(case=''):
 	try:
 		REDUCED_DATA_EXTERNAL
 	except NameError: pass
@@ -89,41 +94,42 @@ def reduc():
 		ORG_DATA
 	except NameError: ERROR('ORG_DATA key missing!')
 	else:	
-		np.savetxt(RED_DATA_NAME,reduction(READ(ORG_DATA),dict_red))
-		print_info(REDUCTION_METHOD,dict_red,'### REDUCTION USED ###',ORG_DATA,REDUCTION_INFO)
+		np.savetxt(RED_DATA_NAME+case,reduction(READ(ORG_DATA),dict_red))
+		print_info(REDUCTION_METHOD,dict_red,'### REDUCTION USED ###',ORG_DATA,REDUCTION_INFO+case)
 
 #############################
 #### CLUSTERING PART	 ####
 #############################
-def cluster():
+def cluster(case_in='',case_out=''):
 	try:
 		CLUSTERS_DATA_EXTERNAL
 	except NameError: pass
 	else		: print ("CLUSTERS_DATA_EXTERNAL is defined, please check what you realy want to do!"); exit()
 	exec('from clustering.'+CLUSTERING_METHOD+' import clustering')
 	os.system('mkdir -p cl_data')
-	clusters,labels= clustering(READ(RED_DATA,MASK),dict_clust)
-	np.savetxt(CLUSTERS_DATA_NAME,clusters)
-	np.savetxt(CLUSTERS_LABEL_NAME,labels)
+	clusters,labels= clustering(READ(RED_DATA+case_in,MASK),dict_clust)
+	np.savetxt(CLUSTERS_DATA_NAME+case_out,clusters)
+	np.savetxt(CLUSTERS_LABEL_NAME+case_out,labels)
 	try:
 		REDUCED_DATA_EXTERNAL
-	except NameError: RED_PROP=open(REDUCTION_INFO,'r').read()
+	except NameError: RED_PROP=open(REDUCTION_INFO+case_in,'r').read()
 	else		: RED_PROP='### REDUCTION USED ###\nfrom external data = '+REDUCED_DATA_EXTERNAL
-	prt(CLUSTER_INFO,RED_PROP,'w')
-	print_info(CLUSTERING_METHOD,dict_clust,'### CLUSTERING USED ###',RED_DATA,CLUSTER_INFO,'a')
-	prt(CLUSTER_INFO,'\n\t-outputs:','a')
-	prt(CLUSTER_INFO,'n_clusters = '+str(clusters.shape[0]),'a')
+	prt(CLUSTER_INFO+case_out,RED_PROP,'w')
+	print_info(CLUSTERING_METHOD,dict_clust,'### CLUSTERING USED ###',RED_DATA,CLUSTER_INFO+case_out,'a')
+	prt(CLUSTER_INFO+case_out,'\n\t-outputs:','a')
+	prt(CLUSTER_INFO+case_out,'n_clusters = '+str(clusters.shape[0]),'a')
+	return clusters,labels
 	
 #############################
 #### QUALITY CHECK PART	 ####
 #############################
-def check_quality(METHOD):
+def check_quality(METHOD,case_red='',case=''):
 	exec('from management.params_quality import '+METHOD+'_dict as dict_qual')
 	update_dict(dict_qual,METHOD)
 	exec ('from quality.'+METHOD+' import quality')
-	q=quality(READ(RED_DATA),READ(CL_DATA),READ(LAB_DATA),dict_qual)
+	q=quality(READ(RED_DATA+case_red),READ(CL_DATA+case),READ(LAB_DATA+case),dict_qual)
 	return q
-def do_quality():
+def do_quality(case_red='',case=''):
 	try:
 		QUALITY_METHODS
 	except NameError: ERROR('QUALITY_METHODS key missing!')
@@ -131,23 +137,26 @@ def do_quality():
 		used=False
 		try:
 			CLUSTERS_DATA_EXTERNAL
-		except NameError: CL_PROP=open(CLUSTER_INFO,'r').read()
+		except NameError: CL_PROP=open(CLUSTER_INFO+case,'r').read()
 		else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
-		prt(QUALITY_INFO,CL_PROP,'w')
-		prt(QUALITY_INFO,'### QUALITIES USED ###','a')
-		prt(QUALITY_INFO,'INPUT_DATA = '+CL_DATA,'a')
+		prt(QUALITY_INFO+case,CL_PROP,'w')
+		prt(QUALITY_INFO+case,'### QUALITIES USED ###','a')
+		prt(QUALITY_INFO+case,'INPUT_DATA = '+CL_DATA,'a')
 		for METHOD in QUALITY_METHODS:
-			print_info(METHOD,dict_clust,'','',QUALITY_INFO,'a')
-		prt(QUALITY_INFO,'\n\t-outputs:','a')
+			print_info(METHOD,dict_clust,'','',QUALITY_INFO+case,'a')
+		prt(QUALITY_INFO+case,'\n\t-outputs:','a')
+		Qvec=[]
 		for METHOD in QUALITY_METHODS:
 			if METHOD!='':
-				q=check_quality(METHOD)
+				q=check_quality(METHOD,case_red,case)
 				print('\tquality from',METHOD,':',q,'\n')
-				prt(QUALITY_INFO,'quality from '+METHOD+' = '+str(q),'a')
+				prt(QUALITY_INFO+case,'quality from '+METHOD+' = '+str(q),'a')
 				used=True
-		if used==False:
+				Qvec.append(q)
+		if used: return Qvec
+		else:
 			print('\t<no quality checks>')
-			prt(QUALITY_INFO,'\t<no quality checks>')
+			prt(QUALITY_INFO+case,'\t<no quality checks>')
 
 #############################
 #### PLOTTIING PART	 ####

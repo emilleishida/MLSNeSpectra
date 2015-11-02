@@ -1,0 +1,4 @@
+### REDUCTION USED ###
+INPUT_DATA = /temp/hcamacho/Projects/coin2015/MLSNeSpectra/python/hugo/PC_AgglomerativeClustering/sim4/../../../SN_simulator/simulated_data/4/derivatives.dat
+METHOD = pca
+n_components = 4

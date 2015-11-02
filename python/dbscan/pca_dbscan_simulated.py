@@ -6,11 +6,11 @@ from sklearn.decomposition.pca import PCA
 import matplotlib.pyplot as plt
 
 stages = [0,1,2,3,4,5,6]
-eps_range = numpy.arange(0.1,5,0.1)
+eps_range = numpy.arange(0.01,2,0.01)
 
 # minimum number of points that must be contained in a cluster
 min_samples = 2
-n_pca_components = 5
+n_pca_components = 2
 
 for stage in stages:
     print("Processing stage %i ..." % stage)

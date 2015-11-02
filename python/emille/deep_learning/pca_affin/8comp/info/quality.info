@@ -1,0 +1,50 @@
+### REDUCTION USED ###
+from external data = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/R/out_DeepLearning/out_120,100,90,50,30,20,8,20,30,50,90,100,120_dl.dat
+### CLUSTERING USED ###
+INPUT_DATA = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/R/out_DeepLearning/out_120,100,90,50,30,20,8,20,30,50,90,100,120_dl.dat
+METHOD = AffinityPropagation
+affinity = euclidean
+max_iter = 200
+convergence_iter = 200
+preference = None
+damping = 0.5
+
+	-outputs:
+n_clusters = 40
+
+### QUALITIES USED ###
+INPUT_DATA = cl_data/clustering_AffinityPropagation.dat
+
+METHOD = silhouette_index
+affinity = euclidean
+max_iter = 200
+convergence_iter = 200
+preference = None
+damping = 0.5
+
+METHOD = Dunn_index
+affinity = euclidean
+max_iter = 200
+convergence_iter = 200
+preference = None
+damping = 0.5
+
+METHOD = DavisBouldin_index
+affinity = euclidean
+max_iter = 200
+convergence_iter = 200
+preference = None
+damping = 0.5
+
+METHOD = vrc
+affinity = euclidean
+max_iter = 200
+convergence_iter = 200
+preference = None
+damping = 0.5
+
+	-outputs:
+quality from silhouette_index = -0.297924037704
+quality from Dunn_index = 0.127984486338
+quality from DavisBouldin_index = 6.18580968733
+quality from vrc = 1825.73434985

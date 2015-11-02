@@ -1,0 +1,43 @@
+### REDUCTION USED ###
+INPUT_DATA = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/SN_simulator/simulated_data/1/derivatives.dat
+METHOD = pca
+n_components = 2
+
+### CLUSTERING USED ###
+INPUT_DATA = red_data/reduced_data_pca.dat
+METHOD = AgglomerativeClustering
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+	-outputs:
+n_clusters = 6
+
+### QUALITIES USED ###
+INPUT_DATA = cl_data/clustering_AgglomerativeClustering.dat
+
+METHOD = silhouette_index
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+METHOD = Dunn_index
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+METHOD = DavisBouldin_index
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+METHOD = vrc
+affinity = euclidean
+linkage = ward
+n_clusters = 6
+
+	-outputs:
+quality from silhouette_index = 0.343227624156
+quality from Dunn_index = 1.30067636257
+quality from DavisBouldin_index = 1.14267934356
+quality from vrc = 7803.61432731

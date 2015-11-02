@@ -1,0 +1,4 @@
+### REDUCTION USED ###
+INPUT_DATA = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/SN_simulator/simulated_data/5/derivatives.dat
+METHOD = pca
+n_components = 2

@@ -1,0 +1,40 @@
+### REDUCTION USED ###
+from external data = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/R/out_DeepLearning/out_120,100,90,50,30,20,7,20,30,50,90,100,120_dl.dat
+### CLUSTERING USED ###
+INPUT_DATA = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/R/out_DeepLearning/out_120,100,90,50,30,20,7,20,30,50,90,100,120_dl.dat
+METHOD = AgglomerativeClustering
+affinity = euclidean
+linkage = ward
+n_clusters = 5
+
+	-outputs:
+n_clusters = 5
+
+### QUALITIES USED ###
+INPUT_DATA = cl_data/clustering_AgglomerativeClustering.dat
+
+METHOD = silhouette_index
+affinity = euclidean
+linkage = ward
+n_clusters = 5
+
+METHOD = Dunn_index
+affinity = euclidean
+linkage = ward
+n_clusters = 5
+
+METHOD = DavisBouldin_index
+affinity = euclidean
+linkage = ward
+n_clusters = 5
+
+METHOD = vrc
+affinity = euclidean
+linkage = ward
+n_clusters = 5
+
+	-outputs:
+quality from silhouette_index = -0.0261879370532
+quality from Dunn_index = 0.31079377051
+quality from DavisBouldin_index = 4.8544556372
+quality from vrc = 1677.57097086

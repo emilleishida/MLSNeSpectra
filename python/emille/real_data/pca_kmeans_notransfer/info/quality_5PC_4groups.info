@@ -1,0 +1,48 @@
+### REDUCTION USED ###
+INPUT_DATA = ../type_Ia_max/data_Ia_max.dat
+METHOD = pca
+n_components = 5
+
+### CLUSTERING USED ###
+INPUT_DATA = red_data/reduced_data_pca.dat
+METHOD = KMeans
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 4
+
+	-outputs:
+n_clusters = 4
+
+### QUALITIES USED ###
+INPUT_DATA = cl_data/clustering_KMeans.dat
+
+METHOD = silhouette_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 4
+
+METHOD = Dunn_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 4
+
+METHOD = DavisBouldin_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 4
+
+METHOD = vrc
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 4
+
+	-outputs:
+quality from silhouette_index = 0.241031197638
+quality from Dunn_index = 0.644729540355
+quality from DavisBouldin_index = 2.00788043399
+quality from vrc = 1163.32782759

@@ -1,0 +1,4 @@
+### REDUCTION USED ###
+INPUT_DATA = ../type_Ia_max/data_Ia_max.dat
+METHOD = pca
+n_components = 9

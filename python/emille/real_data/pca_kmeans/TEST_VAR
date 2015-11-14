@@ -3,7 +3,7 @@
 #PARAMS='0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9'
 PARAMS='2 3 4 5 6 7 8 9'
 #PARS='2 3 4 5 6 7 8 9'
-PARS='8 9'
+PARS='2 3 4 5 6 7 8 9'
 
 for COMP in $PARS
 do
@@ -104,10 +104,18 @@ PLOTTING INPUT DATA
 
 echo "$CONF" > config.py
 
-ALL
+REDUCTION
+CLUSTERING
+QUALITY
+PLOT
+PLOT_SPECS -a
+
 mv  info/quality.info info/quality_"$COMP"PC_"$PARAM"groups.info
 mv plots/plot_pca_KMeans.png plots/plot_pca_KMeans_"$COMP"PC_"$PARAM"groups.png
 mv plots/plot_pca_KMeans_specs.pdf plots/plot_pca_KMeans_specs_"$COMP"PC_"$PARAM"groups.pdf
+mv red_data/reduced_data_pca.dat red_data/reduced_data_pca_"$COMP"PC_"$PARAM"groups.dat
+mv cl_data/clustering_KMeans.dat cl_data/clustering_KMeans_"$COMP"PC_"$PARAM"groups.dat
+mv cl_data/clustering_KMeans_label.dat cl_data/clustering_KMeans_label_"$COMP"PC_"$PARAM"groups.dat
 
 done
 

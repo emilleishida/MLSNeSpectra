@@ -88,7 +88,7 @@ CLUSTERING INPUT DATA
 '''
    
 #MASK_DATA   = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/data_all_types/labels.dat'
-#SPECTRAL_DATA_EXTERNAL      = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/data_all_types/fluxes.dat'
+SPECTRAL_DATA_EXTERNAL      = '../type_Ia_max/fluxes_Ia_max.dat'
 
 #####################################################################################
 '''

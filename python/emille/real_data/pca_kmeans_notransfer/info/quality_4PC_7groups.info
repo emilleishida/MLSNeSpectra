@@ -42,7 +42,7 @@ tol = 0.0001
 n_clusters = 7
 
 	-outputs:
-quality from silhouette_index = 0.282989768418
-quality from Dunn_index = 0.950278030248
-quality from DavisBouldin_index = 1.48991695281
-quality from vrc = 1858.24324683
+quality from silhouette_index = 0.286000542596
+quality from Dunn_index = 0.938454837414
+quality from DavisBouldin_index = 1.48984657292
+quality from vrc = 1907.30434646

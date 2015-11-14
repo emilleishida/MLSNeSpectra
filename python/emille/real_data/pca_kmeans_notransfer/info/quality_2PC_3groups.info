@@ -44,5 +44,5 @@ n_clusters = 3
 	-outputs:
 quality from silhouette_index = 0.375656305196
 quality from Dunn_index = 1.66031521918
-quality from DavisBouldin_index = 1.01215014203
+quality from DavisBouldin_index = 1.01690902275
 quality from vrc = 1656.89695031

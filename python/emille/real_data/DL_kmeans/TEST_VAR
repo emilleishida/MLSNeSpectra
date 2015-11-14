@@ -108,11 +108,14 @@ echo "$CONF" > config.py
 CLUSTERING
 QUALITY
 PLOT
-PLOT_SPECS
+PLOT_SPECS -a
 
-mv  info/quality.info info/quality_"$COMP"comp_"$PARAM"groups.info
-mv plots/plot_EXT_KMeans.png plots/plot_DL_KMeans_"$COMP"comp_"$PARAM"groups.png
-mv plots/plot_EXT_KMeans_specs.pdf plots/plot_DL_KMeans_specs_"$COMP"comp_"$PARAM"groups.pdf
+mv  info/quality.info info/quality_"$COMP"PC_"$PARAM"groups.info
+mv plots/plot_EXT_KMeans.png plots/plot_EXT_KMeans_"$COMP"PC_"$PARAM"groups.png
+mv plots/plot_EXT_KMeans_specs.pdf plots/plot_EXT_KMeans_specs_"$COMP"PC_"$PARAM"groups.pdf
+mv red_data/reduced_data_EXT.dat red_data/reduced_data_EXT_"$COMP"PC_"$PARAM"groups.dat
+mv cl_data/clustering_KMeans.dat cl_data/clustering_KMeans_"$COMP"PC_"$PARAM"groups.dat
+mv cl_data/clustering_KMeans_label.dat cl_data/clustering_KMeans_label_"$COMP"PC_"$PARAM"groups.dat
 
 done
 

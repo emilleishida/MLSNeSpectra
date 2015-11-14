@@ -6,12 +6,10 @@ n_components = 5
 ### CLUSTERING USED ###
 INPUT_DATA = red_data/reduced_data_pca.dat
 METHOD = KMeans
-n_jobs = 1
-n_clusters = 2
-max_iter = 300
 init = k-means++
+n_jobs = 1
 tol = 0.0001
-n_init  = 10
+n_clusters = 2
 
 	-outputs:
 n_clusters = 2
@@ -20,39 +18,31 @@ n_clusters = 2
 INPUT_DATA = cl_data/clustering_KMeans.dat
 
 METHOD = silhouette_index
-n_jobs = 1
-n_clusters = 2
-max_iter = 300
 init = k-means++
+n_jobs = 1
 tol = 0.0001
-n_init  = 10
+n_clusters = 2
 
 METHOD = Dunn_index
-n_jobs = 1
-n_clusters = 2
-max_iter = 300
 init = k-means++
+n_jobs = 1
 tol = 0.0001
-n_init  = 10
+n_clusters = 2
 
 METHOD = DavisBouldin_index
-n_jobs = 1
-n_clusters = 2
-max_iter = 300
 init = k-means++
+n_jobs = 1
 tol = 0.0001
-n_init  = 10
+n_clusters = 2
 
 METHOD = vrc
-n_jobs = 1
-n_clusters = 2
-max_iter = 300
 init = k-means++
+n_jobs = 1
 tol = 0.0001
-n_init  = 10
+n_clusters = 2
 
 	-outputs:
-quality from silhouette_index = 0.00220626429913
-quality from Dunn_index = 0.335863646275
-quality from DavisBouldin_index = 5.32015310847
-quality from vrc = 2580.58486809
+quality from silhouette_index = 0.00166308486925
+quality from Dunn_index = 0.339714995595
+quality from DavisBouldin_index = 5.3148944712
+quality from vrc = 2573.48216498

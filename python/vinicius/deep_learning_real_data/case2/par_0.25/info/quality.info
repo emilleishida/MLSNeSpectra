@@ -29,7 +29,3 @@ quantile = 0.25
 cluster_all = True
 
 	-outputs:
-quality from silhouette_index = -0.287694671831
-quality from Dunn_index = 0.298021677802
-quality from DavisBouldin_index = 4.95969027444
-quality from vrc = 2486.60059921

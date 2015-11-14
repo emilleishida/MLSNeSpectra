@@ -1,4 +1,0 @@
-### REDUCTION USED ###
-INPUT_DATA = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/data_all_types/derivatives.dat
-METHOD = pca
-n_components = 9

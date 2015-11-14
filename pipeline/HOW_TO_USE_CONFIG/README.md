@@ -142,3 +142,29 @@ if you want to use the data from the pipeline leave it commented.
 ## Advanced plotting
 If you want other options, there are a few available using keys in the terminal when executing the **PLOT** and **PLOT_SPECS** commands.
 Check the main README for more information.
+
+# Advanced Use
+This part is of interest only if you want to make comparissons among different configurations.
+It concerns the config_comparisson.py file.
+
+This config file should contail all the information necessary for the config.py file,
+plus these extra keys:
+
+## Var Type
+This key says if the variation of parameter is on the reduction part or on the clustering part.
+
+	VAR_TYPE	= 'CLUSTERING' or 'REDUCTION'
+
+## Var Par
+This key must have the name of the parameter that is being variated.
+It can be the reduction/clustering method or one of the reduction/clustering parameters.
+
+	VAR_PAR	= 'REDUCTION_METHOD' or 'CLUSTERING_METHOD' or 'MeanShift_quantile' or ...
+
+## Var Values
+This key must have an array with the values of the parameter that is being variated.
+If the parameter is a number it must be a list of numbers,
+if the parameter is a string it must be a list of string,
+if the parameter is a vector it must be a list of vector.
+
+	VAR_VALS	= [1,2,3] or ['name1','name2','name2'] or [vec1,vec2,vec3]

@@ -26,8 +26,23 @@ To run fully this pipeline, you will need:
 	sklearn
 
 ## Basic use
-The idea of the code is to get the function of the pipeline and 
-run the code in a outside dir. You should first prepare your environment with these simple steps.
+The idea of the code is to get the function of the pipeline and run the code in a outside dir.
+You should first prepare your environment with two simple steps.
+
+
+There are two approaches for using the pipeline
+* Normal Use:
+
+	In this way all the settings of the pipeline are set by a configuration file (**config.py**).
+	It only produces results for one specific configuration in each run.
+	See the README file in HOW_TO_USE_CONFIG to the the possibilities of the configuration file.
+* Advanced Use:
+
+	It is  strongly recomended that you learn how to use the pipeline in the Normal approach before using this.
+	This new module was introduced to run the pipeline variating one of the set of parameters and comparing the results.
+	Here a similar configuration file (**config_comparisson.py**) but with extra keys.
+	See the advanced section of the README file in HOW_TO_USE_CONFIG to the the possibilities of this configuration file.
+
 
 ### Prepare environment
 It is very easy to prepare your environment to run the pipeline.
@@ -75,6 +90,15 @@ To run just the ploting of the spectra by gorups execute:
 Remeber, all cases are configured by:
 
 	config.py
+
+If you are running the pipeline for comparisson (see Advanced Use),
+the command is:
+
+	COMPARISSON
+
+and the configuration file is:
+
+	config_comparisson.py
 
 ## Outputs
 The outputs of reduction methods are placed in **red_data/**.

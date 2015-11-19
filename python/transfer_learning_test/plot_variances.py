@@ -23,6 +23,7 @@ plot(data_to_plot[0], data_to_plot[2],'ok', label='DL with all epochs')
 ylabel('fractional variance')
 xlabel('features')
 ylim(0,1)
+legend()
 
 savefig('./plots/PCA_vs_DL.png')
 

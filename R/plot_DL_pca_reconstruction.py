@@ -6,7 +6,7 @@ data_dir= '../data_all_types/'
 out_dir='./plots/'
 
 der = loadtxt(data_dir+'derivatives.dat')
-flux = loadtxt(data_dir+'fluxes_not_res.dat')
+flux = loadtxt(data_dir+'fluxes_not_res.dat.gz')
 labels = loadtxt(data_dir+'labels.dat')
 spectra_data = genfromtxt(data_dir+'spectra_data.dat',dtype=None)
 

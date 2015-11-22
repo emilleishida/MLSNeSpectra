@@ -6,8 +6,8 @@ from matplotlib.pyplot import plot, savefig, xlabel, ylabel, scatter, axis, xlim
 data_to_plot = loadtxt('./residuals.dat').T
 figure()
 #plot(data_to_plot[0], data_to_plot[1],'xr', label='PCA at max')
-plot(data_to_plot[0], data_to_plot[2],'Dr', label='PCA with TL')
-#plot(data_to_plot[0], data_to_plot[3],'xk', label='DL at max')
+#plot(data_to_plot[0], data_to_plot[2],'Dr', label='PCA with TL')
+plot(data_to_plot[0], data_to_plot[3],'xk', label='DL at max')
 plot(data_to_plot[0], data_to_plot[4],'Dk', label='DL with TL')
 ylabel('fractional variance')
 xlabel('features')

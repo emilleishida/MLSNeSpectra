@@ -1,0 +1,48 @@
+### REDUCTION USED ###
+INPUT_DATA = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/data_all_types/derivatives.dat
+METHOD = pca
+n_components = 2
+
+### CLUSTERING USED ###
+INPUT_DATA = red_data/reduced_data_pca.dat
+METHOD = KMeans
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 5
+
+	-outputs:
+n_clusters = 5
+
+### QUALITIES USED ###
+INPUT_DATA = cl_data/clustering_KMeans.dat
+
+METHOD = silhouette_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 5
+
+METHOD = Dunn_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 5
+
+METHOD = DavisBouldin_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 5
+
+METHOD = vrc
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 5
+
+	-outputs:
+quality from silhouette_index = -0.135794332273
+quality from Dunn_index = 0.233862528407
+quality from DavisBouldin_index = 6.30919269849
+quality from vrc = 1433.18811288

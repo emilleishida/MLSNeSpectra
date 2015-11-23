@@ -25,7 +25,7 @@ REDUCTION METHOD
                 None, so empca runs without weights
 '''
 REDUCTION_METHOD	= 'pca'
-pca_n_components = 2
+pca_n_components = 9
 
 #####################################################################################
 '''
@@ -46,7 +46,7 @@ CLUSTERING METHOD
 
 '''
 CLUSTERING_METHOD	= 'KMeans'
-KMeans_n_clusters	= 2
+KMeans_n_clusters	= 9
 
 #####################################################################################
 '''

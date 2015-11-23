@@ -53,20 +53,25 @@ def load_colors(sne_list,type='Wang'):
 ################################################################################
 ### User choices
 
-path1 = 'SNe.txt'
-path2 = '../../real_data/pca_kmeans/red_data/reduced_data_pca_7PC_2groups.dat'
-path3 = '../../../../data_all_types/spectra_data.dat'
-
+npcs = '2'
+ngroups = '2'
 n_neighbors = 10
+
+path_names = '../../../../data_all_types/spectra_data.dat'
+path_pcspace = '../../real_data/pca_kmeans/red_data/reduced_data_pca_' + npcs + 'PC_' + ngroups + 'groups.dat'
+path_groups = '../../real_data/pca_kmeans/cl_data/clustering_KMeans_label_' + npcs + 'PC_' + ngroups + 'groups.dat'
+
+
 
 ################################################################################
 
 # read SN names
-op1 = open(path1, 'r')
+op1 = open(path_names, 'r')
 lin1 = op1.readlines()
 op1.close()
 
-names = [elem.split()[0] for elem in lin1[:]]
+names_all = [elem.split() for elem in lin1[:]]
+names = [line[0] for line in names_all if line[-1] == '0']
 
 # build color code 
 color_wang = load_colors(names)
@@ -98,60 +103,77 @@ for i in xrange(len(names)):
 
 
 # read PC space
-op2 = open(path2, 'r')
+op2 = open(path_pcspace, 'r')
 lin2 = op2.readlines()
 op2.close()
 
 data2 = [elem.split() for elem in lin2]
 
 pc_matrix = np.array([[float(item) for item in line] for line in data2])
+pc_matrix_small = np.array([pc_matrix[i] for i in xrange(len(pc_matrix)) if names_all[i][-1] == '0'])
 
 
 # use isomap
-Y = manifold.Isomap(n_neighbors, 2).fit_transform(pc_matrix)
-
-# read name of SN in source file
-op3 = open(path3, 'r')
-lin3 = op3.readlines()
-op3.close()
-
-data3 = [elem.split() for elem in lin3[1:]]
+Y2 = manifold.Isomap(n_neighbors, 2).fit_transform(pc_matrix)
+Y3 = manifold.Isomap(n_neighbors, 3).fit_transform(pc_matrix)
 
 # store projections in pc space
 for k in xrange(len(data2)):
-    if data3[k][0] in sn_info.keys() and data3[k][-1] == '0':
-        sn_info[data3[k][0]]['proj'] = [float(item) for item in data2[k]]
-        sn_info[data3[k][0]]['isomap'] = Y[k]
+    if names_all[k][0] in sn_info.keys() and names_all[k][-1] == '0':
+        if 'proj' not in sn_info[names_all[k][0]].keys():
+            sn_info[names_all[k][0]]['proj'] = [[float(item) for item in data2[k]]]
+            sn_info[names_all[k][0]]['isomap2'] = [Y2[k]]
+            sn_info[names_all[k][0]]['isomap3'] = [Y3[k]]
+        else:
+            sn_info[names_all[k][0]]['proj'].append([float(item) for item in data2[k]])
+            sn_info[names_all[k][0]]['isomap2'].append(Y2[k])
+            sn_info[names_all[k][0]]['isomap3'].append(Y3[k])
 
 # separate projections in a single list for wang classification
 wang_data_list = {}
-wang_isomap = {}
+wang_isomap2 = {}
+wang_isomap3 = {}
 for color in color_wang[2]['color']:
     wang_data_list[color] = []
-    wang_isomap[color] = []
+    wang_isomap2[color] = []
+    wang_isomap3[color] = []
     for sn in sn_info.keys():
         if sn_info[sn]['color_wang'] == color and 'proj' in sn_info[sn].keys():
-            wang_data_list[color].append(sn_info[sn]['proj'])       
-            wang_isomap[color].append(sn_info[sn]['isomap'])
-            
+            for l in xrange(len(sn_info[sn]['proj'])):
+                wang_data_list[color].append(sn_info[sn]['proj'][l])       
+                wang_isomap2[color].append(sn_info[sn]['isomap2'][l])
+                wang_isomap3[color].append(sn_info[sn]['isomap3'][l])
 
     wang_data_list[color] = np.array(wang_data_list[color])
-    wang_isomap[color] = np.array(wang_isomap[color])
+    wang_isomap2[color] = np.array(wang_isomap2[color])
+    wang_isomap3[color] = np.array(wang_isomap3[color])
 
 # separate projections in a single list for branch classification
 branch_data_list = {}
-branch_isomap = {}
+branch_isomap2 = {}
+branch_isomap3 = {}
 for color in color_branch[2]['color']:
     branch_data_list[color] = []
-    branch_isomap[color] = []
+    branch_isomap2[color] = []
+    branch_isomap3[color] = []
     for sn in sn_info.keys():
         if sn_info[sn]['color_branch'] == color and 'proj' in sn_info[sn].keys():
-            branch_data_list[color].append(sn_info[sn]['proj'])
-            branch_isomap[color].append(sn_info[sn]['isomap'])
+            for l in xrange(len(sn_info[sn]['proj'])):
+                branch_data_list[color].append(sn_info[sn]['proj'][l])
+                branch_isomap2[color].append(sn_info[sn]['isomap2'][l])
+                branch_isomap3[color].append(sn_info[sn]['isomap3'][l])
            
 
     branch_data_list[color] = np.array(branch_data_list[color])
-    branch_isomap[color] = np.array(branch_isomap[color])
+    branch_isomap2[color] = np.array(branch_isomap2[color])
+    branch_isomap3[color] = np.array(branch_isomap3[color])
+
+# read groups find by clustering
+op4 = open(path_groups, 'r')
+lin4 = op4.readlines()
+op4.close()
+
+clustering = [float(elem.split()[0]) for elem in lin4]
 
 # plot wang and branch classfications
 plt.figure()
@@ -176,7 +198,7 @@ plt.show()
 plt.figure()
 plt.subplot(1,2,1)
 for i in xrange(len(color_wang[2]['color'])):
-    plt.scatter(wang_isomap[color_wang[2]['color'][i]][:,0], wang_isomap[color_wang[2]['color'][i]][:,1], color=color_wang[2]['color'][i], marker=color_wang[2]['mark'][i], label=color_wang[2]['name'][i])
+    plt.scatter(wang_isomap2[color_wang[2]['color'][i]][:,0], wang_isomap2[color_wang[2]['color'][i]][:,1], color=color_wang[2]['color'][i], marker=color_wang[2]['mark'][i], label=color_wang[2]['name'][i])
 
 plt.legend(title='Wang classification')
 plt.xlabel('isomap 1')
@@ -184,12 +206,46 @@ plt.ylabel('isomap 2')
 
 plt.subplot(1,2,2)
 for i in xrange(len(color_branch[2]['color'])):
-    plt.scatter(branch_isomap[color_branch[2]['color'][i]][:,0], branch_isomap[color_branch[2]['color'][i]][:,1], color=color_branch[2]['color'][i], marker=color_branch[2]['mark'][i], label=color_branch[2]['name'][i])
+    plt.scatter(branch_isomap2[color_branch[2]['color'][i]][:,0], branch_isomap2[color_branch[2]['color'][i]][:,1], color=color_branch[2]['color'][i], marker=color_branch[2]['mark'][i], label=color_branch[2]['name'][i])
 
 plt.legend(title='Branch classification')
 plt.xlabel('isomap 1')
 plt.ylabel('isomap 2')
 
+plt.show()
+
+
+plt.figure()
+plt.subplot(1,3,1)
+for i in xrange(len(color_wang[2]['color'])):
+    plt.scatter(wang_isomap2[color_wang[2]['color'][i]][:,0], wang_isomap2[color_wang[2]['color'][i]][:,1], color=color_wang[2]['color'][i], marker=color_wang[2]['mark'][i], label=color_wang[2]['name'][i])
+
+plt.legend(title='Wang classification')
+plt.xlabel('isomap 1')
+plt.ylabel('isomap 2')
+
+plt.subplot(1,3,1)
+for i in xrange(len(color_wang[2]['color'])):
+    print color_wang[2]['color'][i]
+    plt.scatter(wang_isomap3[color_wang[2]['color'][i]][:,0], wang_isomap3[color_wang[2]['color'][i]][:,1], color=color_wang[2]['color'][i], marker=color_wang[2]['mark'][i], label=color_wang[2]['name'][i])
+
+plt.legend(title='isomap')
+plt.xlabel('isomap 1')
+plt.ylabel('isomap 2')
+
+for i in xrange(len(color_wang[2]['color'])):
+    plt.scatter(wang_isomap3[color_wang[2]['color'][i]][:,0], wang_isomap3[color_wang[2]['color'][i]][:,2], color=color_wang[2]['color'][i], marker=color_wang[2]['mark'][i], label=color_wang[2]['name'][i])
+
+plt.legend(title='isomap')
+plt.xlabel('isomap 1')
+plt.ylabel('isomap 3')
+
+for i in xrange(len(color_wang[2]['color'])):
+    plt.scatter(wang_isomap3[color_wang[2]['color'][i]][:,1], wang_isomap3[color_wang[2]['color'][i]][:,2], color=color_wang[2]['color'][i], marker=color_wang[2]['mark'][i], label=color_wang[2]['name'][i])
+
+plt.legend(title='isomap')
+plt.xlabel('isomap 2')
+plt.ylabel('isomap 3')
 plt.show()
 
 

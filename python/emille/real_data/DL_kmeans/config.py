@@ -46,7 +46,7 @@ CLUSTERING METHOD
 
 '''
 CLUSTERING_METHOD	= 'KMeans'
-KMeans_n_clusters	= 9
+KMeans_n_clusters	= 2
 
 #####################################################################################
 '''
@@ -75,7 +75,7 @@ CLUSTERING INPUT DATA
 	Be aware that this data will also go into the plotting.
 '''
 
-REDUCED_DATA_EXTERNAL =    '../../../../R/out_DeepLearning/out_120,100,90,50,30,20,9,20,30,50,90,100,120_seed1_dl.dat'
+REDUCED_DATA_EXTERNAL =    '../../../../R/out_DeepLearning/out_120,100,90,50,30,20,4,20,30,50,90,100,120_seed1_dl.dat'
 MASK_DATA   = '../../../../data_all_types/labels.dat'
 SPECTRAL_DATA_EXTERNAL      = '../../../../data_all_types/fluxes.dat'
 

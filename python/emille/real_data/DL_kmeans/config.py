@@ -5,11 +5,11 @@ Original data:
 	Used for the reduction,
 	not needed if doing clusreing only
 '''
-ORG_DATA			= '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/data_all_types/derivatives.dat'
+ORG_DATA			= 'xxx'
 
 #####################################################################################
 '''
-REDUCTION METHOD
+REDUCTION METHOD 
 	possibilities:
 		-pca
 	The aditional parameters must be added with the same name
@@ -46,7 +46,7 @@ CLUSTERING METHOD
 
 '''
 CLUSTERING_METHOD	= 'KMeans'
-KMeans_n_clusters	= 2
+KMeans_n_clusters	= 4
 
 #####################################################################################
 '''
@@ -54,7 +54,7 @@ CLUSTERING OUTPUT EXTENSIONS
 	extension of output plots produced by pylab
 '''
 PLOT_EXT	= '.png'
-PLOT_SPEC_EXT = '.pdf'
+PLOT_SPEC_EXT = '.png'
 #####################################################################################
 '''
 QUALITY TEST METHODS
@@ -87,6 +87,6 @@ PLOTTING INPUT DATA
 	You can also add an external file with different label to set different colors
 	to the reduced data. The default color scheme is according to each parent cluster.
 '''
-#CLUSTERS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
-#LABELS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
+#CLUSTERS_DATA_EXTERNAL		= 'wang_label.dat'
+#LABELS_DATA_EXTERNAL		= 'wang_label.dat'
 

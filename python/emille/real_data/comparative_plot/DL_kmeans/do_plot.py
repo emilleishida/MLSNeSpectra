@@ -53,13 +53,13 @@ def load_colors(sne_list,type='Wang'):
 ################################################################################
 ### User choices
 
-npcs = '2'
+npcs = '4'
 ngroups = '2'
 n_neighbors = 10
 
-path_names = '../../../../data_all_types/spectra_data.dat'
-path_pcspace = '../../real_data/pca_kmeans/red_data/reduced_data_pca_' + npcs + 'PC_' + ngroups + 'groups.dat'
-path_groups = '../../real_data/pca_kmeans/cl_data/clustering_KMeans_label_' + npcs + 'PC_' + ngroups + 'groups.dat'
+path_names = '../../../../../data_all_types/spectra_data.dat'
+path_pcspace = '../../../../../R/out_DeepLearning/out_120,100,90,50,30,20,' + npcs + ',20,30,50,90,100,120_seed1_dl.dat'
+path_groups = '../../../real_data/DL_kmeans/cl_data/clustering_KMeans_label.dat'
 
 
 
@@ -71,7 +71,7 @@ lin1 = op1.readlines()
 op1.close()
 
 names_all = [elem.split() for elem in lin1[:]]
-names = [line[0] for line in names_all if line[-1] == '0']
+names = [line[0] for line in names_all if line[-1] == '1']
 
 # build color code 
 color_wang = load_colors(names)
@@ -110,7 +110,7 @@ op2.close()
 data2 = [elem.split() for elem in lin2]
 
 pc_matrix = np.array([[float(item) for item in line] for line in data2])
-pc_matrix_small = np.array([pc_matrix[i] for i in xrange(len(pc_matrix)) if names_all[i][-1] == '0'])
+pc_matrix_small = np.array([pc_matrix[i] for i in xrange(len(pc_matrix)) if names_all[i][-1] == '1'])
 
 
 # use isomap
@@ -176,22 +176,29 @@ op4.close()
 clustering = [float(elem.split()[0]) for elem in lin4]
 
 # plot wang and branch classfications
+pc0 = 2
+pc1 = 3
 plt.figure()
 plt.subplot(1,2,1)
 for i in xrange(len(color_wang[2]['color'])):
-    plt.scatter(wang_data_list[color_wang[2]['color'][i]][:,0], wang_data_list[color_wang[2]['color'][i]][:,1], color=color_wang[2]['color'][i], marker=color_wang[2]['mark'][i], label=color_wang[2]['name'][i])
+    plt.scatter(wang_data_list[color_wang[2]['color'][i]][:,pc0], wang_data_list[color_wang[2]['color'][i]][:,pc1], color=color_wang[2]['color'][i], marker=color_wang[2]['mark'][i], label=color_wang[2]['name'][i])
 
 plt.legend(title='Wang classification')
-plt.xlabel('PC1')
-plt.ylabel('PC2')
+plt.xlabel('PC' + str(pc0 + 1))
+plt.ylabel('PC' + str(pc1 + 1))
+plt.xlim(-1.5,1.5)
+plt.ylim(-1.5, 1.5)
 
 plt.subplot(1,2,2)
 for i in xrange(len(color_branch[2]['color'])):
-    plt.scatter(branch_data_list[color_branch[2]['color'][i]][:,0], branch_data_list[color_branch[2]['color'][i]][:,1], color=color_branch[2]['color'][i], marker=color_branch[2]['mark'][i], label=color_branch[2]['name'][i])
+    plt.scatter(branch_data_list[color_branch[2]['color'][i]][:,pc0], branch_data_list[color_branch[2]['color'][i]][:,pc1], color=color_branch[2]['color'][i], marker=color_branch[2]['mark'][i], label=color_branch[2]['name'][i])
 
 plt.legend(title='Branch classification')
-plt.xlabel('PC1')
-plt.ylabel('PC2')
+plt.xlabel('PC' + str(pc0 + 1))
+plt.ylabel('PC' + str(pc1 + 1))
+plt.xlim(-1.5,1.5)
+plt.ylim(-1.5, 1.5)
+
 
 plt.show()
 

@@ -19,10 +19,10 @@ path_id = '../../../../../data_all_types/spectra_data.dat'
 path_kmeans = '../../DL_kmeans/cl_data_all/clustering_KMeans_label_' + nfeatures + 'PC_' + ngroups + 'groups.dat'
 
 # color for plotting
-c = ['orange', 'red', 'blue', 'green']
+c = [ 'red','orange', 'blue', 'green']
 
 # markers for ploting
-mark = ['d', '^', 's', 'o', '*']
+mark = ['^', 'd', 's', 'o', '*']
 
 # read spectra ID
 op2 = open(path_id, 'r')
@@ -46,8 +46,8 @@ lin3 = op3.readlines()
 op3.close()
 
 classes = np.array([float(elem.split()[0]) for elem in lin3])
-group1 = classes == 1.0
-group2 = classes == 0.0
+group1 = classes == 0.0
+group2 = classes == 1.0
 group3 = classes == 2.0
 group4 = classes == 3.0
 
@@ -166,7 +166,9 @@ plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 
+
 plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15,hspace=0.0,wspace=0.0)
-fig.legend(panels, ['Group 1', 'Group 2', 'Group 3', 'Group 4'], loc = (0.798, 0.77), title='Kmeans classfication', fontsize=18)
+legs=fig.legend([panels[1], panels[0], panels[2], panels[3]], ['Group 1', 'Group 2', 'Group 3', 'Group 4'], loc = (0.752, 0.764), title='Kmeans classfication', fontsize=18)
+plt.setp(legs.get_title(),fontsize=18)
 plt.show()
 

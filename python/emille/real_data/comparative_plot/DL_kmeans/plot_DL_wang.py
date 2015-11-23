@@ -64,6 +64,27 @@ path_id = '../../../../../data_all_types/spectra_data.dat'
 # path to original spectra
 path_spectra = '../../../../../data_all_types/fluxes.dat'
 
+# path to kmeans result 4 groups
+path_kmeans_4g = '../../DL_kmeans/cl_data_all/clustering_KMeans_label_4PC_4groups.dat'
+
+# path to kmeans result 2 groups
+path_kmeans_2g = '../../DL_kmeans/cl_data_all/clustering_KMeans_label_4PC_2groups.dat'
+
+
+# read kmeans result 2 groups
+op6 = open(path_kmeans_2g, 'r')
+lin6 = op6.readlines()
+op6.close()
+
+kmeans_classes_2g = [float(elem.split()[0]) for elem in lin6]
+
+# read kmeans result 4 groups
+op5 = open(path_kmeans_4g, 'r')
+lin5 = op5.readlines()
+op5.close()
+
+kmeans_classes = [float(elem.split()[0]) for elem in lin5]
+
 
 # read original spectra
 op4 = open(path_spectra, 'r')
@@ -87,7 +108,7 @@ color_wang = load_colors(names_max)
 color_wang[2]['mark'] = ['^','o',  's', 'd', '*']
 
 
-
+# separate groups accorging to wang classification
 wang_code = []
 wang_spectra = []
 for cor in color_wang[2]['color'][:-1]:
@@ -95,11 +116,14 @@ for cor in color_wang[2]['color'][:-1]:
     wang_code.append(temp_code)
 
     spectra_temp = []
-    for j in xrange(len(color_wang[0])):
-        if color_wang[0][j] == cor:
-            spectra_temp.append(data_spectra[j])
+    cont = 0
+    for j in xrange(len(data_spectra)):
+        if names_all[j][-1] == '1':
+            cont = cont + 1
+            if color_wang[0][cont - 1] == cor:
+                spectra_temp.append(data_spectra[j])
+            
     spectra_temp = np.array(spectra_temp)
-
     wang_spectra.append(spectra_temp)
 
 wang_spectra = np.array(wang_spectra)
@@ -107,6 +131,8 @@ wang_spectra = np.array(wang_spectra)
 spectra_group = []
 for j in xrange(len(wang_spectra)):
     spectra_group.append([np.mean(wang_spectra[j][:,l]) for l in xrange(len(wang_spectra[j][0]))])
+
+spectra_group = np.array(spectra_group)
 
 # plot mean spectra from wang
 plt.figure()
@@ -116,6 +142,166 @@ leg = plt.legend(title='Wang classification', fontsize=18)
 plt.setp(leg.get_title(),fontsize=18)
 plt.xlabel('wavelength', fontsize=22)
 plt.ylabel('flux (arbtrary units)', fontsize=22)
+plt.show()
+
+# separate groups according to kmeans classification 4 groups
+groups_kmeans = []
+for item in [1.0, 0.0, 2.0, 3.0]:
+    kmeans_temp = []
+    cont = 0
+    for j in xrange(len(data_spectra)):
+        if names_all[j][-1] == '1':
+            cont = cont + 1
+            if kmeans_classes[cont - 1] == item:
+                kmeans_temp.append(data_spectra[j])
+
+    groups_kmeans.append(np.array(kmeans_temp))
+
+group_kmeans = np.array(groups_kmeans)
+kmeans_rep = [np.array([np.mean(group_kmeans[ll][:,jj]) for jj in xrange(len(data_spectra[0]))]) for ll in xrange(len(groups_kmeans))]
+xaxes = [4000 + 10*ll for ll in xrange(len(data_spectra[0]))]
+
+# find closest groups
+name = '91T'
+name_index = color_wang[2]['name'].index(name)
+chi2_91T = [np.sqrt(sum((kmeans_rep[kk] - spectra_group[name_index])**2))/len(xaxes) for kk in xrange(len(kmeans_rep))]
+print chi2_91T
+
+plt.figure()
+plt.plot(xaxes, spectra_group[name_index], label=name + ' - Wang', color='orange')
+plt.plot(xaxes, kmeans_rep[0], label='KMeans G' + str(0), color='purple')
+plt.plot(xaxes, spectra_group[name_index]+0.5, color='orange')
+plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
+plt.plot(xaxes, spectra_group[name_index]+1.0, color='orange')
+plt.plot(xaxes, kmeans_rep[2] + 1.0, label='KMeans G' + str(2), color='black')
+plt.plot(xaxes, spectra_group[name_index]+1.5, color='orange')
+plt.plot(xaxes, kmeans_rep[2] + 1.5, label='KMeans G' + str(3), color='cyan')
+plt.legend()
+plt.show()
+
+
+name = 'HV'
+name_index = color_wang[2]['name'].index(name)
+chi2_HV = [np.sqrt(sum((kmeans_rep[kk] - spectra_group[name_index])**2))/len(xaxes) for kk in xrange(len(kmeans_rep))]
+print chi2_HV
+
+plt.figure()
+plt.plot(xaxes, spectra_group[name_index], label=name + ' - Wang', color='red')
+plt.plot(xaxes, kmeans_rep[0], label='KMeans G' + str(0), color='purple')
+plt.plot(xaxes, spectra_group[name_index]+0.5, color='red')
+plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
+plt.plot(xaxes, spectra_group[name_index]+1.0, color='red')
+plt.plot(xaxes, kmeans_rep[2] + 1.0, label='KMeans G' + str(2),color='black')
+plt.plot(xaxes, spectra_group[name_index]+1.5, color='red')
+plt.plot(xaxes, kmeans_rep[2] + 1.5, label='KMeans G' + str(3),color='cyan')
+plt.legend()
+plt.show()
+
+name = '91bg'
+name_index = color_wang[2]['name'].index(name)
+chi2_91bg = [np.sqrt(sum((kmeans_rep[kk] - spectra_group[name_index])**2))/len(xaxes) for kk in xrange(len(kmeans_rep))]
+print chi2_91bg
+
+plt.figure()
+plt.plot(xaxes, spectra_group[name_index], label=name + ' - Wang', color='blue')
+plt.plot(xaxes, kmeans_rep[0], label='KMeans G' + str(0),color='purple')
+plt.plot(xaxes, spectra_group[name_index]+0.5, color='blue')
+plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
+plt.plot(xaxes, spectra_group[name_index]+1.0, color='blue')
+plt.plot(xaxes, kmeans_rep[2] + 1.0, label='KMeans G' + str(2), color='black')
+plt.plot(xaxes, spectra_group[name_index]+1.5, color='blue')
+plt.plot(xaxes, kmeans_rep[2] + 1.5, label='KMeans G' + str(3), color='cyan')
+plt.legend()
+plt.show()
+
+name = 'N'
+name_index = color_wang[2]['name'].index(name)
+chi2_N = [np.sqrt(sum((kmeans_rep[kk] - spectra_group[name_index])**2))/len(xaxes) for kk in xrange(len(kmeans_rep))]
+print chi2_N
+
+plt.figure()
+plt.plot(xaxes, spectra_group[name_index], label=name + ' - Wang', color='green')
+plt.plot(xaxes, kmeans_rep[0], label='KMeans G' + str(0),color='purple')
+plt.plot(xaxes, spectra_group[name_index]+0.5, color='green')
+plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
+plt.plot(xaxes, spectra_group[name_index]+1.0, color='green')
+plt.plot(xaxes, kmeans_rep[2] + 1.0, label='KMeans G' + str(2), color='black')
+plt.plot(xaxes, spectra_group[name_index]+1.5, color='green')
+plt.plot(xaxes, kmeans_rep[2] + 1.5, label='KMeans G' + str(3), color='cyan')
+plt.legend()
+plt.show()
+
+
+
+# separate groups according to kmeans classification 2 groups
+groups_kmeans_2 = []
+for item in xrange(2):
+    kmeans_temp = []
+    cont = 0
+    for j in xrange(len(data_spectra)):
+        if names_all[j][-1] == '1':
+            cont = cont + 1
+            if kmeans_classes_2g[cont - 1] == item:
+                kmeans_temp.append(data_spectra[j])
+
+    groups_kmeans_2.append(np.array(kmeans_temp))
+
+group_kmeans_2 = np.array(groups_kmeans_2)
+print group_kmeans_2.shape
+kmeans_rep_2 = [np.array([np.mean(group_kmeans_2[ll][:,jj]) for jj in xrange(len(data_spectra[0]))]) for ll in xrange(len(groups_kmeans_2))]
+
+# find closest groups
+name = '91T'
+name_index = color_wang[2]['name'].index(name)
+chi2_91T = [np.sqrt(sum((kmeans_rep_2[kk] - spectra_group[name_index])**2))/len(xaxes) for kk in xrange(len(kmeans_rep_2))]
+print chi2_91T
+
+plt.figure()
+plt.plot(xaxes, spectra_group[name_index], label=name + ' - Wang', color='orange')
+plt.plot(xaxes, kmeans_rep_2[0], label='KMeans G' + str(0), color='purple')
+plt.plot(xaxes, spectra_group[name_index]+0.5, color='orange')
+plt.plot(xaxes, kmeans_rep_2[1] + 0.5, label='KMeans G' + str(1), color='brown')
+plt.legend()
+plt.show()
+
+
+name = 'HV'
+name_index = color_wang[2]['name'].index(name)
+chi2_HV = [np.sqrt(sum((kmeans_rep_2[kk] - spectra_group[name_index])**2))/len(xaxes) for kk in xrange(len(kmeans_rep_2))]
+print chi2_HV
+
+plt.figure()
+plt.plot(xaxes, spectra_group[name_index], label=name + ' - Wang', color='red')
+plt.plot(xaxes, kmeans_rep[0], label='KMeans G' + str(0), color='purple')
+plt.plot(xaxes, spectra_group[name_index]+0.5, color='red')
+plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
+plt.legend()
+plt.show()
+
+name = '91bg'
+name_index = color_wang[2]['name'].index(name)
+chi2_91bg = [np.sqrt(sum((kmeans_rep_2[kk] - spectra_group[name_index])**2))/len(xaxes) for kk in xrange(len(kmeans_rep_2))]
+print chi2_91bg
+
+plt.figure()
+plt.plot(xaxes, spectra_group[name_index], label=name + ' - Wang', color='blue')
+plt.plot(xaxes, kmeans_rep_2[0], label='KMeans G' + str(0),color='purple')
+plt.plot(xaxes, spectra_group[name_index]+0.5, color='blue')
+plt.plot(xaxes, kmeans_rep_2[1] + 0.5, label='KMeans G' + str(1), color='brown')
+plt.legend()
+plt.show()
+
+name = 'N'
+name_index = color_wang[2]['name'].index(name)
+chi2_N = [np.sqrt(sum((kmeans_rep_2[kk] - spectra_group[name_index])**2))/len(xaxes) for kk in xrange(len(kmeans_rep_2))]
+print chi2_N
+
+plt.figure()
+plt.plot(xaxes, spectra_group[name_index], label=name + ' - Wang', color='green')
+plt.plot(xaxes, kmeans_rep_2[0], label='KMeans G' + str(0),color='purple')
+plt.plot(xaxes, spectra_group[name_index]+0.5, color='green')
+plt.plot(xaxes, kmeans_rep_2[1] + 0.5, label='KMeans G' + str(1), color='brown')
+plt.legend()
 plt.show()
 
 

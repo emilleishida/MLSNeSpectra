@@ -175,7 +175,7 @@ plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
 plt.plot(xaxes, spectra_group[name_index]+1.0, color='orange')
 plt.plot(xaxes, kmeans_rep[2] + 1.0, label='KMeans G' + str(2), color='black')
 plt.plot(xaxes, spectra_group[name_index]+1.5, color='orange')
-plt.plot(xaxes, kmeans_rep[2] + 1.5, label='KMeans G' + str(3), color='cyan')
+plt.plot(xaxes, kmeans_rep[3] + 1.5, label='KMeans G' + str(3), color='cyan')
 plt.legend()
 plt.show()
 
@@ -193,7 +193,7 @@ plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
 plt.plot(xaxes, spectra_group[name_index]+1.0, color='red')
 plt.plot(xaxes, kmeans_rep[2] + 1.0, label='KMeans G' + str(2),color='black')
 plt.plot(xaxes, spectra_group[name_index]+1.5, color='red')
-plt.plot(xaxes, kmeans_rep[2] + 1.5, label='KMeans G' + str(3),color='cyan')
+plt.plot(xaxes, kmeans_rep[3] + 1.5, label='KMeans G' + str(3),color='cyan')
 plt.legend()
 plt.show()
 
@@ -210,7 +210,7 @@ plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
 plt.plot(xaxes, spectra_group[name_index]+1.0, color='blue')
 plt.plot(xaxes, kmeans_rep[2] + 1.0, label='KMeans G' + str(2), color='black')
 plt.plot(xaxes, spectra_group[name_index]+1.5, color='blue')
-plt.plot(xaxes, kmeans_rep[2] + 1.5, label='KMeans G' + str(3), color='cyan')
+plt.plot(xaxes, kmeans_rep[3] + 1.5, label='KMeans G' + str(3), color='cyan')
 plt.legend()
 plt.show()
 
@@ -227,7 +227,7 @@ plt.plot(xaxes, kmeans_rep[1] + 0.5, label='KMeans G' + str(1), color='brown')
 plt.plot(xaxes, spectra_group[name_index]+1.0, color='green')
 plt.plot(xaxes, kmeans_rep[2] + 1.0, label='KMeans G' + str(2), color='black')
 plt.plot(xaxes, spectra_group[name_index]+1.5, color='green')
-plt.plot(xaxes, kmeans_rep[2] + 1.5, label='KMeans G' + str(3), color='cyan')
+plt.plot(xaxes, kmeans_rep[3] + 1.5, label='KMeans G' + str(3), color='cyan')
 plt.legend()
 plt.show()
 
@@ -305,7 +305,26 @@ plt.legend()
 plt.show()
 
 
-color_wang[2]['color'] = ['red', 'green', 'blue', 'orange']
+# plot wang and kmeans results
+fig2 = plt.figure()
+ax = plt.subplot(111)
+line,  = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('N')]+1.5, lw=1.5,ls='--', color='green', label='N - Wang')
+line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('HV')]+1.0, lw=1.5, ls='--', color='red', label='HV Wang')
+line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('91bg')]+0.5, lw=1.5, ls='--', color='blue', label='91bg')
+line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('91T')], lw=1.5, ls='--', color='orange', label='91T')
+line, = ax.plot(xaxes, kmeans_rep[0]+1.5, color='green',lw=1.5, label='DL+KM G1')
+line, = ax.plot(xaxes, kmeans_rep[1]+1.0, lw=1.5, color='red', label='DL+KM G2')
+line, = ax.plot(xaxes, kmeans_rep[2]+0.5, lw=1.5, color='blue', label='DL+KM G3')
+line, = ax.plot(xaxes, kmeans_rep[3], lw=1.5, color='orange', label='DL+KM G4')
+plt.xlabel('wavelength ($\AA$)', fontsize=22)
+plt.ylabel('flux (arbitrary units)', fontsize=22)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+ax.legend(loc='upper center', bbox_to_anchor=(0.8775, 1.01075), ncol=2, fancybox=True, shadow=True)
+plt.show()
+
+
+color_wang[2]['color'] = ['green', 'red', 'blue', 'orange']
 
 # build branch color code 
 color_branch = load_colors(names_max, type='Branch')

@@ -34,7 +34,7 @@ def plot_quality(QUALITY_METHODS,out_name='plots/quality.pdf'):
 	ncll	= [int(n) for n in ncls]
 	colors	= [colors_base[ncll.index(dat)] for dat in data[0]]
 
-	for Q,ind in zip(QUALITY_METHODS,range(len(QUALITY_METHODS))):
+	for Q,ind in zip(QUALITY_METHODS,range(1:1+len(QUALITY_METHODS))):
 		print(ind,Q)
 		plt.clf()
 		plt.figure(figsize=(16,12))
@@ -52,19 +52,20 @@ def plot_quality(QUALITY_METHODS,out_name='plots/quality.pdf'):
 		xl,yl	= .8,.9
 		hspace	= '10 clusters'
 		for n in range(1,len(ncls)): hspace+='\n10 clusters'
-
-		fig	= plt.gcf()
-		t	= plt.axes().transAxes
-		text	= plt.text(xl,yl,hspace,color='1.',bbox={'facecolor':'1.', 'alpha':1., 'pad':20},transform=plt.axes().transAxes)
-		text.draw(fig.canvas.get_renderer())
-		ex = text.get_window_extent()
-		t	= matplotlib.transforms.offset_copy(text._transform, y=ex.height/(1.+1./(len(ncls)-1.)), units='dots')
-		for s,c in zip([str(int(n))+' clusters' for n in ncls],[colors_base[n] for n in range(len(ncll))]):
-			if s[:2]=='1 ': s=s[:len(s)-1]
-			text = plt.text(xl,yl," "+s+" ",color=c, transform=t)
-		        text.draw(fig.canvas.get_renderer())
-		        ex = text.get_window_extent()
-		        t = matplotlib.transforms.offset_copy(text._transform, y=-ex.height, units='dots')
+		
+		if len(ncls)>1:
+			fig	= plt.gcf()
+			t	= plt.axes().transAxes
+			text	= plt.text(xl,yl,hspace,color='1.',bbox={'facecolor':'1.', 'alpha':1., 'pad':20},transform=plt.axes().transAxes)
+			text.draw(fig.canvas.get_renderer())
+			ex	= text.get_window_extent()
+			t	= matplotlib.transforms.offset_copy(text._transform, y=ex.height/(1.+1./(len(ncls)-1.)), units='dots')
+			for s,c in zip([str(int(n))+' clusters' for n in ncls],[colors_base[n] for n in range(len(ncll))]):
+				if s[:2]=='1 ': s=s[:len(s)-1]
+				text = plt.text(xl,yl," "+s+" ",color=c, transform=t)
+			        text.draw(fig.canvas.get_renderer())
+			        ex = text.get_window_extent()
+			        t = matplotlib.transforms.offset_copy(text._transform, y=-ex.height, units='dots')
 
 		if in_window	: plt.show(block=True)
 		else		: 

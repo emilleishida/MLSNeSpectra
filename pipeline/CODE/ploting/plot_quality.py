@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 def plot_quality(QUALITY_METHODS,out_name='plots/quality.pdf'):
+	os.sys('mkdir -p plots/')
 	do_pdf=False
 	if out_name[len(out_name)-3:]=='pdf': do_pdf=True
 
@@ -34,26 +35,28 @@ def plot_quality(QUALITY_METHODS,out_name='plots/quality.pdf'):
 	ncll	= [int(n) for n in ncls]
 	colors	= [colors_base[ncll.index(dat)] for dat in data[0]]
 
-	for Q,ind in zip(QUALITY_METHODS,range(1:1+len(QUALITY_METHODS))):
+	xl,yl	= .8,.9
+	hspace	= '10 clusters'
+	for n in range(1,len(ncls)): hspace+='\n10 clusters'
+
+	for Q,ind in zip(QUALITY_METHODS,range(1,1+len(QUALITY_METHODS))):
 		print(ind,Q)
 		plt.clf()
 		plt.figure(figsize=(16,12))
 		plt.ylabel(Q)
 		plt.xticks(xint,['case '+str(i+1) for i in xint])
-		plt.plot(xvec,data[ind],color='.0',lw=3)
-		for i in xint:
-			y=data[ind]
-			if i==xint[0]	  : xv,yv=[i,i+.5],[ y[i] , y[i]+.5*(y[i+1]-y[i]) ]
-			elif i==xint[-1]  : xv,yv=[i-.5,i],[ y[i]-.5*(y[i]-y[i-1]) , y[i] ]
-			else		  : xv,yv=[i-.5,i,i+.5],[ y[i]-.5*(y[i]-y[i-1]),y[i] , y[i]+.5*(y[i+1]-y[i]) ]
-			plt.fill_between(xv,0,yv,color=colors[i])
 		plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15)
 
-		xl,yl	= .8,.9
-		hspace	= '10 clusters'
-		for n in range(1,len(ncls)): hspace+='\n10 clusters'
-		
+		##################### plot the data  ########################		
+		plt.plot(xvec,data[ind],color='.0',lw=3)
 		if len(ncls)>1:
+			for i in xint:
+				y=data[ind]
+				if i==xint[0]	  : xv,yv=[i,i+.5],[ y[i] , y[i]+.5*(y[i+1]-y[i]) ]
+				elif i==xint[-1]  : xv,yv=[i-.5,i],[ y[i]-.5*(y[i]-y[i-1]) , y[i] ]
+				else		  : xv,yv=[i-.5,i,i+.5],[ y[i]-.5*(y[i]-y[i-1]),y[i] , y[i]+.5*(y[i+1]-y[i]) ]
+				plt.fill_between(xv,0,yv,color=colors[i])
+			##################### make the label ########################		
 			fig	= plt.gcf()
 			t	= plt.axes().transAxes
 			text	= plt.text(xl,yl,hspace,color='1.',bbox={'facecolor':'1.', 'alpha':1., 'pad':20},transform=plt.axes().transAxes)
@@ -67,6 +70,7 @@ def plot_quality(QUALITY_METHODS,out_name='plots/quality.pdf'):
 			        ex = text.get_window_extent()
 			        t = matplotlib.transforms.offset_copy(text._transform, y=-ex.height, units='dots')
 
+		##################### put plot in file/window  ########################		
 		if in_window	: plt.show(block=True)
 		else		: 
 			if do_pdf: pdf.savefig()

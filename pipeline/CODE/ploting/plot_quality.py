@@ -1,6 +1,5 @@
 from __future__ import print_function
 
-
 import numpy as np
 from config import REDUCTION_METHOD, CLUSTERING_METHOD 
 
@@ -18,7 +17,6 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 def plot_quality(QUALITY_METHODS,out_name='plots/quality.pdf'):
-	os.sys('mkdir -p plots/')
 	do_pdf=False
 	if out_name[len(out_name)-3:]=='pdf': do_pdf=True
 

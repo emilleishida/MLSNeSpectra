@@ -65,5 +65,7 @@ for Qvec in Qmat:
 fqual.close()
 
 from ploting.plot_quality import plot_quality
+print ("** PLOTING COMPARRISSON **\n")
 plot_quality(QUALITY_METHODS,'plots/quality'+PLOT_QUA_EXT)
+print ('\t[ok]\n')
 exit()

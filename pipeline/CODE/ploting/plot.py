@@ -72,10 +72,15 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(16,12))
 	for i in range(Nplt):
 		for j in range(Nplt):
-			PLT=plt
-			if Nplt>1:PLT= plts[i][j]
-			plt.setp( plt.gca().get_xticklabels(), rotation=45)
-			plt.setp( plt.gca().get_yticklabels(), rotation=45)
+			PLT,ax=plt,plt.gca
+			if Nplt>1:
+				PLT,ax= plts[i][j],plts[i][j]
+				plt.setp( ax.get_xticklabels()[ 0], visible=False)
+				plt.setp( ax.get_xticklabels()[-2], visible=False)
+				plt.setp( ax.yaxis.get_major_ticks()[ 0], visible=False)
+				if i>0: plt.setp( ax.yaxis.get_major_ticks()[ -2], visible=False)
+			plt.setp( ax.get_xticklabels(), rotation=45)
+			plt.setp( ax.get_yticklabels(), rotation=45)
 #			PLT.locator_params('x',nbins=4)
 #			PLT.locator_params('y',nbins=4)
 			dat	= crop(red_data,i,j,plt_inds)

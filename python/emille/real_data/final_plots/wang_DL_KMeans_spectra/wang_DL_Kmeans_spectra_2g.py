@@ -55,10 +55,10 @@ path_id = '../../../../../data_all_types/spectra_data.dat'
 path_spectra = '../../../../../data_all_types/fluxes.dat'
 
 # path to kmeans result 4 groups
-path_kmeans_4g = '../../DL_kmeans/cl_data_all/clustering_KMeans_label_4PC_4groups.dat'
+path_kmeans_2g = '../../DL_kmeans/cl_data_all/clustering_KMeans_label_4PC_2groups.dat'
 
 # read kmeans result 4 groups
-op5 = open(path_kmeans_4g, 'r')
+op5 = open(path_kmeans_2g, 'r')
 lin5 = op5.readlines()
 op5.close()
 
@@ -110,7 +110,7 @@ spectra_group = np.array(spectra_group)
 
 # separate groups according to kmeans classification 4 groups
 groups_kmeans = []
-for item in xrange(4):
+for item in [1.0, 0.0]:
     kmeans_temp = []
     cont = 0
     for j in xrange(len(data_spectra)):
@@ -128,21 +128,27 @@ xaxes = [4000 + 10*ll for ll in xrange(len(data_spectra[0]))]
 # plot wang and kmeans results
 fig2 = plt.figure(figsize=(18,12))
 ax = plt.subplot(111)
-line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('HV')]+1.6, lw=4.0, ls='--', color='green', label='HV - Wang')
-line,  = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('N')]+1.1, lw=4.0,ls='--', color='red', label='N - Wang')
-line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('91bg')]+0.6, lw=4.0, ls='--', color='blue', label='91bg - Wang')
+line,  = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('N')]+1.5, lw=4.0,ls='--', color='green', label='N - Wang')
+line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('HV')]+1.0, lw=4.0, ls='--', color='red', label='HV - Wang')
+line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('91bg')]+0.5, lw=4.0, ls='--', color='blue', label='91bg - Wang')
 line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('91T')], lw=4.0, ls='--', color='orange', label='91T - Wang')
-line, = ax.plot(xaxes, kmeans_rep[0]+1.6, color='green',lw=4.0, label='DL+KM G1')
-line, = ax.plot(xaxes, kmeans_rep[1]+1.1, lw=4.0, color='red', label='DL+KM G2')
-line, = ax.plot(xaxes, kmeans_rep[2]+0.6, lw=4.0, color='blue', label='DL+KM G3')
-line, = ax.plot(xaxes, kmeans_rep[3], lw=4.0, color='orange', label='DL+KM G4')
+
+line, = ax.plot(xaxes, kmeans_rep[0] + 1.5, color='green',lw=2.0, label='DL+KM G1')
+line, = ax.plot(xaxes, kmeans_rep[0] + 1.0, color='green',lw=2.0)
+line, = ax.plot(xaxes, kmeans_rep[0] + 0.5, color='green',lw=2.0)
+line, = ax.plot(xaxes, kmeans_rep[0], color='green',lw=2.0)
+
+line, = ax.plot(xaxes, kmeans_rep[1] + 1.5, lw=2.0, color='red', label='DL+KM G2')
+line, = ax.plot(xaxes, kmeans_rep[1] + 1.0, lw=2.0, color='red')
+line, = ax.plot(xaxes, kmeans_rep[1] + 0.5, lw=2.0, color='red')
+line, = ax.plot(xaxes, kmeans_rep[1], lw=2.0, color='red')
+
 plt.xlabel('wavelength ($\AA$)', fontsize=26)
 plt.ylabel('flux (arbitrary units)', fontsize=26)
 plt.xticks(fontsize=22)
 plt.yticks(fontsize=22)
 plt.tight_layout()
-plt.ylim(0, 2.6)
 ax.legend(loc='upper center', bbox_to_anchor=(0.8275, 1.013), ncol=2, fontsize=20)
-plt.savefig("wang_DL_kmeans_spectra.pdf", format='pdf',dpi=1000)
+plt.savefig("wang_DL_kmeans_spectra_2g.pdf", format='pdf',dpi=1000)
 
 

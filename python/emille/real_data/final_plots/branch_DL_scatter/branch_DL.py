@@ -61,14 +61,14 @@ names_all = [elem.split() for elem in lin2[1:]]
 names_max = [names_all[i][0] for i in xrange(len(names_all)) if names_all[i][-1] == '1']
 
 
-# build wang color code 
-color_wang = load_colors(names_max)
+# build branch color code 
+color_branch = load_colors(names_max, type='Branch')
 
-# separate groups accorging to wang classification
-wang_code = []
-for cor in color_wang[2]['color'][:-1]:
-    temp_code = np.array(color_wang[0]) == cor
-    wang_code.append(temp_code)
+# separate groups accorging to branch classification
+branch_code = []
+for cor in color_branch[2]['color']:
+    temp_code = np.array(color_branch[0]) == cor
+    branch_code.append(temp_code)
 
 # read DL results
 op1 = open(path_small_space, 'r')
@@ -88,11 +88,11 @@ ss = [60, 40, 40, 60]
 # plot only DL results
 fig = plt.figure(figsize=(20,14))
 plt.subplot(4,4,1)
-legs = [[] for k in xrange(len(wang_code))]
+legs = [[] for k in xrange(len(branch_code))]
 names = []
-for j in [1,0,2,3]:
-    legs[j] = plt.scatter(matrix[wang_code[j],0], matrix[wang_code[j],0], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
-    names.append(color_wang[2]['name'][j])
+for j in [0,1,2,3]:
+    legs[j] = plt.scatter(matrix[branch_code[j],0], matrix[branch_code[j],0], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+    names.append(color_branch[2]['name'][j])
 plt.ylabel('feature 1', fontsize=26)
 plt.xticks([])
 plt.yticks(fontsize=22)
@@ -101,8 +101,8 @@ plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,5)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],0], matrix[wang_code[j],1], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],0], matrix[branch_code[j],1], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.ylabel('feature 2', fontsize=26)
 plt.xticks([])
 plt.yticks(fontsize=22)
@@ -111,16 +111,16 @@ plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,6)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],1], matrix[wang_code[j],1], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],1], matrix[branch_code[j],1], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.xticks([])
 plt.yticks([])
 plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,9)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],0], matrix[wang_code[j],2], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],0], matrix[branch_code[j],2], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.ylabel('feature 3', fontsize=26)
 plt.xticks([])
 plt.yticks(fontsize=22)
@@ -129,24 +129,24 @@ plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,10)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],1], matrix[wang_code[j],2], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],1], matrix[branch_code[j],2], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.xticks([])
 plt.yticks([])
 plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,11)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],2], matrix[wang_code[j],2], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],2], matrix[branch_code[j],2], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.xticks([])
 plt.yticks([])
 plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,13)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],0], matrix[wang_code[j],3], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],0], matrix[branch_code[j],3], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.ylabel('feature 4', fontsize=26)
 plt.xlabel('feature 1', fontsize=26)
 plt.gca().yaxis.set_major_locator(MaxNLocator(nbins=6, prune='upper'))
@@ -157,8 +157,8 @@ plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,14)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],1], matrix[wang_code[j],3], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],1], matrix[branch_code[j],3], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.xlabel('feature 2', fontsize=26)
 plt.yticks([])
 plt.xticks(fontsize=22)
@@ -167,8 +167,8 @@ plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,15)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],2], matrix[wang_code[j],3], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],2], matrix[branch_code[j],3], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.xlabel('feature 3',fontsize=26)
 plt.yticks([])
 plt.xticks(fontsize=22)
@@ -177,8 +177,8 @@ plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5, 1.5)
 
 plt.subplot(4,4,16)
-for j in [1,0,2,3]:
-    plt.scatter(matrix[wang_code[j],3], matrix[wang_code[j],3], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
+for j in xrange(len(branch_code)):
+    plt.scatter(matrix[branch_code[j],3], matrix[branch_code[j],3], lw='0',marker=my_marks[j],s=ss[j], color=my_colors[j])
 plt.xlabel('feature 4', fontsize=26)
 plt.yticks([])
 plt.xticks(fontsize=22)
@@ -189,8 +189,8 @@ plt.ylim(-1.5, 1.5)
 
 
 plt.subplots_adjust(left=0.075, right=0.975, top=0.975, bottom=0.075,hspace=0.0,wspace=0.0)
-legend = fig.legend(legs, names, loc = (0.786, 0.778), title='Wang classification', fontsize=26)
+legend = fig.legend(legs, names, loc = (0.786, 0.778), title='Branch classification', fontsize=26)
 plt.setp(legend.get_title(),fontsize=26)
-plt.savefig("wang_DL_scatter.pdf", format='pdf',dpi=1000)
+plt.savefig("branch_DL_scatter.pdf", format='pdf',dpi=1000)
 
 

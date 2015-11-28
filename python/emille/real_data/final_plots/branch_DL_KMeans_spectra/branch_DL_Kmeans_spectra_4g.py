@@ -82,28 +82,28 @@ op2.close()
 names_all = [elem.split() for elem in lin2[1:]]
 names_max = [names_all[i][0] for i in xrange(len(names_all)) if names_all[i][-1] == '1']
 
-# build wang color code 
-color_wang = load_colors(names_max)
+# build branch color code 
+color_branch = load_colors(names_max, type='Branch')
 
-# separate groups accorging to wang classification
-wang_spectra = []
-for cor in color_wang[2]['color'][:-1]:
+# separate groups accorging to branch classification
+branch_spectra = []
+for cor in color_branch[2]['color']:
     spectra_temp = []
     cont = 0
     for j in xrange(len(data_spectra)):
         if names_all[j][-1] == '1':
             cont = cont + 1
-            if color_wang[0][cont - 1] == cor:
+            if color_branch[0][cont - 1] == cor:
                 spectra_temp.append(data_spectra[j])
             
     spectra_temp = np.array(spectra_temp)
-    wang_spectra.append(spectra_temp)
+    branch_spectra.append(spectra_temp)
 
-wang_spectra = np.array(wang_spectra)
+branch_spectra = np.array(branch_spectra)
 
 spectra_group = []
-for j in xrange(len(wang_spectra)):
-    spectra_group.append([np.mean(wang_spectra[j][:,l]) for l in xrange(len(wang_spectra[j][0]))])
+for j in xrange(len(branch_spectra)):
+    spectra_group.append([np.mean(branch_spectra[j][:,l]) for l in xrange(len(branch_spectra[j][0]))])
 
 spectra_group = np.array(spectra_group)
 
@@ -125,13 +125,13 @@ group_kmeans = np.array(groups_kmeans)
 kmeans_rep = [np.array([np.mean(group_kmeans[ll][:,jj]) for jj in xrange(len(data_spectra[0]))]) for ll in xrange(len(groups_kmeans))]
 xaxes = [4000 + 10*ll for ll in xrange(len(data_spectra[0]))]
 
-# plot wang and kmeans results
+# plot branch and kmeans results
 fig2 = plt.figure(figsize=(18,12))
 ax = plt.subplot(111)
-line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('HV')]+1.6, lw=4.0, ls='--', color='green', label='HV - Wang')
-line,  = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('N')]+1.1, lw=4.0,ls='--', color='red', label='N - Wang')
-line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('91bg')]+0.6, lw=4.0, ls='--', color='blue', label='91bg - Wang')
-line, = ax.plot(xaxes, spectra_group[color_wang[2]['name'].index('91T')], lw=4.0, ls='--', color='orange', label='91T - Wang')
+line, = ax.plot(xaxes, spectra_group[color_branch[2]['name'].index('BL')]+1.6, lw=4.0, ls='--', color='green', label='BL - Branch')
+line,  = ax.plot(xaxes, spectra_group[color_branch[2]['name'].index('CN')]+1.1, lw=4.0,ls='--', color='red', label='CN - Branch')
+line, = ax.plot(xaxes, spectra_group[color_branch[2]['name'].index('CL')]+0.6, lw=4.0, ls='--', color='blue', label='CL - Branch')
+line, = ax.plot(xaxes, spectra_group[color_branch[2]['name'].index('SS')], lw=4.0, ls='--', color='orange', label='SS - Branch')
 line, = ax.plot(xaxes, kmeans_rep[0]+1.6, color='green',lw=4.0, label='DL+KM G1')
 line, = ax.plot(xaxes, kmeans_rep[1]+1.1, lw=4.0, color='red', label='DL+KM G2')
 line, = ax.plot(xaxes, kmeans_rep[2]+0.6, lw=4.0, color='blue', label='DL+KM G3')
@@ -142,7 +142,7 @@ plt.xticks(fontsize=22)
 plt.yticks(fontsize=22)
 plt.tight_layout()
 plt.ylim(0, 2.6)
-ax.legend(loc='upper center', bbox_to_anchor=(0.8275, 1.013), ncol=2, fontsize=20)
-plt.savefig("wang_DL_kmeans_spectra.pdf", format='pdf',dpi=1000)
+ax.legend(loc='upper center', bbox_to_anchor=(0.831, 1.013), ncol=2, fontsize=20)
+plt.savefig("branch_DL_kmeans_spectra_4g.pdf", format='pdf',dpi=1000)
 
 

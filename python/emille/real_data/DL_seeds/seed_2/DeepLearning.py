@@ -61,7 +61,7 @@ for input_string in ['120,100,90,50,30,20,2,20,30,50,90,100,120','120,100,90,50,
     
     ## Store new features in file
     X = r('as.matrix(features_dl)')
-    np.savetxt('./out_DeepLearning/out_%s_seed%d_dl.dat' % (input_string,seed)  ,X)
+    np.savetxt('./out/out_%s_seed%d_dl.dat' % (input_string,seed)  ,X)
     
     
     
@@ -99,6 +99,6 @@ for input_string in ['120,100,90,50,30,20,2,20,30,50,90,100,120','120,100,90,50,
     pred = r('as.matrix(predictions_dl)')
 
     r('h2o.shutdown(prompt=F)')
-    np.savetxt('./out_DeepLearning/predictions_%s_seed%d_dl.dat' % (input_string,seed) ,pred)
+    np.savetxt('./out/predictions_%s_seed%d_dl.dat' % (input_string,seed) ,pred)
 
   

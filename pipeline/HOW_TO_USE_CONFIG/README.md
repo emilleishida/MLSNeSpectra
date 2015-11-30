@@ -38,12 +38,12 @@ This uses the DeepLearning method. It requires R, the H2O package for R and rpy2
 The possible extra keys are
 
 	deeplearning_n_layers = int (default=7)
-	deeplearning_training_frame = [to be completed](default='train.hex')
-	deeplearning_activation = [to be completed](default='"Tanh"')
-	deeplearning_autoencoder = [to be completed](default='T')
-	deeplearning_hidden = [to be completed](default='c(120,100,90,50,30,20,2,20,30,50,90,100,120)')
-	deeplearning_epochs = [to be completed](default='100')
-	deeplearning_ignore_const_cols' = [to be completed](default='F')
+	deeplearning_training_frame = [ to be completed ]  (default='train.hex')
+	deeplearning_activation = [ to be completed ]  (default='"Tanh"')
+	deeplearning_autoencoder = [ to be completed ]  (default='T')
+	deeplearning_hidden = [ to be completed ]  (default='c(120,100,90,50,30,20,2,20,30,50,90,100,120)')
+	deeplearning_epochs = [ to be completed ]  (default='100')
+	deeplearning_ignore_const_cols' = [ to be completed ]  (default='F')
 
 ## Clustering Method
 The key `CLUSTERING_METHOD` should be a string with the method name.

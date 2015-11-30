@@ -10,11 +10,11 @@ if os.path.isfile('config.py'):
 		print('ATENTION!!!\n\t<< moving config.py to config.safe.py >>\n')
 		os.system('cp config.py config.safe.py')
 
-from config_comparisson import *
-import config_comparisson
+from config_comparison import *
+import config_comparison
 
 BASE_CONF='#TEMPCONFIG\n'
-for item in dir(config_comparisson):
+for item in dir(config_comparison):
 	if item[:2]!='__' and item!='VAR_PAR' and item!='VAR_VALS' :
 		exec('temp='+item)
 		if isinstance(temp, str): temp='"'+str(temp)+'"'
@@ -55,7 +55,7 @@ for VAL,ind in zip(VAR_VALS,range(1,1+len(VAR_VALS))):
 	Qmat.append(Qvec+do_quality(case_red,case))
 	print ('\t\t[ok]\n')
 
-fqual=open('quality_comparisson.dat','w')
+fqual=open('quality_comparison.dat','w')
 print('#\tn_clust',end='',file=fqual)
 for qtest in QUALITY_METHODS:	print('\t',qtest,end='',file=fqual)
 print('',file=fqual)
@@ -64,8 +64,8 @@ for Qvec in Qmat:
 	print('',file=fqual)
 fqual.close()
 
-from ploting.plot_quality import plot_quality
-print ("** PLOTING COMPARRISSON **\n")
+from plotting.plot_quality import plot_quality
+print ("** PLOTTING COMPARRISSON **\n")
 os.system('mkdir -p plots/')
 plot_quality(QUALITY_METHODS,'plots/quality'+PLOT_QUA_EXT)
 print ('\t[ok]\n')

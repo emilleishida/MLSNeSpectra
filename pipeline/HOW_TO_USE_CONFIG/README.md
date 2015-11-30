@@ -122,7 +122,7 @@ Be aware that this data will also go into the plotting.
 
 	REDUCED_DATA_EXTERNAL		= 'path/reduced_data.dat'
 
-### External data for ploting results
+### External data for plotting results
 Add this ONLY if you want to use a external data source of the clusters for the plotting,
 if you want to use the data from the pipeline leave it commented.
 
@@ -133,7 +133,7 @@ to the reduced data. The default color scheme is according to each parent cluste
 
 	LABELS_DATA_EXTERNAL		= 'path/external_labels.dat'
 
-### External data for ploting spectra
+### External data for plotting spectra
 Add this ONLY if you want to use a external data source of the sprectra for the plotting,
 if you want to use the data from the pipeline leave it commented.
 
@@ -144,8 +144,8 @@ If you want other options, there are a few available using keys in the terminal 
 Check the main README for more information.
 
 # Advanced Use
-This part is of interest only if you want to make comparissons among different configurations.
-It concerns the config_comparisson.py file.
+This part is of interest only if you want to make comparisons among different configurations.
+It concerns the config_comparison.py file.
 
 This config file should contail all the information necessary for the config.py file,
 plus these extra keys:

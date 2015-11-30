@@ -162,7 +162,7 @@ def do_quality(case_red='',case=''):
 #### PLOTTIING PART	 ####
 #############################
 def plot():
-	from ploting.plot import plot_data
+	from plotting.plot import plot_data
 	PLOT_NAME=plot_name(RED_TYPE,CL_TYPE,dict_red,dict_clust,PLOT_EXT)
 	os.system('mkdir -p plots')
 	plot_data(READ(RED_DATA,MASK).T,READ(CL_DATA).T,READ(LAB_DATA),PLOT_NAME)
@@ -172,7 +172,7 @@ def plot():
 	else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
 	prt(PLOT_INFO,CL_PROP,'w')
 def plot_spec():
-	from ploting.plot_specs import plot_spectra
+	from plotting.plot_specs import plot_spectra
 	PLOT_NAME=plot_name(RED_TYPE,CL_TYPE,dict_red,dict_clust,'_specs'+PLOT_SPEC_EXT)
 	os.system('mkdir -p plots')
 	plot_spectra(READ(SPEC_DATA,MASK),READ(LAB_DATA),PLOT_NAME)

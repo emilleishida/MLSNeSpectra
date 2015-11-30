@@ -16,7 +16,7 @@ If you want to use the data from the pipeline leave it commented.
 ## Reduction Method
 The key `REDUCTION_METHOD` should be a string with the method name.
 For each method you can add extra keys already defined by the method
-with the original key name plus the prefix REDUCTION_METHOD'_'.
+with the original key name plus the prefix `REDUCTION_METHOD'_'`.
 
 Below are the possibilities:
 
@@ -48,7 +48,7 @@ The possible extra keys are
 ## Clustering Method
 The key `CLUSTERING_METHOD` should be a string with the method name.
 For each method you can add extra keys already defined by the method
-with the original key name plus the prefix CLUSTERING_METHOD'_'.
+with the original key name plus the prefix `CLUSTERING_METHOD'_'`.
 
 Below are the possibilities:
 

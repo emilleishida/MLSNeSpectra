@@ -14,9 +14,9 @@ If you want to use the data from the pipeline leave it commented.
 	MASK_DATA	= 'path/mask.dat'
 
 ## Reduction Method
-The key **REDUCTION_METHOD** should be a string with the method name.
+The key `REDUCTION_METHOD` should be a string with the method name.
 For each method you can add extra keys already defined by the method
-with the original key name plus the prefix REDUCTION_METHOD'_'.
+with the original key name plus the prefix `REDUCTION_METHOD'_'`.
 
 Below are the possibilities:
 
@@ -28,15 +28,27 @@ This uses the pca method and the possible extra keys are
 ### empca
 This uses the empca method and the possible extra keys are
 
-	empca_data_errors_file = **[to be completed]** (default=None)
+	empca_data_errors_file = [to be completed] (default=None)
 	empca_n_components = int (default=6)	
 	empca_smooth = int (default=0)	
 	empca_n_iter	        = int (default=50)	
 
+### DeepLearning
+This uses the DeepLearning method. It requires R, the H2O package for R and rpy2.
+The possible extra keys are
+
+	deeplearning_n_layers = int (default=7)
+	deeplearning_training_frame = [ to be completed ]  (default='train.hex')
+	deeplearning_activation = [ to be completed ]  (default='"Tanh"')
+	deeplearning_autoencoder = [ to be completed ]  (default='T')
+	deeplearning_hidden = [ to be completed ]  (default='c(120,100,90,50,30,20,2,20,30,50,90,100,120)')
+	deeplearning_epochs = [ to be completed ]  (default='100')
+	deeplearning_ignore_const_cols' = [ to be completed ]  (default='F')
+
 ## Clustering Method
-The key **CLUSTERING_METHOD** should be a string with the method name.
+The key `CLUSTERING_METHOD` should be a string with the method name.
 For each method you can add extra keys already defined by the method
-with the original key name plus the prefix CLUSTERING_METHOD'_'.
+with the original key name plus the prefix `CLUSTERING_METHOD'_'`.
 
 Below are the possibilities:
 
@@ -44,43 +56,43 @@ Below are the possibilities:
 This uses the MeanShift method and the possible extra keys are
 
 	MeanShift_quantile = float (default=.25)
-	MeanShift_cluster_all = [ **to be completed** ] (default=True)
+	MeanShift_cluster_all = [ to be completed ] (default=True)
 
 ### KMeans
 This uses the KMeans method and the possible extra keys are
 
-	KMeans_n_clusters = [ **to be completed** ] (default=4)
-	KMeans_tol = [ **to be completed** ] (default=1e-4)
-	KMeans_init = [ **to be completed** ] (default='k-means++')
-	KMeans_n_jobs = [ **to be completed** ] (default=1)
+	KMeans_n_clusters = [ to be completed ] (default=4)
+	KMeans_tol = [ to be completed ] (default=1e-4)
+	KMeans_init = [ to be completed ] (default='k-means++')
+	KMeans_n_jobs = [ to be completed ] (default=1)
 
 ### AgglomerativeClustering
 This uses the AgglomerativeClustering method and the possible extra keys are
 
-	AgglomerativeClustering_n_clusters = [ **to be completed** ] (default=6)
-	AgglomerativeClustering_affinity = [ **to be completed** ] (default='euclidean')
-	AgglomerativeClustering_linkage = [ **to be completed** ] (default='ward')
+	AgglomerativeClustering_n_clusters = [ to be completed ] (default=6)
+	AgglomerativeClustering_affinity = [ to be completed ] (default='euclidean')
+	AgglomerativeClustering_linkage = [ to be completed ] (default='ward')
 
 ### AffinityPropagation
 This uses the AffinityPropagation method and the possible extra keys are
 
-	AffinityPropagation_preference = [ **to be completed** ] (default=None)
-	AffinityPropagation_convergence_iter = [ **to be completed** ] (default=15)
-	AffinityPropagation_max_iter = [ **to be completed** ] (default=200)
-	AffinityPropagation_damping = [ **to be completed** ] (default=0.5)
-	AffinityPropagation_affinity = [ **to be completed** ] (default='euclidean')
+	AffinityPropagation_preference = [ to be completed ] (default=None)
+	AffinityPropagation_convergence_iter = [ to be completed ] (default=15)
+	AffinityPropagation_max_iter = [ to be completed ] (default=200)
+	AffinityPropagation_damping = [ to be completed ] (default=0.5)
+	AffinityPropagation_affinity = [ to be completed ] (default='euclidean')
 
 ### DBSCAN
 This uses the DBSCAN method and the possible extra keys are
 
-	DBSCAN_eps		= [ **to be completed** ] (default=0.5)
-	DBSCAN_min_samples	= [ **to be completed** ] (default=5)
-	DBSCAN_metric	= [ **to be completed** ] (default='euclidean')
-	DBSCAN_algorithm	= [ **to be completed** ] (default='auto')
-	DBSCAN_leaf_size	= [ **to be completed** ] (default=30)
+	DBSCAN_eps		= [ to be completed ] (default=0.5)
+	DBSCAN_min_samples	= [ to be completed ] (default=5)
+	DBSCAN_metric	= [ to be completed ] (default='euclidean')
+	DBSCAN_algorithm	= [ to be completed ] (default='auto')
+	DBSCAN_leaf_size	= [ to be completed ] (default=30)
 
 ## Quality test methods
-The key	**QUALITY_METHODS** should be a vector of strings of quality method checks for clustering.
+The key	`QUALITY_METHODS` should be a vector of strings of quality method checks for clustering.
 An example of this key, could be:
 
 	QUALITY_METHODS=['method1','method2','method3']
@@ -89,22 +101,22 @@ Below are the possibilities:
 
 ### silhouette
 
-	silhouette_metric	= [**to be completed**] (default='euclidean')
+	silhouette_metric	= [to be completed] (default='euclidean')
 
 
 ### DavisBouldin
 
-	DavisBouldin_metric	= [**to be completed**] (default='euclidean')
+	DavisBouldin_metric	= [to be completed] (default='euclidean')
 
 
 ### Dunn
 
-	Dunn_metric	= [**to be completed**] (default='euclidean')
+	Dunn_metric	= [to be completed] (default='euclidean')
 
 
 ### vrc
 
-	vrc_metric	= [**to be completed**] (default='euclidean')
+	vrc_metric	= [to be completed] (default='euclidean')
 
 
 
@@ -140,7 +152,7 @@ if you want to use the data from the pipeline leave it commented.
 	SPECTRAL_DATA_EXTERNAL		= 'path/external_spectra.dat'
 
 ## Advanced plotting
-If you want other options, there are a few available using keys in the terminal when executing the **PLOT** and **PLOT_SPECS** commands.
+If you want other options, there are a few available using keys in the terminal when executing the `PLOT` and `PLOT_SPECS` commands.
 Check the main README for more information.
 
 # Advanced Use

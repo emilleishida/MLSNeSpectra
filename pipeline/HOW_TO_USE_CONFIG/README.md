@@ -34,7 +34,7 @@ This uses the empca method and the possible extra keys are
 	empca_n_iter	        = int (default=50)	
 
 ### DeepLearning
-This uses the DeepLearning method. It requires R, the H2O package for R and rpy2.
+This uses the DeepLearning method. It requires `R`, the `h2o` package for `R` and `rpy2`.
 The possible extra keys are
 
 	deeplearning_n_layers = int (default=7)

@@ -99,7 +99,7 @@ PLOTTING INPUT DATA
 
 #####################################################################################
 '''
-COMPARISSON PART !!!
+COMPARISON PART !!!
 '''
 
 VAR_TYPE	= 'CLUSTERING' # 'REDUCTION'

@@ -22,7 +22,7 @@ def plot_quality(QUALITY_METHODS,out_name='plots/quality.pdf'):
 
 	if do_pdf: pdf	= PdfPages(out_name)
 
-	data		= np.loadtxt('quality_comparisson.dat').T
+	data		= np.loadtxt('quality_comparison.dat').T
 	xvec		= range(len(data[0]))
 	xint		= [int(x) for x in xvec]
 

@@ -10,10 +10,10 @@ if __name__=='__main__':
 	print "** QUALITY CHECK **\n"
 	do_quality()
 	print '\t[ok]\n'
-	print "** PLOTING **\n"
+	print "** PLOTTING **\n"
 	plot()
 	print '\t[ok]\n'
-	print "** PLOTING SPECS **\n"
+	print "** PLOTTING SPECS **\n"
 	plot_spec()
 	print '\t[ok]\n'
 	

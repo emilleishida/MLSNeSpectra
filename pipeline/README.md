@@ -33,14 +33,14 @@ You should first prepare your environment with two simple steps.
 There are two approaches for using the pipeline
 * Normal Use:
 
-	In this way all the settings of the pipeline are set by a configuration file (**config.py**).
+	In this way all the settings of the pipeline are set by a configuration file (`config.py`).
 	It only produces results for one specific configuration in each run.
 	See the README file in HOW_TO_USE_CONFIG to the the possibilities of the configuration file.
 * Advanced Use:
 
 	It is  strongly recomended that you learn how to use the pipeline in the Normal approach before using this.
 	This new module was introduced to run the pipeline variating one of the set of parameters and comparing the results.
-	Here a similar configuration file (**config_comparisson.py**) but with extra keys.
+	Here a similar configuration file (`config_comparison.py`) but with extra keys.
 	See the advanced section of the README file in HOW_TO_USE_CONFIG to the the possibilities of this configuration file.
 
 
@@ -79,11 +79,11 @@ To run just the clustering quality execute:
 
 	QUALITY
 
-To run just the ploting execute:
+To run just the plotting execute:
 
 	PLOT
 
-To run just the ploting of the spectra by gorups execute:
+To run just the plotting of the spectra by gorups execute:
 
 	PLOT_SPECS
 
@@ -91,25 +91,25 @@ Remeber, all cases are configured by:
 
 	config.py
 
-If you are running the pipeline for comparisson (see Advanced Use),
+If you are running the pipeline for comparison (see Advanced Use),
 the command is:
 
-	COMPARISSON
+	COMPARISON
 
 and the configuration file is:
 
-	config_comparisson.py
+	config_comparison.py
 
 ## Outputs
-The outputs of reduction methods are placed in **red_data/**.
+The outputs of reduction methods are placed in `red_data/`.
 They will be input for clustering and plotting unless stated otherwise.
 
-The outputs of clustering methods are placed in **cl_data/**.
+The outputs of clustering methods are placed in `cl_data/`.
 They will be input for plotting unless stated otherwise.
 
-The outputs of plotting are placed in **plots/**.
+The outputs of plotting are placed in `plots/`.
 
-All modules also print the information used and resulting in **info/**.
+All modules also print the information used and resulting in `info/`.
 
 ## Adding your code
 If you want to add your code to the pipeline, put it in the one of the following dirs inside the pipeline and we will format it for you:
@@ -130,7 +130,7 @@ The default plot of the results are in a figure (.png) with all the PCs colored 
 If you want to change the extension of the figure or the color arrangement,
 change the parameters in the config file (see HOW_TO_USE_CONFIG README).
 
-If you want other options, there are a few available using keys in the terminal when executing the **PLOT** command.
+If you want other options, there are a few available using keys in the terminal when executing the `PLOT` command.
 Here are the plossibilities:
 
 	-nd	(or --no_diag	) : do not plot diagonal

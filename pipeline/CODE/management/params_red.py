@@ -23,4 +23,5 @@ deeplearning_dict=dict([
 	[ 'hidden'		, 'c(120,100,90,50,30,20,2,20,30,50,90,100,120)'],
 	[ 'epochs'		, '100'						],
 	[ 'ignore_const_cols'	, 'F'						],
+    [ 'seed'            ,  1]
 ])

@@ -22,7 +22,7 @@ vspace	= float(vspace)
 
 
 import matplotlib
-#if in_window==False: matplotlib.use('Agg')
+if in_window==False: matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 color_base	= ['r', 'g', 'b', 'y','c', 'm','k','.8']

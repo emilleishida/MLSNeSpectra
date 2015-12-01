@@ -6,6 +6,7 @@ So far we have implemented:
 * For data reduction:
 	* PCA
 	* empca
+	* DeepLearning (requires `R`, `h2o` for `R` and `rpy2`)
 * For clustering:
 	* MeanShift
 	* KMeans

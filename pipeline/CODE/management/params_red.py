@@ -10,7 +10,7 @@ empca_dict=dict([
 	[ 'n_iter'	        , 50			],
 ])
 
-deeplearning_dict=dict([
+DeepLearning_dict=dict([
 	[ 'n_layers'		, 7						],
 	[ 'training_frame'	, 'train.hex'					],
 	[ 'activation'		, '"Tanh"'					],

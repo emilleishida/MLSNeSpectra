@@ -38,7 +38,7 @@ def crop(data,i,j,plt_inds):
 	iplt,jplt=plt_inds[ind(i)],plt_inds[j]
 	return np.array([data[jplt],data[iplt]])
 def add_labels(plts,Nplt,ls,lc):
-	PLT,xl,yl = plts, .8, .85
+	PLT,xl,yl = plts, .5, .85
 	if Nplt>1:	PLT,xl,yl = plts[0][Nplt-1], .1,.4
 	G_space='\n-----------------------------'
 	for g in ls: G_space+='\n'
@@ -46,12 +46,12 @@ def add_labels(plts,Nplt,ls,lc):
 
 	fig	= plt.gcf()
 	t	= PLT.transAxes
-	text	= PLT.text(xl,yl,'REDUCTION_METHOD:\n  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:\n  '+CLUSTERING_METHOD+G_space,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=PLT.transAxes)
+	text	= PLT.text(xl,yl,'REDUCTION_METHOD:  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:  '+CLUSTERING_METHOD+G_space, fontsize=18,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=PLT.transAxes)
 	text.draw(fig.canvas.get_renderer())
 	ex = text.get_window_extent()
 	t	= matplotlib.transforms.offset_copy(text._transform, y=ex.height*((Ng-1.)/(Ng+5.)), units='dots')
 	for s,c in zip(ls,lc):
-		text = PLT.text(xl,yl," "+s+" ",color=c, transform=t)
+		text = PLT.text(xl,yl," "+s+" ",color=c, transform=t, fontsize=22)
 	        text.draw(fig.canvas.get_renderer())
 	        ex = text.get_window_extent()
 	        t = matplotlib.transforms.offset_copy(text._transform, y=-ex.height, units='dots')
@@ -69,25 +69,25 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 		plt_inds=[v-1 for v in plot_pars]
 		Nplt=TAM(plot_pars)
 
-	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(16,12))
+	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(20,14))
 	for i in range(Nplt):
 		for j in range(Nplt):
 			PLT,ax=plt,plt.gca
 			if Nplt>1:
 				PLT,ax= plts[i][j],plts[i][j]
 				plt.setp( ax.get_xticklabels()[ 0], visible=False)
-				plt.setp( ax.get_xticklabels()[-2], visible=False)
+				plt.setp( ax.get_xticklabels()[-1], visible=False)
 				plt.setp( ax.yaxis.get_major_ticks()[ 0], visible=False)
-				if i>0: plt.setp( ax.yaxis.get_major_ticks()[ -2], visible=False)
-			plt.setp( ax.get_xticklabels(), rotation=45)
-			plt.setp( ax.get_yticklabels(), rotation=45)
+				if i>0: plt.setp( ax.yaxis.get_major_ticks()[ -1], visible=False)
+			plt.setp( ax.get_xticklabels(), rotation=45, fontsize=18)
+			plt.setp( ax.get_yticklabels(), rotation=45, fontsize=18)
 #			PLT.locator_params('x',nbins=4)
 #			PLT.locator_params('y',nbins=4)
 			dat	= crop(red_data,i,j,plt_inds)
 			cl_dat	= crop(cl_data,i,j,plt_inds)
 			if j>i: PLT.axis('off')
 			else:
-				PLT.scatter(dat[0],dat[1],c=colors,edgecolor=colors,marker='o',label='data',lw=0,s=8)
+				PLT.scatter(dat[0],dat[1],c=colors,edgecolor=colors,marker='o',label='data',lw=0,s=40)
 				if fit_all:
 					PLT.scatter(cl_dat[0],cl_dat[1],c='.0',linewidth='2',marker='x',label='cluster centers')
 					PLT.scatter(cl_dat[0],cl_dat[1],c='.5',linewidth='.7',marker='x',s=10)
@@ -95,9 +95,9 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	for i in range(Nplt):	
 		PLTX,PLTY=plts,plts
 		if Nplt>1: PLTX,PLTY=plts[ Nplt-1 ][ i ],plts[ i      ][ 0 ]
-		PLTX.set_xlabel('$PC_'+ str(plt_inds[i]+1)	+'$')
-		PLTY.set_ylabel('$PC_'+ str(plt_inds[ind(i)]+1)	+'$')
+		PLTX.set_xlabel('PC'+ str(plt_inds[i]+1), fontsize=26)
+		PLTY.set_ylabel('PC'+ str(plt_inds[ind(i)]+1), fontsize=26)
 
-	plt.subplots_adjust(left=0.1, right=0.9, top=0.95, bottom=0.15,hspace=hspace,wspace=vspace)
+	plt.subplots_adjust(left=0.09, right=0.975, top=0.975, bottom=0.1,hspace=0.0,wspace=0.0)
 	if in_window	: plt.show(block=True)
 	else		: plt.savefig(out_name)

@@ -1,0 +1,45 @@
+### REDUCTION USED ###
+from external data = out/out_120,100,90,50,30,20,7,20,30,50,90,100,120_seed1000_dl.dat
+### CLUSTERING USED ###
+INPUT_DATA = out/out_120,100,90,50,30,20,7,20,30,50,90,100,120_seed1000_dl.dat
+METHOD = KMeans
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 7
+
+	-outputs:
+n_clusters = 7
+
+### QUALITIES USED ###
+INPUT_DATA = cl_data/clustering_KMeans.dat
+
+METHOD = silhouette_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 7
+
+METHOD = Dunn_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 7
+
+METHOD = DavisBouldin_index
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 7
+
+METHOD = vrc
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 7
+
+	-outputs:
+quality from silhouette_index = -0.0526947655602
+quality from Dunn_index = 0.26519960076
+quality from DavisBouldin_index = 4.7329835929
+quality from vrc = 1642.89257015

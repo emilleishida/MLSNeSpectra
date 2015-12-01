@@ -47,15 +47,17 @@ def load_colors(sne_list,type='Wang'):
     return color_list,shape_list,name_dict
 ###############################################################################################
 
+nfeatures = '3'
+ngroups = '2'
 
 # path to DL results
-path_small_space = '../../../../../R/out_DeepLearning/out_120,100,90,50,30,20,4,20,30,50,90,100,120_seed1_dl.dat'
+path_small_space = '../out/out_120,100,90,50,30,20,' + nfeatures + ',20,30,50,90,100,120_seed100_dl.dat'
 
 # path to spectra ID
-path_id = '../../../../../data_all_types/spectra_data.dat'
+path_id = '../../../../../../data_all_types/spectra_data.dat'
 
 # path to kmeans result
-path_kmeans = '../../DL_kmeans/cl_data_all/clustering_KMeans_label_4PC_2groups.dat'
+path_kmeans = '../cl_data/clustering_KMeans_label_' + nfeatures + 'PC_' + ngroups + 'groups.dat'
 
 # color for plotting
 c = [ 'green', 'red', 'blue', 'orange', 'black']
@@ -118,7 +120,7 @@ legs=fig1.legend(panels, ['Group 1', 'Group 2', 'Group 3'], loc = (0.0, 0.889), 
 plt.setp(legs.get_title(),fontsize=22)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
-plt.xlim(-2.0, 2.0)
+plt.xlim(-2.0, 2.5)
 plt.ylim(-1.5, 2.0)
 plt.xlabel('isomap 1', fontsize=22)
 plt.ylabel('isomap 2', fontsize=22)
@@ -137,11 +139,11 @@ plt.setp(legs2.get_title(),fontsize=22)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 plt.tight_layout()
-plt.xlim(-2.0, 2.0)
+plt.xlim(-2.0, 2.5)
 plt.ylim(-1.5, 2.0)
 plt.xlabel('isomap 1', fontsize=22)
 plt.ylabel('isomap 2', fontsize=22)
 plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.1)
 plt.tight_layout()
-plt.savefig("kmeans_wang_isomap_2g.pdf", format='pdf',dpi=1000)
+plt.savefig("seed100_" + nfeatures + "f_" + ngroups + "g_kmeans_wang_isomap.pdf", format='pdf',dpi=1000)
 

@@ -38,7 +38,7 @@ def crop(data,i,j,plt_inds):
 	iplt,jplt=plt_inds[ind(i)],plt_inds[j]
 	return np.array([data[jplt],data[iplt]])
 def add_labels(plts,Nplt,ls,lc):
-	PLT,xl,yl = plts, .5, .85
+	PLT,xl,yl = plts, .8, .85
 	if Nplt>1:	PLT,xl,yl = plts[0][Nplt-1], .1,.4
 	G_space='\n-----------------------------'
 	for g in ls: G_space+='\n'

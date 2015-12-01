@@ -1,0 +1,15 @@
+### REDUCTION USED ###
+INPUT_DATA = /home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/SN_simulator/simulated_data/00/derivatives.dat
+METHOD = pca
+n_components = 5
+
+### CLUSTERING USED ###
+INPUT_DATA = red_data/reduced_data_pca.dat
+METHOD = KMeans
+init = k-means++
+n_jobs = 1
+tol = 0.0001
+n_clusters = 2
+
+	-outputs:
+n_clusters = 2

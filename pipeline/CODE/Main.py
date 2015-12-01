@@ -27,6 +27,9 @@ def READ(NAME,MASK=''):
 		if MASK==''	: return np.loadtxt(NAME)
 		else		: return np.loadtxt(NAME)[np.loadtxt(MASK)==1]
 	else: ERROR('file '+NAME+' does not exist!')
+def PRT_FMSG(msg_ok,msg_fail,FILE):
+	if os.path.isfile(FILE) : print('\t*',msg_ok,'->',FILE)
+	else 			: print('\t*',msg_fail,'- no',FILE,'file')
 
 print('''
 ################################################
@@ -96,7 +99,7 @@ def reduc(case=''):
 	else:	
 		np.savetxt(RED_DATA_NAME+case,reduction(READ(ORG_DATA),dict_red))
 		print_info(REDUCTION_METHOD,dict_red,'### REDUCTION USED ###',ORG_DATA,REDUCTION_INFO+case)
-		print('\t* REDUCTED DATA printed to ->',RED_DATA_NAME+case)
+		PRT_FMSG('REDUCTED DATA printed to','REDUCED DATA not printed',RED_DATA_NAME+case)
 
 #############################
 #### CLUSTERING PART	 ####
@@ -119,8 +122,8 @@ def cluster(case_in='',case_out=''):
 	print_info(CLUSTERING_METHOD,dict_clust,'### CLUSTERING USED ###',RED_DATA,CLUSTER_INFO+case_out,'a')
 	prt(CLUSTER_INFO+case_out,'\n\t-outputs:','a')
 	prt(CLUSTER_INFO+case_out,'n_clusters = '+str(clusters.shape[0]),'a')
-	print('\t* CLUSTER CENTERS printed to ->',CLUSTERS_DATA_NAME+case_out)
-	print('\t* CLUSTER LABELS printed to ->',CLUSTERS_LABEL_NAME+case_out)
+	PRT_FMSG('CLUSTER CENTERS printed to','CLUSTERS CENTERS not printed',CLUSTERS_DATA_NAME+case_out)
+	PRT_FMSG('CLUSTER LABELS printed to','CLUSTERS LABELS not printed',CLUSTERS_LABEL_NAME+case_out)
 	return clusters,labels
 	
 #############################
@@ -156,7 +159,7 @@ def do_quality(case_red='',case=''):
 				prt(QUALITY_INFO+case,'quality from '+METHOD+' = '+str(q),'a')
 				used=True
 				Qvec.append(q)
-		print('\t* QUALITY results printed to ->',QUALITY_INFO+case)
+		PRT_FMSG('QUALITY results printed to','QUALITY results not printed',QUALITY_INFO+case)
 		if used: return Qvec
 		else:
 			print('\t<no quality checks>')
@@ -175,7 +178,7 @@ def plot():
 	except NameError: CL_PROP=open(CLUSTER_INFO,'r').read()
 	else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
 	prt(PLOT_INFO,CL_PROP,'w')
-	print('\t* PLOT generated at ->',PLOT_NAME)
+	PRT_FMSG('PLOT generated at','PLOT file not generated',PLOT_NAME)
 def plot_spec():
 	from plotting.plot_specs import plot_spectra
 	PLOT_NAME=plot_name(RED_TYPE,CL_TYPE,dict_red,dict_clust,'_specs'+PLOT_SPEC_EXT)
@@ -186,4 +189,4 @@ def plot_spec():
 	except NameError: CL_PROP=open(CLUSTER_INFO,'r').read()
 	else		: CL_PROP='### CLUSTERS USED ###\nfrom external data = '+CLUSTERS_DATA_EXTERNAL
 	prt(PLOTSPEC_INFO,CL_PROP,'w')
-	print('\t* SPECS PLOT generated at ->',PLOT_NAME)
+	PRT_FMSG('SPECS PLOT generated at','SPECS PLOT not generated',PLOT_NAME)

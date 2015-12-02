@@ -4,15 +4,16 @@ import numpy as np
 # path to Kmeans labels results
 path_seed1 = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/emille/real_data/DL_seeds/seed_1/cl_data/clustering_KMeans_label_5PC_2groups.dat'
 path_seed2 = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/emille/real_data/DL_seeds/seed_2/cl_data/clustering_KMeans_label_5PC_2groups.dat'
-path_seed50 = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/emille/real_data/DL_seeds/seed_50/cl_data/clustering_KMeans_label_3PC_2groups.dat'
-path_seed100 = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/emille/real_data/DL_seeds/seed_100/cl_data/clustering_KMeans_label_3PC_2groups.dat'
-path_seed1000 = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/emille/real_data/DL_seeds/seed_1000/cl_data/clustering_KMeans_label_3PC_2groups.dat'
+path_seed50 = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/emille/real_data/DL_seeds/seed_50/cl_data/clustering_KMeans_label_5PC_2groups.dat'
+path_seed100 = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/emille/real_data/DL_seeds/seed_100/cl_data/clustering_KMeans_label_5PC_2groups.dat'
+path_seed1000 = '/home/emille/Documents/github/mlsnespectra/MLSNeSpectra/python/emille/real_data/DL_seeds/seed_1000/cl_data/clustering_KMeans_label_5PC_2groups.dat'
 
 # path to spectra id
 path_id = '../../../../../data_all_types/spectra_data.dat'
 
 
 seed = 1
+ngroups = 2
 
 path_set = [path_seed1, path_seed2, path_seed50, path_seed100, path_seed1000]
 keys = [1, 2, 50, 100, 1000]
@@ -83,13 +84,15 @@ for k1 in diff_sets.keys():
         if k2[0] not in names_diff:
             names_diff.append(k2[0])
 
+print 'len(names_diff) = ' + str(len(names_diff))
+
 # count the most frequent missmatched classifications
 mismatched = {}
 for name in all_ids:
     mismatched[tuple(name)] = sum([name in ll for ll in diff_sets.values()])
 
 
-op = open('mismatch_seeds.dat', 'w')
+op = open('mismatch_seeds_5f_2g.dat', 'w')
 op.write('snid \t epoch \t number of mismatch\n')
 for key in mismatched:
     op.write(str(key[0]) + '\t' + str(key[1]) + '\t' + str(mismatched[key]) + '\n')

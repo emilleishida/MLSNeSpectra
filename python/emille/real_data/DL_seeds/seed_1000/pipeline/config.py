@@ -15,7 +15,7 @@ Mask of data:
 	This mask will also be used in plotting the spectra.
 	If you want to use the data from the pipeline leave it commented.
 '''
-MASK_DATA		=  '../../../../../data_all_types/labels.dat'
+MASK_DATA		=  '../../../../../../data_all_types/labels.dat'
 
 #####################################################################################
 '''
@@ -34,7 +34,7 @@ REDUCTION METHOD
                 in order to run with weights=1/errors^2. Its default value is
                 None, so empca runs without weights
 '''
-REDUCTION_METHOD	= 'deeplearning'
+REDUCTION_METHOD	= 'DeepLearning'
 deeplearning_hidden = 'c(120,100,90,50,30,20,5,20,30,50,90,100,120)'
 #deeplearning_seed = 1000
 
@@ -98,4 +98,4 @@ PLOTTING INPUT DATA
 '''
 #CLUSTERS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
 #LABELS_DATA_EXTERNAL		= '../empca_trained_coeff/coefficients.dat'
-SPECTRAL_DATA_EXTERNAL		= '../../../../../data_all_types/fluxes.dat'
+SPECTRAL_DATA_EXTERNAL		= '../../../../../../data_all_types/fluxes.dat'

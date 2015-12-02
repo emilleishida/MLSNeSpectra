@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #PARAMS='0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9'
-PARAMS='2 3 4 5 6 7 8  9'
+PARAMS='2 3 4 5 6 7 8 9'
 #PARS='2 3 4 5 6 7 8 9'
 PARS='2 3 4 5 6 7 8 9'
 
@@ -36,9 +36,10 @@ REDUCTION METHOD
                 in order to run with weights=1/errors^2. Its default value is
                 None, so empca runs without weights
 '''
-REDUCTION_METHOD	= 'deeplearning'
-deeplearning_hidden = 'c(120,100,90,50,30,20,"$COMP",20,30,50,90,100,120)'
-deeplearning_seed = 5000
+REDUCTION_METHOD	= 'pca'
+pca_n_components = "$COMP"
+
+
 
 #####################################################################################
 '''
@@ -60,6 +61,10 @@ CLUSTERING METHOD
 '''
 CLUSTERING_METHOD	= 'KMeans'
 KMeans_n_clusters	= "$PARAM"
+
+VAR_TYPE    =  'CLUSTERING'
+VAR_PAR     =  'KMeans_n_clusters'
+VAR_VALS    =  [2,3,4,5,6,7,8,9]
 
 #####################################################################################
 '''
@@ -88,9 +93,9 @@ CLUSTERING INPUT DATA
 	Be aware that this data will also go into the plotting.
 '''
 
-#REDUCED_DATA_EXTERNAL =    '../../../../R/out_DeepLearning/out_120,100,90,50,30,20,"$COMP",20,30,50,90,100,120_seed1_dl.dat'
-MASK_DATA   = '../../../../data_all_types/labels.dat'
-SPECTRAL_DATA_EXTERNAL      = '../../../../data_all_types/fluxes.dat'
+REDUCED_DATA_EXTERNAL =    'out/out_120,100,90,50,30,20,"$COMP",20,30,50,90,100,120_seed5000_dl.dat'
+MASK_DATA   = '../../../../../data_all_types/labels.dat'
+SPECTRAL_DATA_EXTERNAL      = '../../../../../data_all_types/fluxes.dat'
 
 #####################################################################################
 '''

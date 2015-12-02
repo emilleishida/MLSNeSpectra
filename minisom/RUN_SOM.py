@@ -64,14 +64,14 @@ class RUN_SOM:
 		
 	
 	
-	def set_som(self,nx=5,ny=5,Nf=None, sigma = 0.5,learn_rate=0.5):
+	def set_som(self,nx=5,ny=5,Nf=None, sigma = 0.5,learn_rate=0.5,decay_function=None, random_seed=None):
 		
 		if Nf is None:
 		
 			Nf = self.data.shape[1]
 		
 		
-		self.som = minisom.MiniSom(nx,ny,Nf,sigma,learn_rate)
+		self.som = minisom.MiniSom(nx,ny,Nf,sigma,learn_rate,decay_function, random_seed)
 		
 		
 		
@@ -139,7 +139,9 @@ class RUN_SOM:
 		fig.subplots_adjust(left=0, bottom=0, right=1, top=1,wspace=0.0,hspace=0.0)
 
 		FILE = open(os.path.join(self.folder,file_name+"_stats.dat"),"w")
+		FILE_group_members = open(os.path.join(self.folder,file_name+"_group_member_stats.dat"),"w")
 		FILE.write("Pair\t Nspec\t mean epoch\t epoch std\n")
+
 		
 		# make plots
 		
@@ -210,10 +212,32 @@ class RUN_SOM:
 		
 			
 		
-					print "Pair = (%d,%d)\t Nspec=%d\t epoch mean=%.2f\t epoch std=%.2f"%(i,j,len(indices),epoch_mean,epoch_std)
+					print "Pair = (%d,%d)\t Nspec=%d\t mean epoch=%.2f\t epoch std=%.2f"%(i,j,len(indices),epoch_mean,epoch_std)
 					FILE.write("(%d,%d)\t %d\t\t\t %.2f\t\t\t %.2f\n"%(i,j,len(indices),epoch_mean,epoch_std) )
+					
+					if len(indices) !=0:
+						
+						FILE_group_members.write("Pair =(%d,%d)\t Nspec=%d\t\t\t mean epoch=%.2f\t\t\t epoch std=%.2f\n"%(i,j,len(indices),epoch_mean,epoch_std) )
+						
+						FILE_group_members.write("SNIa\t zhelio\t MJD\t epoch\n")
+						
+						print "SNIa\t zhelio\t MJD\t epoch\n"
+						
+						for SNIa in self.spectra_data.values[indices]:
+							
+							FILE_group_members.write("%s\t %.5f\t %.2f\t %.3f\n"%(SNIa[0],SNIa[1],SNIa[2],SNIa[3]))
+							
+							print "%s\t %.5f\t %.2f\t %.3f"%(SNIa[0],SNIa[1],SNIa[2],SNIa[3])
+						
+						FILE_group_members.write("-----------------------------------------------------------------\n")
+						print "-----------------------------------------------------------------"
+						
+							
+							
+						
 
 		FILE.close()
+		FILE_group_members.close()
 
 
 
@@ -226,14 +250,13 @@ class RUN_SOM:
 	
 
 		
-		
-	
+
 	
 if __name__ == "__main__":	
 
 	p_in = {"path_data":"/home/at/Desktop/COIN-Git/MLSNeSpectra/R/out_DeepLearning",
-			"data_file":"out_120,100,90,50,30,20,9,20,30,50,90,100,120_seed1_dl.dat",
-			"folder_out":"results_120,100,90,50,30,20,9,20,30,50,90,100,120_seed1_dl",
+			"data_file":"out_120,100,90,50,30,20,4,20,30,50,90,100,120_seed1_dl.dat",
+			"folder_out":"results_120,100,90,50,30,20,4,20,30,50,90,100,120_seed1_dl",
 			"path_out":"/home/at/Desktop/COIN-Git/MLSNeSpectra/minisom"
 			}
 
@@ -244,11 +267,12 @@ if __name__ == "__main__":
 	
 	SOM.select_data(SNIa_at_max="Yes")
 		
-	SOM.set_som(nx=5,ny=5, sigma =5/2.*(1.-0.1),learn_rate=0.5)
+	SOM.set_som(nx=10,ny=10, sigma =(10./2.)*(1.-0.1),learn_rate=0.5,random_seed = 200)
 	
-	SOM.run_som(Niter = 1000000,som_type = "random")
+	SOM.run_som(Niter = 10000000,som_type = "random")
+	#SOM.run_som(Niter = 10000,som_type = "random")
 	
-	SOM.analysis("120,100,90,50,30,20,9,20,30,50,90,100,120_seed1_dl_teste_grid_5_sig10perc_learn0.5_niter1000000")
+	SOM.analysis("120,100,90,50,30,20,4,20,30,50,90,100,120_seed1_dl_teste_grid_10_sig10perc_learn0.5_niter10000000")
 	
 	#w = SOM.get_weights()
 	#sig = SOM.som._decay_function(SOM.som.sigma,1e4,1e4)

@@ -61,6 +61,7 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	group_text=['Group '+str(int(i)+1) for i in set(label_data)]
 
 	Nplt=TAM(red_data)
+	if Nplt!=TAM(cl_data): print('**ERROR** - # of rows in reducted file is different from # of rows in cluster centers file!\n\n\t-- please rerun either REDUCTION of CLUSTERING --\n'); exit()
 	plt_inds=range(Nplt+1)
 
 	if plot_pars!='ALL':
@@ -72,13 +73,14 @@ def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	f,plts  = plt.subplots(Nplt,Nplt,sharex=True,sharey=True,figsize=(20,14))
 	for i in range(Nplt):
 		for j in range(Nplt):
-			PLT,ax=plt,plt.gca
+			PLT,ax=plt,plt.gca()
 			if Nplt>1:
 				PLT,ax= plts[i][j],plts[i][j]
 				plt.setp( ax.get_xticklabels()[ 0], visible=False)
 				plt.setp( ax.get_xticklabels()[-1], visible=False)
 				plt.setp( ax.yaxis.get_major_ticks()[ 0], visible=False)
 				if i>0: plt.setp( ax.yaxis.get_major_ticks()[ -1], visible=False)
+			print(Nplt,i,j)
 			plt.setp( ax.get_xticklabels(), rotation=45, fontsize=18)
 			plt.setp( ax.get_yticklabels(), rotation=45, fontsize=18)
 #			PLT.locator_params('x',nbins=4)

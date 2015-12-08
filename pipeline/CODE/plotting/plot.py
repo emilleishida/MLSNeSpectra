@@ -38,23 +38,24 @@ def crop(data,i,j,plt_inds):
 	iplt,jplt=plt_inds[ind(i)],plt_inds[j]
 	return np.array([data[jplt],data[iplt]])
 def add_labels(plts,Nplt,ls,lc):
-	PLT,xl,yl = plts, .8, .85
+	PLT,xl,yl = plts, .67, .8
 	if Nplt>1:	PLT,xl,yl = plts[0][Nplt-1], .1,.4
-	G_space='\n-----------------------------'
+	G_space='\n-----------------------------\n'
 	for g in ls: G_space+='\n'
 	Ng=len(ls)
 
+	dy	= 1.5
 	fig	= plt.gcf()
 	t	= PLT.transAxes
 	text	= PLT.text(xl,yl,'REDUCTION_METHOD:  '+REDUCTION_METHOD+'\nCLUSTERING_METHOD:  '+CLUSTERING_METHOD+G_space, fontsize=18,bbox={'facecolor':'1.', 'alpha':0.5, 'pad':20},transform=PLT.transAxes)
 	text.draw(fig.canvas.get_renderer())
 	ex = text.get_window_extent()
-	t	= matplotlib.transforms.offset_copy(text._transform, y=ex.height*((Ng-1.)/(Ng+5.)), units='dots')
+	t	= matplotlib.transforms.offset_copy(text._transform, y=ex.height*(3/(Ng+3.)), units='dots')
 	for s,c in zip(ls,lc):
 		text = PLT.text(xl,yl," "+s+" ",color=c, transform=t, fontsize=22)
 	        text.draw(fig.canvas.get_renderer())
 	        ex = text.get_window_extent()
-	        t = matplotlib.transforms.offset_copy(text._transform, y=-ex.height, units='dots')
+	        t = matplotlib.transforms.offset_copy(text._transform, y=-ex.height*dy, units='dots')
 def plot_data(red_data,cl_data,label_data,out_name='plots/plot.png'):
 	colors	= 'r'
 	if do_colors and fit_all: colors = [color_base[int(i)] for i in label_data.astype(np.float)]
